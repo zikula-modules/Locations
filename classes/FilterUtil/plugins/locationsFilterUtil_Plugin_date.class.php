@@ -11,11 +11,6 @@
  * @url http://kaffeeringe.de
  */
 
-/*
- * generated at Fri Jul 04 17:14:11 GMT 2008 by ModuleStudio 0.4.10 (http://modulestudio.de)
- */
-
-
 Loader::loadClass('locationsFilterUtil_ReplaceCommon', LOCATIONS_FILTERUTIL_CLASS_PATH);
 
 /**
@@ -58,20 +53,20 @@ class locationsFilterUtil_Plugin_Date extends locationsFilterUtil_ReplaceCommon 
     protected function DateToStamp($date)
     {
         switch(true) {
-        case strtotime($date) !== false:
-            $time = strtotime($date);
-            break;
-        case strptime($date, "%d.%m.%Y %H:%M:%S") !== false:
-            $arr = strptime($date, "%d.%m.%Y %H:%M:%S");
-            $time = mktime($arr['tm_hour'], $arr['tm_min'], $arr['tm_sec'],
-                           $arr['tm_mon'], $arr['tm_monday'], $arr['tm_year']);
-            break;
-        case is_numeric($date):
-            $time = $date;
-            break;
-        default:
-            $time = false;
-            break;
+            case strtotime($date) !== false:
+                $time = strtotime($date);
+                break;
+            case strptime($date, "%d.%m.%Y %H:%M:%S") !== false:
+                $arr = strptime($date, "%d.%m.%Y %H:%M:%S");
+                $time = mktime($arr['tm_hour'], $arr['tm_min'], $arr['tm_sec'],
+                $arr['tm_mon'], $arr['tm_monday'], $arr['tm_year']);
+                break;
+            case is_numeric($date):
+                $time = $date;
+                break;
+            default:
+                $time = false;
+                break;
         }
 
         return $time;

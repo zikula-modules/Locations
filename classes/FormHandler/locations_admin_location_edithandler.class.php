@@ -11,10 +11,6 @@
  * @url http://kaffeeringe.de
  */
 
-/*
- * generated at Fri Jul 04 17:14:11 GMT 2008 by ModuleStudio 0.4.10 (http://modulestudio.de)
- */
-
 /**
  * This handler class handles the page events of the pnForm called by the locations_admin_edit() function.
  * It aims on the location object type.
@@ -56,24 +52,23 @@ class locations_admin_location_editHandler extends pnFormHandler
      */
     function initialize(&$render)
     {
+        $dom = ZLanguage::getModuleDomain('locations');
+
         // retrieve the ID of the object we wish to edit
         // default to 0 (which is a numeric id but an invalid value)
         // no provided id means that we want to create a new object
         $this->locationid = (int) FormUtil::getPassedValue('locationid', 0, 'GET');
 
-
-
         $objectType = 'location';
         // load the object class corresponding to $objectType
         if (!($class = Loader::loadClassFromModule('locations', $objectType))) {
-            pn_exit(__f('Error! Unable to load module class [%s%] for module [%m%]';, array('s' => DataUtil::formatForDisplay($objectType))));
+            pn_exit(__f('Error! Unable to load class [%s]', $objectType, $dom));
         }
 
         $this->mode = 'create';
         // if locationid is not 0, we wish to edit an existing location
         if($this->locationid) {
             $this->mode = 'edit';
-
 
             // intantiate object model and get the object of the specified ID from the database
             $object = new $class('D', $this->locationid);
@@ -83,12 +78,12 @@ class locations_admin_location_editHandler extends pnFormHandler
             $objectData = $object->get();
             //die (print_r($objectData));
             if (!is_array($objectData) || !isset($objectData['locationid']) || !is_numeric($objectData['locationid'])) {
-                return $render->pnFormSetErrorMsg(__('Sorry, the location could not be found.', $dom));
+                return $render->pnFormSetErrorMsg(__('Error! The location could not be found.', $dom));
             }
 
             if (!SecurityUtil::checkPermission('locations::', '::', ACCESS_EDIT)  && !((SecurityUtil::checkPermission('locations::own', '::', ACCESS_EDIT) && (pnUserGetVar('uid') == $objectData->cr_uid)))) {
                 // set an error message and return false
-                return $render->pnFormSetErrorMsg(_LOCATIONS_NOTAUTHORIZED);
+                return $render->pnFormSetErrorMsg(__('Error! You are not authorized to perform this action', $dom));
             }
             // try to guarantee that only one person at a time can be editing this location
             $returnUrl = pnModUrl('locations', 'admin', 'display', array('ot' => $objectType, 'locationid' => $this->locationid));
@@ -99,7 +94,7 @@ class locations_admin_location_editHandler extends pnFormHandler
         else {
             if (!SecurityUtil::checkPermission('locations::', '::', ACCESS_ADD)) {
                 // set an error message and return false
-                return $render->pnFormSetErrorMsg(_LOCATIONS_NOTAUTHORIZED);
+                return $render->pnFormSetErrorMsg(__('Error! You are not authorized to perform this action', $dom));
             }
             // get module vars
             $config = pnModGetVar('locations');
@@ -122,13 +117,11 @@ class locations_admin_location_editHandler extends pnFormHandler
         $render->assign('mode', $this->mode);
 
         if (!($class = Loader::loadClass('CategoryRegistryUtil'))) {
-            pn_exit (__f('Error! Unable to load class [%s%]';, array('s' => 'CategoryRegistryUtil')));
+            pn_exit(__f('Error! Unable to load class [%s]', 'CategoryRegistryUtil', $dom));
         }
 
         $maincat  = CategoryRegistryUtil::getRegisteredModuleCategory ('locations', 'locations_location', 'Type');
         $render->assign('maincat', $maincat);
-
-
 
         // everything okay, no initialization errors occured
         return true;
@@ -149,6 +142,8 @@ class locations_admin_location_editHandler extends pnFormHandler
      */
     function handleCommand(&$render, &$args)
     {
+        $dom = ZLanguage::getModuleDomain('locations');
+
         // return url for redirecting
         $returnUrl = null;
 
@@ -162,7 +157,7 @@ class locations_admin_location_editHandler extends pnFormHandler
         $objectType = 'location';
         // load the object class corresponding to $objectType
         if (!($class = Loader::loadClassFromModule('locations', $objectType))) {
-            pn_exit(__f('Error! Unable to load module class [%s%] for module [%m%]';, array('s' => DataUtil::formatForDisplay($objectType))));
+            pn_exit(__f('Error! Unable to load class [%s%]', $objectType, $dom));
         }
 
         // instantiate the class we just loaded
@@ -196,12 +191,11 @@ class locations_admin_location_editHandler extends pnFormHandler
                 return LogUtil::registerError(__('Error! Creation attempt failed.', $dom));
             }
 
-            LogUtil::registerStatus(__f('Done! %i% created.';, array('i' => __('Location', $dom))));
+            LogUtil::registerStatus(__('Done! Location created.', $dom));
 
             // redirect to the detail page of the newly created location
             $returnUrl = pnModUrl('locations', 'user', 'display',
-            array('ot' => 'location',
-                                                                   'locationid' => $this->locationid));
+            array('ot' => 'location', 'locationid' => $this->locationid));
             pnModCallHooks('item', 'create', $this->locationid, array (
                            'module' => 'locations'
                            ));
@@ -222,12 +216,12 @@ class locations_admin_location_editHandler extends pnFormHandler
             $map->setAPIKey($key);
             $geocode = $map->getGeocode($locationData['street'].', '.$locationData['zip'].', '.$locationData['city'].', '.$locationData['country']);
             $locationData['latlng'] = $geocode['lat'].','.$geocode['lon'];
-           // usually one would use $location->getDataFromInput() to get the data, this is the way PNObject works
+            // usually one would use $location->getDataFromInput() to get the data, this is the way PNObject works
             // but since we want also use pnForm we simply assign the fetched data and call the post process functionality here
 
             $location->setData($locationData);
             $location->getDataFromInputPostProcess();
-            
+
             // save location
             $updateResult = $location->save();
 
@@ -235,12 +229,11 @@ class locations_admin_location_editHandler extends pnFormHandler
                 return LogUtil::registerError(__('Error! Update attempt failed.', $dom));
             }
 
-            LogUtil::registerStatus(__f('Done! %i% updated.';, array('i' => __('Location', $dom))));
+            LogUtil::registerStatus(__('Done! Location updated.', $dom));
 
             // redirect to the detail page of the treated location
             $returnUrl = pnModUrl('locations', 'user', 'display',
-            array('ot' => 'location',
-                                                                   'locationid' => $this->locationid));
+            array('ot' => 'location', 'locationid' => $this->locationid));
             pnModCallHooks('item', 'update', $locationData['locationid'], array (
                            'module' => 'locations'
                            ));
@@ -275,7 +268,7 @@ class locations_admin_location_editHandler extends pnFormHandler
                 return LogUtil::registerError(__('Error! Sorry! Deletion attempt failed.', $dom));
             }
 
-            LogUtil::registerStatus(__f('Done! %i% deleted.';, array('i' => __('Location', $dom))));
+            LogUtil::registerStatus(__f('Done! Location deleted.', $dom));
 
             // redirect to the list of locations
             $returnUrl = pnModUrl('locations', 'user', 'view',
@@ -290,8 +283,7 @@ class locations_admin_location_editHandler extends pnFormHandler
             if ($this->mode == 'edit') {
                 // redirect to the detail page of the treated location
                 $returnUrl = pnModUrl('locations', 'user', 'display',
-                array('ot' => 'location',
-                                                                       'locationid' => $this->locationid));
+                array('ot' => 'location', 'locationid' => $this->locationid));
             }
             else {
                 // redirect to the list of locations
@@ -299,7 +291,6 @@ class locations_admin_location_editHandler extends pnFormHandler
                 array('ot' => 'location'));
             }
         }
-
 
         if ($returnUrl != null) {
             if ($this->mode == 'edit') {

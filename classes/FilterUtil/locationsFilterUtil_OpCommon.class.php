@@ -10,12 +10,6 @@
  * @author Steffen Voß
  * @url http://kaffeeringe.de
  */
-
-/*
- * generated at Fri Jul 04 17:14:11 GMT 2008 by ModuleStudio 0.4.10 (http://modulestudio.de)
- */
-
-
 Loader::loadClass('locationsFilterUtil_Common', LOCATIONS_FILTERUTIL_CLASS_PATH);
 
 class locationsFilterUtil_OpCommon extends locationsFilterUtil_Common {
@@ -87,7 +81,7 @@ class locationsFilterUtil_OpCommon extends locationsFilterUtil_Common {
     {
         if (is_array($fields)) {
             foreach($fields as $fld)
-                $this->addFields($fld);
+            $this->addFields($fld);
         } elseif (!empty($fields) && $this->fieldExists($fields) && array_search($fields, $this->fields) === false) {
             $this->fields[] = $fields;
         }
@@ -114,7 +108,7 @@ class locationsFilterUtil_OpCommon extends locationsFilterUtil_Common {
     {
         if (is_array($op)) {
             foreach($op as $v)
-                $this->activateOperators($v);
+            $this->activateOperators($v);
         } elseif (!empty($op) && array_search($op, $this->ops) === false && array_search($op, $this->availableOperators()) !== false) {
             $this->ops[] = $op;
         }
@@ -130,7 +124,7 @@ class locationsFilterUtil_OpCommon extends locationsFilterUtil_Common {
     {
         $fields = $this->getFields();
         if ($this->default == true)
-            $fields[] = '-';
+        $fields[] = '-';
 
         $ops = array();
         foreach ($this->ops as $op) {

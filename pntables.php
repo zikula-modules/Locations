@@ -11,10 +11,6 @@
  * @url http://kaffeeringe.de
  */
 
-/*
- * generated at Fri Jul 04 17:14:11 GMT 2008 by ModuleStudio 0.4.10 (http://modulestudio.de)
- */
-
 /**
  * Populate pntables array for locations module
  *
@@ -31,7 +27,6 @@ function locations_pntables()
     $pntable = array();
 
     $dbdriver = DBConnectionStack::getConnectionDBDriver();
-
 
     /*
      * definitions for location table
@@ -72,8 +67,6 @@ function locations_pntables()
         'latlng' => "C(100) DEFAULT ''",
         'logo' => "C(100) DEFAULT ''");
 
-    // DEBUG: object extension aspect starts
-
     // add standard fields to the table definition and data dictionary
     ObjectUtil::addStandardFieldsToTableDefinition($columns, 'pn_');
     ObjectUtil::addStandardFieldsToTableDataDefinition($columnDef);
@@ -91,23 +84,18 @@ function locations_pntables()
     // disable logging services
     $pntable['locations_location_db_extra_enable_logging'] = false;
 
-    // DEBUG: object extension aspect ends
-
-
-
-
     $pntable['locations_location_column'] = $columns;
     $pntable['locations_location_column_def'] = $columnDef;
 
     // define additional indexes
     $pntable['locations_location_column_idx'] = array(
         'locindex' => array('name', 'city', 'state', 'country'));
-    
-    // 2 tables I never used and removed in 1.2.0 
+
+    // 2 tables I never used and removed in 1.2.0
     // Then need to remain here because the tables can't be dropped otherwise in the upgrade
     $pntable['locations_description'] = DBUtil::getLimitedTablename('locations_description');
     $pntable['locations_image'] = DBUtil::getLimitedTablename('locations_image');
-    
-     // return table data
+
+    // return table data
     return $pntable;
 }

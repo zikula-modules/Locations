@@ -11,11 +11,6 @@
  * @url http://kaffeeringe.de
  */
 
-/*
- * generated at Fri Jul 04 17:14:11 GMT 2008 by ModuleStudio 0.4.10 (http://modulestudio.de)
- */
-
-
 // preload common used classes
 Loader::requireOnce('modules/locations/common.php');
 
@@ -28,9 +23,11 @@ Loader::requireOnce('modules/locations/common.php');
  */
 function locations_userapi_getLocationsForDropdown($args)
 {
+    $dom = ZLanguage::getModuleDomain('locations');
+
     // load the object array class corresponding to $objectType
     if (!($class = Loader::loadArrayClassFromModule('locations', 'location'))) {
-        pn_exit('Unable to load array class [' . DataUtil::formatForDisplay('location') . '] ...');
+        pn_exit(__f('Error! Unable to load class [%s]', 'location', $dom));
     }
 
     // instantiate the object-array
@@ -53,19 +50,19 @@ function locations_userapi_getLocationsForDropdown($args)
  * @author       Steffen Voß
  * @params       TODO
  * @return       Array
- * @param        locationid             integer    location ID 
+ * @param        locationid             integer    location ID
  */
 function locations_userapi_getLocationByID($args)
 {
-    // DEBUG: permission check aspect starts
     if (!SecurityUtil::checkPermission('locations::', '::', ACCESS_READ)) {
         return LogUtil::registerPermissionError();
     }
-    // DEBUG: permission check aspect ends
+
+    $dom = ZLanguage::getModuleDomain('locations');
 
     // load the object class corresponding to $objectType
     if (!($class = Loader::loadClassFromModule('locations', 'location'))) {
-        pn_exit(__f('Error! Unable to load module class [%s%] for module [%m%]';, array('s' => DataUtil::formatForDisplay('location'))));
+        pn_exit(__f('Error! Unable to load class [%s]', 'location', $dom));
     }
     // intantiate object model
     $object = new $class();
@@ -74,8 +71,8 @@ function locations_userapi_getLocationByID($args)
     // retrieve the ID of the object we wish to view
     if (isset($args[$idField]) && is_numeric($args[$idField])) {
         $id = (int) $args[$idField];
-    } else {        
-        pn_exit('Invalid ' . $idField . ' [' . DataUtil::formatForDisplay($id) . '] received ...');
+    } else {
+        pn_exit(__('Error! Invalid Id received.', $dom));
     }
 
     // assign object data
@@ -93,14 +90,14 @@ function locations_userapi_getLocationByID($args)
  * @author       Steffen Voß
  * @params       TODO
  * @return       Array
- * @param        locationid             integer    location ID 
+ * @param        locationid             integer    location ID
  */
 function locations_userapi_get($args)
 {
- $objectData = pnModAPIFunc('locations','user','getLocationByID',$args);
- $objectData['title'] = $objectData['name'];
- return $objectData;
-} 
+    $objectData = pnModAPIFunc('locations','user','getLocationByID',$args);
+    $objectData['title'] = $objectData['name'];
+    return $objectData;
+}
 
 function locations_userapi_swapLatLng($args)
 {
@@ -131,7 +128,7 @@ function locations_userapi_swapLatLng($args)
 //        }
 //        // load the object array class corresponding to $objectType
 //        if (!($class = Loader::loadClassFromModule('locations', $objectType))) {
-//            pn_exit('Unable to load class [' . DataUtil::formatForDisplay($objectType) . '] ...');
+//            pn_exit(__f('Error! Unable to load class [%s]', $objectType, $dom));
 //        }
 //        // intantiate object model
 //        $object = new $class();
@@ -147,7 +144,7 @@ function locations_userapi_swapLatLng($args)
  */
 function locations_userapi_getmodulemeta()
 {
-   return array('viewfunc'    => 'view',
+    return array('viewfunc'    => 'view',
                 'displayfunc' => 'display',
                 'newfunc'     => 'new',
                 'createfunc'  => 'create',

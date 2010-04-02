@@ -11,11 +11,6 @@
  * @url http://kaffeeringe.de
  */
 
-/*
- * generated at Fri Jul 04 17:14:11 GMT 2008 by ModuleStudio 0.4.10 (http://modulestudio.de)
- */
-
-
 /**
  * Even though we're handling objects for multiple tables, we only have one function for any use case.
  * The specific functionality for each object is encapsulated in the actual class implementation within the
@@ -40,11 +35,9 @@ Loader::requireOnce('includes/pnForm.php');
  */
 function locations_admin_main($args)
 {
-    // DEBUG: permission check aspect starts
     if (!SecurityUtil::checkPermission('locations::', '::', ACCESS_ADMIN)) {
         return LogUtil::registerPermissionError(pnModURL('locations', 'user', 'main'));
     }
-    // DEBUG: permission check aspect ends
 
     // call view method
     return locations_admin_config();
@@ -67,11 +60,10 @@ function locations_admin_main($args)
  */
 function locations_admin_view($args)
 {
-    // DEBUG: permission check aspect starts
     if (!SecurityUtil::checkPermission('locations::', '::', ACCESS_ADMIN)) {
         return LogUtil::registerPermissionError(pnModURL('locations', 'user', 'main'));
     }
-    // DEBUG: permission check aspect ends
+    $dom = ZLanguage::getModuleDomain('locations');
 
     // parameter specifying which type of objects we are treating
     $objectType = FormUtil::getPassedValue('ot', 'location', 'GET');
@@ -81,7 +73,7 @@ function locations_admin_view($args)
     }
     // load the object array class corresponding to $objectType
     if (!($class = Loader::loadArrayClassFromModule('locations', $objectType))) {
-        pn_exit(__f('Error! Unable to load module array class [%s%] for module [%m%]';, array('s' => DataUtil::formatForDisplay($objectType))));
+        pn_exit(__f('Error! Unable to load class [%s]', $objectType, $dom));
     }
 
     // instantiate the object-array
@@ -115,7 +107,7 @@ function locations_admin_view($args)
 
     // you could set explicit filters at this point, something like
     // $fu->setFilter('type:eq:' . $args['type'] . ',id:eq:' . $args['id']);
-    // supported operators: eq, ne, like, lt, le, gt, ge, null, notnull 
+    // supported operators: eq, ne, like, lt, le, gt, ge, null, notnull
 
     // process request input filters and get result for DBUtil
     $ret = $fu->GetSQL();
@@ -160,11 +152,11 @@ function locations_admin_view($args)
  */
 function locations_admin_display($args)
 {
-    // DEBUG: permission check aspect starts
     if (!SecurityUtil::checkPermission('locations::', '::', ACCESS_ADMIN)) {
         return LogUtil::registerPermissionError(pnModURL('locations', 'user', 'main'));
     }
-    // DEBUG: permission check aspect ends
+
+    $dom = ZLanguage::getModuleDomain('locations');
 
     // parameter specifying which type of objects we are treating
     $objectType = FormUtil::getPassedValue('ot', 'location', 'GET');
@@ -174,7 +166,7 @@ function locations_admin_display($args)
     }
     // load the object class corresponding to $objectType
     if (!($class = Loader::loadClassFromModule('locations', $objectType))) {
-        pn_exit(__f('Error! Unable to load module class [%s%] for module [%m%]';, array('s' => DataUtil::formatForDisplay($objectType))));
+        pn_exit(__f('Error! Unable to load class [%s]', $objectType, $dom));
     }
     // intantiate object model
     $object = new $class();
@@ -223,11 +215,10 @@ function locations_admin_display($args)
  */
 function locations_admin_edit($args)
 {
-    // DEBUG: permission check aspect starts
     if (!SecurityUtil::checkPermission('locations::', '::', ACCESS_EDIT)) {
         return LogUtil::registerPermissionError(pnModURL('locations', 'user', 'main'));
     }
-    // DEBUG: permission check aspect ends
+
 
     // parameter specifying which type of objects we are treating
     $objectType = FormUtil::getPassedValue('ot', 'location', 'GET');
@@ -261,11 +252,11 @@ function locations_admin_edit($args)
  */
 function locations_admin_delete($args)
 {
-    // DEBUG: permission check aspect starts
     if (!SecurityUtil::checkPermission('locations::', '::', ACCESS_ADMIN)) {
         return LogUtil::registerPermissionError(pnModURL('locations', 'user', 'main'));
     }
-    // DEBUG: permission check aspect ends
+
+    $dom = ZLanguage::getModuleDomain('locations');
 
     // parameter specifying which type of objects we are treating
     $objectType = FormUtil::getPassedValue('ot', 'location', 'GET');
@@ -277,7 +268,7 @@ function locations_admin_delete($args)
     $id = FormUtil::getPassedValue($objectType . 'id', '', 'GET');
     DBUtil::deleteObjectByID('locations_' . $objectType, $id, $objectType . 'id');
 
-    LogUtil::registerStatus(__f('Done! %i% deleted.';, array('i' => __('Description', $dom))));
+    LogUtil::registerStatus(__('Done! Description deleted.', $dom));
 
     return pnRedirect(pnModURL('locations', 'user', 'view'));
 }

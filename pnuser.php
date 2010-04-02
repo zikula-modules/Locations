@@ -11,11 +11,6 @@
  * @url http://kaffeeringe.de
  */
 
-/*
- * generated at Fri Jul 04 17:14:11 GMT 2008 by ModuleStudio 0.4.10 (http://modulestudio.de)
- */
-
-
 /**
  * Even though we're handling objects for multiple tables, we only have one function for any use case.
  * The specific functionality for each object is encapsulated in the actual class implementation within the
@@ -40,15 +35,12 @@ Loader::requireOnce('includes/pnForm.php');
  */
 function locations_user_main($args)
 {
-    // DEBUG: permission check aspect starts
     if (!SecurityUtil::checkPermission('locations::', '::', ACCESS_OVERVIEW)) {
         return LogUtil::registerPermissionError();
     }
-    // DEBUG: permission check aspect ends
 
     // call view method
     return locations_user_view();
-
 }
 
 
@@ -67,11 +59,11 @@ function locations_user_main($args)
  */
 function locations_user_view($args)
 {
-    // DEBUG: permission check aspect starts
     if (!SecurityUtil::checkPermission('locations::', '::', ACCESS_READ)) {
         return LogUtil::registerPermissionError();
     }
-    // DEBUG: permission check aspect ends
+
+    $dom = ZLanguage::getModuleDomain('locations');
 
     // parameter specifying which type of objects we are treating
     $objectType = FormUtil::getPassedValue('ot', 'location', 'GET');
@@ -81,7 +73,7 @@ function locations_user_view($args)
     }
     // load the object array class corresponding to $objectType
     if (!($class = Loader::loadArrayClassFromModule('locations', $objectType))) {
-        pn_exit(__f('Error! Unable to load module array class [%s%] for module [%m%]';, array('s' => DataUtil::formatForDisplay($objectType))));
+        pn_exit(__f('Error! Unable to load class [%s]', $objectType, $dom));
     }
 
     // instantiate the object-array
@@ -115,7 +107,7 @@ function locations_user_view($args)
 
     // you could set explicit filters at this point, something like
     // $fu->setFilter('type:eq:' . $args['type'] . ',id:eq:' . $args['id']);
-    // supported operators: eq, ne, like, lt, le, gt, ge, null, notnull 
+    // supported operators: eq, ne, like, lt, le, gt, ge, null, notnull
 
     // process request input filters and get result for DBUtil
     $ret = $fu->GetSQL();
@@ -132,7 +124,7 @@ function locations_user_view($args)
     // get pnRender instance for this module
     $render = pnRender::getInstance('locations', false);
 
-    
+
     // assign current sorting information
     $render->assign('sort', $sort);
     $render->assign('sdir', ($sdir == 'asc') ? 'desc' : 'asc'); // reverted for links
@@ -147,15 +139,13 @@ function locations_user_view($args)
     $tpl = FormUtil::getPassedValue('tpl', isset($args['tpl']) ? $args['tpl'] : '');
     if ($tpl == 'xml' || $tpl == 'kml') {
         foreach ($objectData as $k => $obj) {
-            
+
             $objectData[$k]['latlng'] = pnModAPIFunc('locations', 'user', 'swapLatLng', array('latlng' => $obj['latlng']));
-            
+
         }
         if ($tpl == 'kml') {
             header("Content-type: application/vnd.google-earth.kml+xml");
-            //Debug-Stuff: header("Content-type: text/xml");
             header("Content-Disposition: attachment; filename=location".$objectData[$k]['locationid'].".kml");
-            //Debug-Stuff: header("Content-Disposition: inline; filename=location".$objectData[$k]['locationid'].".xml");
         }
         $args['raw'] = true;
     }
@@ -178,11 +168,11 @@ function locations_user_view($args)
  */
 function locations_user_display($args)
 {
-    // DEBUG: permission check aspect starts
     if (!SecurityUtil::checkPermission('locations::', '::', ACCESS_READ)) {
         return LogUtil::registerPermissionError();
     }
-    // DEBUG: permission check aspect ends
+
+    $dom = ZLanguage::getModuleDomain('locations');
 
     // parameter specifying which type of objects we are treating
     $objectType = FormUtil::getPassedValue('ot', 'location', 'GET');
@@ -192,7 +182,7 @@ function locations_user_display($args)
     }
     // load the object class corresponding to $objectType
     if (!($class = Loader::loadClassFromModule('locations', $objectType))) {
-        pn_exit(__f('Error! Unable to load module class [%s%] for module [%m%]';, array('s' => DataUtil::formatForDisplay($objectType))));
+        pn_exit(__f('Error! Unable to load class [%s]', $objectType, $dom));
     }
     // intantiate object model
     $object = new $class();
@@ -201,7 +191,7 @@ function locations_user_display($args)
     // retrieve the ID of the object we wish to view
     $id = (int) FormUtil::getPassedValue($idField, isset($args[$idField]) && is_numeric($args[$idField]) ? $args[$idField] : 0, 'GET');
     if (!$id) {
-        pn_exit('Invalid ' . $idField . ' [' . DataUtil::formatForDisplay($id) . '] received ...');
+        pn_exit('Error! Invalid Id received.', $dom);
     }
 
     // assign object data

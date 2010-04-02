@@ -11,11 +11,6 @@
  * @url http://kaffeeringe.de
  */
 
-/*
- * generated at Fri Jul 04 17:14:11 GMT 2008 by ModuleStudio 0.4.10 (http://modulestudio.de)
- */
-
-
 class locations_admin_configHandler extends pnFormHandler
 {
     function initialize(&$render)
@@ -33,6 +28,8 @@ class locations_admin_configHandler extends pnFormHandler
 
     function handleCommand(&$render, &$args)
     {
+        $dom = ZLanguage::getModuleDomain('locations');
+
         if ($args['commandName'] == 'save') {
             if (!$render->pnFormIsValid()) {
                 return false;

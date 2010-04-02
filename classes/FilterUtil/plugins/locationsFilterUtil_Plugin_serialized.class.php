@@ -11,11 +11,6 @@
  * @url http://kaffeeringe.de
  */
 
-/*
- * generated at Fri Jul 04 17:14:11 GMT 2008 by ModuleStudio 0.4.10 (http://modulestudio.de)
- */
-
-
 Loader::loadClass('locationsFilterUtil_ReplaceCommon', LOCATIONS_FILTERUTIL_CLASS_PATH);
 
 class locationsFilterUtil_Plugin_serialized extends locationsFilterUtil_OpCommon
@@ -67,15 +62,15 @@ class locationsFilterUtil_Plugin_serialized extends locationsFilterUtil_OpCommon
             return array($field, $op, $value);
         }
 
-        $newfield = $this->pair[$field]; 
+        $newfield = $this->pair[$field];
 
         switch ($op) {
-        case "eq":
-            $op = "";
-            $value = "%".serialize($field) . serialize($value)."%";
-            break;
-        case "":
-            break;
+            case "eq":
+                $op = "";
+                $value = "%".serialize($field) . serialize($value)."%";
+                break;
+            case "":
+                break;
         }
     }
 }

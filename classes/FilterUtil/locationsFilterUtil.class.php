@@ -11,12 +11,6 @@
  * @url http://kaffeeringe.de
  */
 
-/*
- * generated at Fri Jul 04 17:14:11 GMT 2008 by ModuleStudio 0.4.10 (http://modulestudio.de)
- */
-
-
-
 /**
  * Define Class path
  */
@@ -88,12 +82,12 @@ class locationsFilterUtil extends locationsFilterUtil_Common {
     public function setVarName($name)
     {
         if (!is_string($name))
-            return false;
+        return false;
 
         $this->varname = $name;
     }
 
-//++++++++++++++++ Object handling +++++++++++++++++++
+    //++++++++++++++++ Object handling +++++++++++++++++++
 
     /**
      * strip brackets around a filterstring
@@ -121,9 +115,9 @@ class locationsFilterUtil extends locationsFilterUtil_Common {
     private function makeCondition($filter)
     {
         if (strpos($filter, ':'))
-            $parts = explode(':', $filter, 3);
+        $parts = explode(':', $filter, 3);
         elseif (strpos($filter, '^'))
-            $parts = explode('^', $filter, 3);
+        $parts = explode('^', $filter, 3);
 
         if (isset($parts[2]) && substr($parts[2], 0, 1) == '$' && ($value = pnVarCleanFromInput(substr($parts[2], 1))) != NULL && !empty($value)) {
             $obj['value'] = $value;
@@ -162,7 +156,7 @@ class locationsFilterUtil extends locationsFilterUtil_Common {
                     $obj[$op] = $sub;
                 }
             } elseif (($cond = $this->makeCondition($string)) !== false) {
-                    $obj[$op] = $cond;
+                $obj[$op] = $cond;
             }
             $filter = substr($filter, strlen($match[2])+strlen($match[1]));
         }
@@ -194,17 +188,17 @@ class locationsFilterUtil extends locationsFilterUtil_Common {
         return $this->obj;
     }
 
-//---------------- Object handling ---------------------
-//++++++++++++++++ Filter handling +++++++++++++++++++++
+    //---------------- Object handling ---------------------
+    //++++++++++++++++ Filter handling +++++++++++++++++++++
     /**
-     * Get all filters from Input
-     *
-     * @return array Array of filters
-     */
+    * Get all filters from Input
+    *
+    * @return array Array of filters
+    */
     public function GetFiltersFromInput ()
     {
         $i = 1;
-          $filter = array();
+        $filter = array();
 
         // Get unnumbered filter string
         $filterStr = pnVarCleanFromInput($this->varname);
@@ -220,7 +214,7 @@ class locationsFilterUtil extends locationsFilterUtil_Common {
             $filterStr     = pnVarCleanFromInput($filterURLName);
 
             if (empty($filterStr))
-                break;
+            break;
 
             $filter[] = $filterStr;
             ++$i;
@@ -246,7 +240,7 @@ class locationsFilterUtil extends locationsFilterUtil_Common {
         }
 
         if ($this->filter == '()')
-            $this->filter = '';
+        $this->filter = '';
 
         return $this->filter;
     }
@@ -269,8 +263,8 @@ class locationsFilterUtil extends locationsFilterUtil_Common {
 
     }
 
-//--------------- Filter handling ----------------------
-//+++++++++++++++ SQL Handling +++++++++++++++++++++++++
+    //--------------- Filter handling ----------------------
+    //+++++++++++++++ SQL Handling +++++++++++++++++++++++++
 
     /**
      * Help function for generate the filter SQL from a Filter-object
@@ -292,9 +286,9 @@ class locationsFilterUtil extends locationsFilterUtil_Common {
             if (isset($obj[0]) && is_array($obj[0])) {
                 $sub = $this->GenSqlRecursive($obj[0]);
                 if (!empty($sub['where']))
-                    $where .= $sub['where'];
+                $where .= $sub['where'];
                 if (!empty($sub['join']))
-                    $join .= $sub['join'];
+                $join .= $sub['join'];
                 unset($obj[0]);
             }
             foreach ($obj as $op => $tmp) {
@@ -302,9 +296,9 @@ class locationsFilterUtil extends locationsFilterUtil_Common {
                 if (strtoupper($op) == 'AND' || strtoupper($op) == 'OR') {
                     $sub = $this->GenSqlRecursive($tmp);
                     if (!empty($sub['where']))
-                        $where .= ' ' . strtoupper($op) . ' ' . $sub['where'];
+                    $where .= ' ' . strtoupper($op) . ' ' . $sub['where'];
                     if (!empty($sub['join']))
-                        $join .= $sub['join'];
+                    $join .= $sub['join'];
                 }
             }
         }

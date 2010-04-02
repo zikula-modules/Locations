@@ -14,19 +14,14 @@
  * @param        object      &$render      Reference to the Smarty object
  * @return       string      The output of the plugin
  */
-  
-function smarty_function_phonenumber_format($params, &$render) {
-    
+
+function smarty_function_phonenumber_format($params, &$render)
+{
     $phonenumber_formatted = '';
-    
     $PhoneTester = new PhoneTester();
-    
     if (isset($params['country'])) $PhoneTester->setLand($params['country']);
-    
     if (array_key_exists('Din5008', $params) && $params['Din5008']) $PhoneTester->setDIN5008();
-    
     if (array_key_exists('setArray', $params) && $params['setArray']) $PhoneTester->setArray();
-    
     if (array_key_exists('assign', $params)) {
         $render->assign($params['assign'], $PhoneTester->PhoneOutput($params['input']));
     }
@@ -35,71 +30,59 @@ function smarty_function_phonenumber_format($params, &$render) {
     }
 }
 
-
-
 /* -------------------------------------------------------------------------------------------------------*\
-¦   Telefonnummern Testen und bereinigen / Aufbereitete Rückgabe, z.B. nach DIN 5008                       ¦
-¦   Version 2.1 vom 09. September 2004   von Martin Scheiben - SCHEIBEN DESIGN                             ¦
-¦   Diese Class darf in unveränderter Form frei verwendet werden.                                          ¦
-¦                                                                                                          ¦
-¦   ******************************************                                                             ¦
-¦   *** JEDE HAFTUNG WIRD AUSGESCHLOSSEN!  ***                                                             ¦
-¦   ******************************************                                                             ¦
-¦                                                                                                          ¦
-¦   Original unter http://1-2.ch/freeware/telefonnummern                                                   ¦
-¦ -------------------------------------------------------------------------------------------------------- ¦
-¦                                                                                                          ¦
-¦  Laut DIN 5008 sollen Telefonnummern ohne Zweiergruppen von hinten nach vorne geschrieben werden.        ¦
-¦  Die "Funktionsbezoge Schreibweise", wie es so schön heisst, ist nicht besonders lesbar...               ¦
-¦  Da hält sich verständlicher Weise kaum einer an die Regeln, und selbst der Duden beschreibt die DIN     ¦
-¦  nicht gleich wie beispielsweise Bertelsmann...                                                          ¦
-¦  Aber da dies kaum jemand mag, unterteile ich die Nummern nach Wunsch jeweils in                         ¦
-¦  kleine, lesbare portionen und werwende Klammern zur besseren Lesbarkeit.                                ¦
-¦                                                                                                          ¦
-\*--------------------------------------------------------------------------------------------------------*/
+ ¦   Telefonnummern Testen und bereinigen / Aufbereitete Rückgabe, z.B. nach DIN 5008                       ¦
+ ¦   Version 2.1 vom 09. September 2004   von Martin Scheiben - SCHEIBEN DESIGN                             ¦
+ ¦   Diese Class darf in unveränderter Form frei verwendet werden.                                          ¦
+ ¦                                                                                                          ¦
+ ¦   ******************************************                                                             ¦
+ ¦   *** JEDE HAFTUNG WIRD AUSGESCHLOSSEN!  ***                                                             ¦
+ ¦   ******************************************                                                             ¦
+ ¦                                                                                                          ¦
+ ¦   Original unter http://1-2.ch/freeware/telefonnummern                                                   ¦
+ ¦ -------------------------------------------------------------------------------------------------------- ¦
+ ¦                                                                                                          ¦
+ ¦  Laut DIN 5008 sollen Telefonnummern ohne Zweiergruppen von hinten nach vorne geschrieben werden.        ¦
+ ¦  Die "Funktionsbezoge Schreibweise", wie es so schön heisst, ist nicht besonders lesbar...               ¦
+ ¦  Da hält sich verständlicher Weise kaum einer an die Regeln, und selbst der Duden beschreibt die DIN     ¦
+ ¦  nicht gleich wie beispielsweise Bertelsmann...                                                          ¦
+ ¦  Aber da dies kaum jemand mag, unterteile ich die Nummern nach Wunsch jeweils in                         ¦
+ ¦  kleine, lesbare portionen und werwende Klammern zur besseren Lesbarkeit.                                ¦
+ ¦                                                                                                          ¦
+ \*--------------------------------------------------------------------------------------------------------*/
 
 class PhoneTester
 {
-    
+
     // Die nun folgenden Werte können an die Class übermittelt werden, um die vCard mit Daten zu füllen.
     // oder um einen bestimmten Wert zu erhalten.
     //--------------------------------------------------------------------------------------------
-    
+
     var $PHONE_ERROR;          // Fehlermeldung
     var $FeedbackERROR;        // Fehlermeldung zurückgeben ? TRUE oder FALSE
     var $PHONE_WARNUNG;        // Warnung(en)
     var $PhoneInput;           // Die zu untersuchende Telefonnummer
     var $PhoneNumAnz;          // Die Länge (nur Zahlen)
     var $PhoneNumAnzIst;       // Die Länge, (nur Zahlen) die es Aufbereitet noch hat.
-
     var $Landesvorwahl;        // Die Landesvorwahl
     var $Ortsnetzkennzahl;     // Die Ortskenntahl
     var $Teilnehmerkennzahl;   // Die Teilnehmernummer, ohne Länder- oder Ortskenntahl und ohne Durchwahl.
     var $PhoneDurchwahl;       // Die Durchwahlnummer
-    
     var $LandTabelle=array();  // TABELLE: Beinhaltet als Array alle Länderangaben
     var $Rufnummer=array();    // Rückgabe-Array mit allen fertigen Angaben
-    
     var $TabID;                // TABELLE: Beinhaltet die ID der Tabellezeile, aus der gelesen werden soll
-        
     var $PhoneTyp;             // National oder International
-    var $NummerLesbar;         // Aufbereitete Telefonnummer im lesbaren Format    
-    var $NummerDin5008;        // Aufbereitete Telefonnummer im hässlichen, unpraktischen DIN5008-Format Format    
-    
+    var $NummerLesbar;         // Aufbereitete Telefonnummer im lesbaren Format
+    var $NummerDin5008;        // Aufbereitete Telefonnummer im hässlichen, unpraktischen DIN5008-Format Format
     var $LandNameDeutsch;      // Das Land, (Ermittelt aufgrund der Vorwahlnummer)
     var $LandNameEnglisch;     // Das Land, englisch
     var $LandNameFranzoesisch; // Das Land, französisch
     var $LandNameItalienisch;  // Das Land, Italienisch
-    
     var $LandSearch;           // Kann helfen, die Vorwahl zu finden.
-    
     var $Laendercode;          // Ländercode, Domainendung
-    
     var $PhoneArray;           // Wenn der Benutter eine Array mit den Angaben will
-    
-    
-//---------------------------------------------------------------------------------------------------------------------
 
+    //---------------------------------------------------------------------------------------------------------------------
 
     function setNumAnz($wert)     {$this->PhoneNumAnz =    trim($wert);}
     function setLand($wert)       {$this->LandSearch =     trim($wert);}
@@ -107,350 +90,329 @@ class PhoneTester
     function setArray()           {$this->PhoneArray =     "TRUE";}
     function setNoError()         {$this->FeedbackERROR =  "NO";}
 
-
     function PhoneAufbereiter()
     {
-    // Zerlegt die Nummer in ihre Betsandteile und ergänzt fehlende Angaben
-          $this->VorwahlArray();                                      // Array mit Ländervorwahlen-Angaben füllen
-          $this->DurchwahlNummerSucher();                             // seppariere Durchwahlnummer
-          $this->PhoneInput = $this->PhoneClean($this->PhoneInput);   // Bereinige die Rufnummer
-          $this->ZerteileRufnummer();                                 // Ermittle die einzelnen Teile
-    // Nun liegt die Rufnummer "Zerhackt" und bereinigt vor
-    
-    // Darfs ein bisschen mehr sein ?
-    // Fehlen noch die Werte aus der Tabelle ? Dann ergänze diese
-    if (!$this->TabID AND $this->Landesvorwahl)
-    {
-    $this->TabID =  $this->suche_ID_multi_array("Vorwahl", $this->Landesvorwahl);
-      if ($this->TabID )
-      {$this->Landesvorwahl = $this->LandTabelle[$this->TabID]["Vorwahl"];
-      }
-    }
-    
-    // Nichts passendes gefunden ? Dann eine Warnung zurückgeben
-       if (!$this->TabID)
-          { $this->PHONE_WARNUNG .= "Länderkennung sicherheitshalber prüfen!!"; }
+        // Zerlegt die Nummer in ihre Betsandteile und ergänzt fehlende Angaben
+        $this->VorwahlArray();                                      // Array mit Ländervorwahlen-Angaben füllen
+        $this->DurchwahlNummerSucher();                             // seppariere Durchwahlnummer
+        $this->PhoneInput = $this->PhoneClean($this->PhoneInput);   // Bereinige die Rufnummer
+        $this->ZerteileRufnummer();                                 // Ermittle die einzelnen Teile
+        // Nun liegt die Rufnummer "Zerhackt" und bereinigt vor
+
+        // Darfs ein bisschen mehr sein ?
+        // Fehlen noch die Werte aus der Tabelle ? Dann ergänze diese
+        if (!$this->TabID AND $this->Landesvorwahl)
+        {
+            $this->TabID =  $this->suche_ID_multi_array("Vorwahl", $this->Landesvorwahl);
+            if ($this->TabID )
+            {$this->Landesvorwahl = $this->LandTabelle[$this->TabID]["Vorwahl"];
+            }
+        }
+
+        // Nichts passendes gefunden ? Dann eine Warnung zurückgeben
+        if (!$this->TabID)
+        { $this->PHONE_WARNUNG .= "Länderkennung sicherheitshalber prüfen!!"; }
 
 
-    // National oder International?
-    if (!ereg ("^\+", $this->PhoneInput))                // Kein Plus am Anfang = National
+        // National oder International?
+        if (!ereg ("^\+", $this->PhoneInput))                // Kein Plus am Anfang = National
+        {
+            if ($this->LandSearch)                    // Vielleicht habe ich mit dem Land mehr Glück ...
             {
-               if ($this->LandSearch)                    // Vielleicht habe ich mit dem Land mehr Glück ...
-                  {
-                      $this->TabID =  $this->suche_ID_multi_array("Land", strtoupper($this->LandSearch)) ;
-                      if ($this->TabID) $this->Landesvorwahl = $this->LandTabelle[$this->TabID]["Vorwahl"];
-                      
-                      else
-                         { $this->TabID =  $this->suche_ID_multi_array("NameEnglisch", strtoupper($this->LandSearch)) ;
-                           if ($this->TabID) $this->Landesvorwahl = $this->LandTabelle[$this->TabID]["Vorwahl"];
+                $this->TabID =  $this->suche_ID_multi_array("Land", strtoupper($this->LandSearch)) ;
+                if ($this->TabID) $this->Landesvorwahl = $this->LandTabelle[$this->TabID]["Vorwahl"];
 
-                           else
-                             {  $this->TabID =  $this->suche_ID_multi_array("NameFranzoesisch", strtoupper($this->LandSearch)) ;
-                                if ($this->TabID) $this->Landesvorwahl = $this->LandTabelle[$this->TabID]["Vorwahl"];
-                      
-                                else
-                                   { $this->TabID =  $this->suche_ID_multi_array("NameItalienisch", strtoupper($this->LandSearch)) ;
-                                      if ($this->TabID) $this->Landesvorwahl = $this->LandTabelle[$this->TabID]["Vorwahl"];
-                                         else
-                                           { $this->TabID =  $this->suche_ID_multi_array("Laendercode", strtoupper($this->LandSearch)) ;
-                                           if ($this->TabID) $this->Landesvorwahl = $this->LandTabelle[$this->TabID]["Vorwahl"];
-                                    }       }
-                             }
-                       }
-                  }
-                  else  $this->PhoneTyp   = "National";  // Der Typ / (Nationale Rufnummer)
+                else
+                { $this->TabID =  $this->suche_ID_multi_array("NameEnglisch", strtoupper($this->LandSearch)) ;
+                if ($this->TabID) $this->Landesvorwahl = $this->LandTabelle[$this->TabID]["Vorwahl"];
+
+                else
+                {  $this->TabID =  $this->suche_ID_multi_array("NameFranzoesisch", strtoupper($this->LandSearch)) ;
+                if ($this->TabID) $this->Landesvorwahl = $this->LandTabelle[$this->TabID]["Vorwahl"];
+
+                else
+                { $this->TabID =  $this->suche_ID_multi_array("NameItalienisch", strtoupper($this->LandSearch)) ;
+                if ($this->TabID) $this->Landesvorwahl = $this->LandTabelle[$this->TabID]["Vorwahl"];
+                else
+                { $this->TabID =  $this->suche_ID_multi_array("Laendercode", strtoupper($this->LandSearch)) ;
+                if ($this->TabID) $this->Landesvorwahl = $this->LandTabelle[$this->TabID]["Vorwahl"];
+                }       }
                 }
-    else     {
-               $this->PhoneTyp   = "International";         // Der Typ / (International Rufnummer)
-              }
+                }
+            }
+            else  $this->PhoneTyp   = "National";  // Der Typ / (Nationale Rufnummer)
+        }
+        else     {
+            $this->PhoneTyp   = "International";         // Der Typ / (International Rufnummer)
+        }
 
-     // Land in verschiedenen
+        // Land in verschiedenen
         $this->LandNameDeutsch= $this->LandTabelle[$this->TabID]["Land"];                   // Land Deutschsprachig
         $this->LandNameEnglisch= $this->LandTabelle[$this->TabID]["NameEnglisch"];          // Das Land, englisch
         $this->LandNameFranzoesisch= $this->LandTabelle[$this->TabID]["NameFranzoesisch"];  // Das Land, französisch
         $this->LandNameItalienisch= $this->LandTabelle[$this->TabID]["NameItalienisch"];    // Das Land, Italienisch
-        
-    // Ländercode
+
+        // Ländercode
         $this->Laendercode= $this->LandTabelle[$this->TabID]["Laendercode"];    // Der Ländercode / Domainendung
-        
-        
-    // Ermittle die Anzahl gültiger Zahlen. Das "(0)" ist nicht zu werten, ebensowenig nicht-numerische Zeichen.
+
+        // Ermittle die Anzahl gültiger Zahlen. Das "(0)" ist nicht zu werten, ebensowenig nicht-numerische Zeichen.
         $Zahlenlaenge    = strlen(trim(eregi_replace("[^0-9]",  null, (eregi_replace("\(0)",  null, $this->MakeDIN5008())))));
         $Zahlenlaenge -= 2;
-          if (!$this->PhoneNumAnz) $this->PhoneNumAnz = 6;  // Initialisiere wenn nötig die Anzahl erforderlicher Zahlen
+        if (!$this->PhoneNumAnz) $this->PhoneNumAnz = 6;  // Initialisiere wenn nötig die Anzahl erforderlicher Zahlen
 
         if ($Zahlenlaenge < $this->PhoneNumAnz)
         {$this->PHONE_ERROR .= "Die eingegebene Rufnummer besteht aus zu wenig Zahlen. (".($Zahlenlaenge)." statt $this->PhoneNumAnz )<br>";}
-        $this->PhoneNumAnzIst =   $Zahlenlaenge;    
+        $this->PhoneNumAnzIst =   $Zahlenlaenge;
     }
-  
-  
+
     function PhoneOutput($PhoneNr = "")
     {
-    if ($PhoneNr ) $this->PhoneInput =   trim($PhoneNr);  // Wert zuweisen.
+        if ($PhoneNr ) $this->PhoneInput =   trim($PhoneNr);  // Wert zuweisen.
 
-    // Diese Funktion kümmert sich um die Gestaltung der Rufnummer-Ausgabe
-    // Rufnummer aufbereiten und fehlende Angaben ergänzen
+        // Diese Funktion kümmert sich um die Gestaltung der Rufnummer-Ausgabe
+        // Rufnummer aufbereiten und fehlende Angaben ergänzen
         $this->PhoneAufbereiter();
-          
-    // Stimmt was nicht? Fehler zurückgeben!
-    if ($this->PHONE_ERROR AND $this->FeedbackERROR != "NO")
-    {
-       $this->Rufnummer["ERROR"] = $this->PHONE_ERROR;
-          if ($this->PhoneArray) return $this->Rufnummer;
-        else                     return $this->PHONE_ERROR;
+
+        // Stimmt was nicht? Fehler zurückgeben!
+        if ($this->PHONE_ERROR AND $this->FeedbackERROR != "NO")
+        {
+            $this->Rufnummer["ERROR"] = $this->PHONE_ERROR;
+            if ($this->PhoneArray) return $this->Rufnummer;
+            else                     return $this->PHONE_ERROR;
+        }
+
+        // Den Trennstrch hinzufügen, sollte eine Durchwahlnummer vorhanden sein.
+        if ($this->PhoneDurchwahl) $this->PhoneDurchwahl= "-".$this->PhoneDurchwahl;
+
+        if ($this->NummerDin5008)
+        {
+            // Der Benutzer will die Nummer nach DIN-Norm 5008.
+            return $this->MakeDIN5008();
+        }
+
+        if ($this->PhoneArray)
+        {  // Der Benutzer will eine Array mit allen Angaben
+            $this->Rufnummer["DIN5008"]          = $this->MakeDIN5008();
+            $this->Rufnummer["Rufnummer"]        = $this->MakePhoneLesbar();
+            $this->Rufnummer["NameEnglisch"]     = $this->LandNameEnglisch;
+            $this->Rufnummer["NameFranzoesisch"] = $this->LandNameFranzoesisch;
+            $this->Rufnummer["NameItalienisch"]  = $this->LandNameItalienisch;
+            $this->Rufnummer["Laendercode"]      = $this->Laendercode;
+            $this->Rufnummer["LaengeNR"]         = $this->PhoneNumAnzIst;        // Die Länge (nur Zahlen) zurückgeben
+            $this->Rufnummer["Land"]             = $this->LandNameDeutsch;       // Das Land, (Ermittelt aufgrund der Vorwahlnummer)
+            $this->Rufnummer["Landvorwahl"]      = $this->Landesvorwahl;         // Die Ländervorwahl
+            $this->Rufnummer["OrtVorwahl"]       = eregi_replace("\(0)",  "0", $this->Ortsnetzkennzahl);              // Nationale Vorwahl
+            $this->Rufnummer["OrtVorwahl"]       = eregi_replace("[\()]",  null,$this->Rufnummer["OrtVorwahl"]);      // Nationale Vorwahl
+            $this->Rufnummer["Teilnehmer"]       =eregi_replace("[^0-9]",  null,  $this->Teilnehmerkennzahl);          // Teilnehmernummer, ohne Ortsvorwahl oder Durchwahlnummer
+            $this->Rufnummer["Durchwahl"]        = eregi_replace("-",  "", $this->Durchwahlnummer);         // Durchwahlnummer
+            $this->Rufnummer["Laendercode"]      = $this->Laendercode;                                      // Ländercode / Domainendung
+            $this->Rufnummer["Typ"]              = $this->PhoneTyp;
+            $this->Rufnummer["Durchwahl"]        =  eregi_replace("[^0-9]",  null,  $this->PhoneDurchwahl);
+            return $this->Rufnummer;
+        }
+         
+        else
+        { $this->Rufnummer["Durchwahl"] = ""; return $this->MakePhoneLesbar();}
+
     }
 
-    // Den Trennstrch hinzufügen, sollte eine Durchwahlnummer vorhanden sein.
-    if ($this->PhoneDurchwahl) $this->PhoneDurchwahl= "-".$this->PhoneDurchwahl;
-
-    if ($this->NummerDin5008)
-       {
-        // Der Benutzer will die Nummer nach DIN-Norm 5008.
-        return $this->MakeDIN5008();
-       }
-        
-    if ($this->PhoneArray)
-       {  // Der Benutzer will eine Array mit allen Angaben
-       $this->Rufnummer["DIN5008"]          = $this->MakeDIN5008();
-       $this->Rufnummer["Rufnummer"]        = $this->MakePhoneLesbar();
-       $this->Rufnummer["NameEnglisch"]     = $this->LandNameEnglisch;
-       $this->Rufnummer["NameFranzoesisch"] = $this->LandNameFranzoesisch;
-       $this->Rufnummer["NameItalienisch"]  = $this->LandNameItalienisch;
-       $this->Rufnummer["Laendercode"]      = $this->Laendercode;
-       $this->Rufnummer["LaengeNR"]         = $this->PhoneNumAnzIst;        // Die Länge (nur Zahlen) zurückgeben
-       $this->Rufnummer["Land"]             = $this->LandNameDeutsch;       // Das Land, (Ermittelt aufgrund der Vorwahlnummer)
-       $this->Rufnummer["Landvorwahl"]      = $this->Landesvorwahl;         // Die Ländervorwahl
-
-       $this->Rufnummer["OrtVorwahl"]       = eregi_replace("\(0)",  "0", $this->Ortsnetzkennzahl);              // Nationale Vorwahl
-       $this->Rufnummer["OrtVorwahl"]       = eregi_replace("[\()]",  null,$this->Rufnummer["OrtVorwahl"]);      // Nationale Vorwahl
-       
-       
-       $this->Rufnummer["Teilnehmer"]       =eregi_replace("[^0-9]",  null,  $this->Teilnehmerkennzahl);          // Teilnehmernummer, ohne Ortsvorwahl oder Durchwahlnummer
-       $this->Rufnummer["Durchwahl"]        = eregi_replace("-",  "", $this->Durchwahlnummer);         // Durchwahlnummer
-       $this->Rufnummer["Laendercode"]      = $this->Laendercode;                                      // Ländercode / Domainendung
-       $this->Rufnummer["Typ"]              = $this->PhoneTyp;
-       $this->Rufnummer["Durchwahl"]        =  eregi_replace("[^0-9]",  null,  $this->PhoneDurchwahl);
-       
-       return $this->Rufnummer;
-       }
-       
-    else
-       { $this->Rufnummer["Durchwahl"] = ""; return $this->MakePhoneLesbar();}
-    
-    
-    
-    }  
-  
     function MakeDIN5008()
-       {
-    // Doppelte "-" entfernen. Kann passieren, wenn einer die Klasse mehrfach einbindet.
-    $this->PhoneDurchwahl = preg_replace("/-+/", '-', $this->PhoneDurchwahl);
-    $this->Teilnehmerkennzahl = trim(eregi_replace("[^0-9]",  null,  $this->Teilnehmerkennzahl));
-    if ($this->Landesvorwahl) $this->Landesvorwahl = "+".trim(eregi_replace("[^0-9]",  null,  $this->Landesvorwahl));
-       return   trim($this->Landesvorwahl." ".
-                abs(trim(eregi_replace("\(0)",  "",  $this->Ortsnetzkennzahl)))." ".
-                $this->Teilnehmerkennzahl.
-                $this->PhoneDurchwahl);
-       }
-  
+    {
+        // Doppelte "-" entfernen. Kann passieren, wenn einer die Klasse mehrfach einbindet.
+        $this->PhoneDurchwahl = preg_replace("/-+/", '-', $this->PhoneDurchwahl);
+        $this->Teilnehmerkennzahl = trim(eregi_replace("[^0-9]",  null,  $this->Teilnehmerkennzahl));
+        if ($this->Landesvorwahl) $this->Landesvorwahl = "+".trim(eregi_replace("[^0-9]",  null,  $this->Landesvorwahl));
+        return   trim($this->Landesvorwahl." ".
+        abs(trim(eregi_replace("\(0)",  "",  $this->Ortsnetzkennzahl)))." ".
+        $this->Teilnehmerkennzahl.
+        $this->PhoneDurchwahl);
+    }
+
     function MakePhoneLesbar()
-       {
+    {
         // Damit die Rufnummer optisch ansprechbar wird, gezielt leerzeichen in die Teilnehmernummer einfügen
         // ... Fehlt die Ortskennzahl, dann lass die Nummer lieber am Block ...
-       if ($this->Ortsnetzkennzahl) {$this->Teilnehmerkennzahl = $this->SpaceMe($this->Teilnehmerkennzahl, 2);}
+        if ($this->Ortsnetzkennzahl) {$this->Teilnehmerkennzahl = $this->SpaceMe($this->Teilnehmerkennzahl, 2);}
 
-       if     (ereg ("^0",   trim($this->Ortsnetzkennzahl)) AND $this->Ortsnetzkennzahl ) $this->Ortsnetzkennzahl="(".$this->Ortsnetzkennzahl.")";
-       // Manche geben trotz internationaler Vorwahl noch ne "0" vor die Vorwahl, z.B. +41 071 - 123 123 123
-       else $this->Ortsnetzkennzahl= "(0". abs(trim(eregi_replace("\(0\)",  null,  $this->Ortsnetzkennzahl))).")";
+        if     (ereg ("^0",   trim($this->Ortsnetzkennzahl)) AND $this->Ortsnetzkennzahl ) $this->Ortsnetzkennzahl="(".$this->Ortsnetzkennzahl.")";
+        // Manche geben trotz internationaler Vorwahl noch ne "0" vor die Vorwahl, z.B. +41 071 - 123 123 123
+        else $this->Ortsnetzkennzahl= "(0". abs(trim(eregi_replace("\(0\)",  null,  $this->Ortsnetzkennzahl))).")";
 
-// Bei manchen Nummern wird nach all den Bereinigungsversuchen ein (00) übrigbleiben. Weg damit!
-$this->Ortsnetzkennzahl=  eregi_replace("\(00\)",  null,  $this->Ortsnetzkennzahl);
+        // Bei manchen Nummern wird nach all den Bereinigungsversuchen ein (00) übrigbleiben. Weg damit!
+        $this->Ortsnetzkennzahl=  eregi_replace("\(00\)",  null,  $this->Ortsnetzkennzahl);
 
-         return   trim($this->Landesvorwahl." ".
-                  $this->Ortsnetzkennzahl." ".
-                  $this->Teilnehmerkennzahl.
-                  $this->PhoneDurchwahl);
-       }  
-  
-  
-  
-  
-  
-    function DurchwahlNummerSucher()
-    {
-      # Es wird nach einer Durchwahlnummer gesucht. Wenn eine gefunden wird,
-      # Soll diese getrennt von der restlichen Telefonnummer aufbewahrt werden
-      # Dazu Zerlege ich den String angand des "-".
-      # Hat es nur ein Trennzeichen, erhalte ich 2 Arrayfelder.
-      # Habe ich mehr Felder erhalten, ersetze ich alle "-" durch Leerzeichen, da ich nicht
-      # mehr davon ausgehen kann, dass es eine Durchwahlnummer ist.
-
-          
-      $DurchwahlTest = array_reverse(explode("-", $this->PhoneInput));
-      $AnzTrennzeichen = count($DurchwahlTest);
-      
-      if ($AnzTrennzeichen > 2)
-         { $this->PhoneInput = eregi_replace("-",  " ", $this->PhoneInput); }  
-          
-      else                                                               // Nur ein Trennzeichen wurde gefunden.
-         {      
-            if(!preg_match("/^[0-9]*$/",trim($DurchwahlTest[0])))        
-               {  // Besteht das Ergebniss nicht zu 100% aus Zahlenist es keine Durchwahlnummer. Also weg mit den "-"
-                  $this->PhoneInput = eregi_replace("-",  " ", $this->PhoneInput);
-               }
-            
-            else                                                         // Es hat vermutlich eine Durchwahlnummer!
-               {
-               if (trim($DurchwahlTest[1]) != "")                     // Natürlich muss VOR der Durchwahlnummer auch eine Zahl sein ...
-               {
-               $this->PhoneDurchwahl = trim($DurchwahlTest[0]);          // Merke die Durchwahlnummer
-               $this->PhoneInput = $DurchwahlTest[1];                    // Gib die Telefonnummer OHNE die Durchwahlnummer zurück
-               }                                                         // (Diese setze ich erst ganz am Schluss wieder ein.)
-          }
-      }
-    }  
-    
-    
-    
-    function WarnungenAusgeben()
-    {
-    // Es muss nicht unbedingt eine ungültige Nummer sein,
-    // aber gewisse Fehler können sich dennoch einschleichen.
-        if ($this->PHONE_WARNUNG)
-               return $this->PHONE_WARNUNG;
-       else    return false ;
+        return   trim($this->Landesvorwahl." ".
+        $this->Ortsnetzkennzahl." ".
+        $this->Teilnehmerkennzahl.
+        $this->PhoneDurchwahl);
     }
 
+    function DurchwahlNummerSucher()
+    {
+        # Es wird nach einer Durchwahlnummer gesucht. Wenn eine gefunden wird,
+        # Soll diese getrennt von der restlichen Telefonnummer aufbewahrt werden
+        # Dazu Zerlege ich den String angand des "-".
+        # Hat es nur ein Trennzeichen, erhalte ich 2 Arrayfelder.
+        # Habe ich mehr Felder erhalten, ersetze ich alle "-" durch Leerzeichen, da ich nicht
+        # mehr davon ausgehen kann, dass es eine Durchwahlnummer ist.
+
+        $DurchwahlTest = array_reverse(explode("-", $this->PhoneInput));
+        $AnzTrennzeichen = count($DurchwahlTest);
+
+        if ($AnzTrennzeichen > 2)
+        { $this->PhoneInput = eregi_replace("-",  " ", $this->PhoneInput); }
+
+        else                                                               // Nur ein Trennzeichen wurde gefunden.
+        {
+            if(!preg_match("/^[0-9]*$/",trim($DurchwahlTest[0])))
+            {  // Besteht das Ergebniss nicht zu 100% aus Zahlenist es keine Durchwahlnummer. Also weg mit den "-"
+                $this->PhoneInput = eregi_replace("-",  " ", $this->PhoneInput);
+            }
+
+            else                                                         // Es hat vermutlich eine Durchwahlnummer!
+            {
+                if (trim($DurchwahlTest[1]) != "")                     // Natürlich muss VOR der Durchwahlnummer auch eine Zahl sein ...
+                {
+                    $this->PhoneDurchwahl = trim($DurchwahlTest[0]);          // Merke die Durchwahlnummer
+                    $this->PhoneInput = $DurchwahlTest[1];                    // Gib die Telefonnummer OHNE die Durchwahlnummer zurück
+                }                                                         // (Diese setze ich erst ganz am Schluss wieder ein.)
+            }
+        }
+    }
+
+
+    function WarnungenAusgeben()
+    {
+        // Es muss nicht unbedingt eine ungültige Nummer sein,
+        // aber gewisse Fehler können sich dennoch einschleichen.
+        if ($this->PHONE_WARNUNG)
+        return $this->PHONE_WARNUNG;
+        else    return false ;
+    }
 
 
     function PhoneClean($PhoneClean)
     {
-      // Gruselkabinett der verschiedenen Vorwahl-Schreibweisen :
-      // Es gibt unzählige Varianten. Wenigstens die Gebräuchlichsten davon sollen erkannt und bereinigt werden
-       
-      // Ersetze 00 oder (00 oder ( 00 durch ein + ,
-      // was der Internationalen Vorwahl entspricht
-            $PhoneClean = eregi_replace("^(00|\(00|\( 00)",  "+",          $PhoneClean);
-   
-      // Hat jemand 2x hintereinander ein + eingegeben,
-      // ersetze es durch ein einzelnes +
-            $PhoneClean = eregi_replace("\+\+",  "+",                      $PhoneClean);
-       
-      // Hat da jemand ein oder zwei Leerzeichen nach dem Plus eingegeben,
-      // dann entferne auch diese.
-            $PhoneClean = eregi_replace("^(\+ |\+  )",  "+",               $PhoneClean);
-            
-      // Wenn es Ländervorwal hat, beginnt diese nun mit einem +
-      // Hat es ein Plus am Anfang ? Wenn ja,(0)entfernen.
-      // (Diese wird bei Ortsvorwahlen gerne als Lesehilfe hinzugefügt)
-      if (ereg ("^\+",  $PhoneClean))
-           $PhoneClean = trim(eregi_replace("\(0)",  "",                   $PhoneClean));
-    
-      // Alle typischen Zeichen ausser den Numerischen und dem Plus durch Leerzeichen ersetzen,
-      // entferne anschliessend unbekannte Zeichen und ersetze doppelte Leerzeichen duch einfache
-      $PhoneClean  = eregi_replace("\(|)|/|\.", " ",                 $PhoneClean);
-      $PhoneClean  = trim(eregi_replace("[^0-9\+[:space:]]",  null,  $PhoneClean));
-      $PhoneClean  = trim(preg_replace("/ +/", ' ',                  $PhoneClean));
-      return $PhoneClean;    
-    }
-    
-       
-           
-    
-    function ZerteileRufnummer()
-   {
-    // I N T E R N A T I O N A L E  Schreibweise: -----------------------------------------------------------------
-   if (ereg ("^\+", $this->PhoneInput))                                  // Ein Plus am Anfang = Ländervorwahl
-      {
-      $NutzFeld = 1;                                                     // >>> Ein Feld muss schon mal ausgelassen werden.
+        // Gruselkabinett der verschiedenen Vorwahl-Schreibweisen :
+        // Es gibt unzählige Varianten. Wenigstens die Gebräuchlichsten davon sollen erkannt und bereinigt werden
+         
+        // Ersetze 00 oder (00 oder ( 00 durch ein + ,
+        // was der Internationalen Vorwahl entspricht
+        $PhoneClean = eregi_replace("^(00|\(00|\( 00)",  "+",          $PhoneClean);
+         
+        // Hat jemand 2x hintereinander ein + eingegeben,
+        // ersetze es durch ein einzelnes +
+        $PhoneClean = eregi_replace("\+\+",  "+",                      $PhoneClean);
+         
+        // Hat da jemand ein oder zwei Leerzeichen nach dem Plus eingegeben,
+        // dann entferne auch diese.
+        $PhoneClean = eregi_replace("^(\+ |\+  )",  "+",               $PhoneClean);
 
-      $TelFragmente = explode(" ", $this->PhoneInput);                   // Trenne die Telefonnummer bei den Leerzeichen
+        // Wenn es Ländervorwal hat, beginnt diese nun mit einem +
+        // Hat es ein Plus am Anfang ? Wenn ja,(0)entfernen.
+        // (Diese wird bei Ortsvorwahlen gerne als Lesehilfe hinzugefügt)
+        if (ereg ("^\+",  $PhoneClean))
+        $PhoneClean = trim(eregi_replace("\(0)",  "",                   $PhoneClean));
+
+        // Alle typischen Zeichen ausser den Numerischen und dem Plus durch Leerzeichen ersetzen,
+        // entferne anschliessend unbekannte Zeichen und ersetze doppelte Leerzeichen duch einfache
+        $PhoneClean  = eregi_replace("\(|)|/|\.", " ",                 $PhoneClean);
+        $PhoneClean  = trim(eregi_replace("[^0-9\+[:space:]]",  null,  $PhoneClean));
+        $PhoneClean  = trim(preg_replace("/ +/", ' ',                  $PhoneClean));
+        return $PhoneClean;
+    }
+
+    function ZerteileRufnummer()
+    {
+        // I N T E R N A T I O N A L E  Schreibweise: -----------------------------------------------------------------
+        if (ereg ("^\+", $this->PhoneInput))                                  // Ein Plus am Anfang = Ländervorwahl
+        {
+            $NutzFeld = 1;                                                     // >>> Ein Feld muss schon mal ausgelassen werden.
+
+            $TelFragmente = explode(" ", $this->PhoneInput);                   // Trenne die Telefonnummer bei den Leerzeichen
 
             if (count($TelFragmente) > 1)                                  // Wenn die Nummer nicht "aus einem Guss" besteht
             {
-                  $this->Landesvorwahl = $TelFragmente[0];                   // Die Ländervorwahl Vorwahl ist im ersten Feld
-    
-                  if (count($TelFragmente) > 2)                              // Die nationale Vorwahl ist im zweiten Feld. Gibt es diese hier ?
-                     {
-                        $this->Ortsnetzkennzahl = "(0)".$TelFragmente[1];
-                          $NutzFeld += 1;                                      //  >>> Also sind es 2 Felder, die nachher beim Zusammensetzen ausgelassen werden.
-                        }
-                 $this->Teilnehmerkennzahl = "";
-                     for($nn= $NutzFeld ;$nn<count($TelFragmente);$nn++)
-                        { $this->Teilnehmerkennzahl .= $TelFragmente[$nn]; } // Die Zahlen ohne Vorwahlen zusammenfügen
-    
-                  }
-    
-            else
-               {
-               // Pech... Ohne Leerzeichen kann die Rufnummer nur schwer unterteilt werden.
-               // Ich versuche wenigstens anhand der Vorwahl etwas zu erkennen.
-    
-               $l=strlen($this->PhoneInput);       // Länge der Telefonnummer ermitteln
-               if ($l < 6)  {$AnzSuche = $l;}       // Ist die Rufnummer kleiner als das Suchmuster muss ich die Länge des Suchmusters kürzen.
-               else {$AnzSuche = 6;}                // Sonst nehme ich mal die ersten 5 Zahlen sowie das Plus, um zu suchen.
-        
-               $Feldname     = "Vorwahl";
-               for($n=$AnzSuche;$n>1;$n--)
-                    {
-                        $SuchInVorwahl = substr($this->PhoneInput, 0, $n);                 // Als Suchmuster etwas von Vorderteil der Nummer nehmen
-                        $x =  $this->suche_ID_multi_array($Feldname, $SuchInVorwahl);
-                         if($x)                                                         // Glück gehabt. Die Vohrwahl passt zu einer in der Tabelle.
-                              {
-                                 $this->Landesvorwahl= $SuchInVorwahl;       
-                                 $this->TabID= $x;       
-                            $this->PHONE_WARNUNG .= "Landesvorwahl wurde erkannt, nicht aber die Ortsvorwahl !<br>";
-                            $this->Teilnehmerkennzahl = substr($this->PhoneInput, $n);
-                                break;                                                    // Schleife verlassen
-                         }
-      }
-        
-    
-               if ($x > 1) {$this->Landesvorwahl = $this->LandTabelle[$x]["Vorwahl"];}   // Es wurde eine passende internationale Vorwahl gefunden
-               else {
-                        // Die Vorwahl kann nicht erraten werden und der Rest klebt an einem Block.
-                        $this->PHONE_ERROR = "Kein g&uuml;ltiges Muster in der Rufnummer erkannt.<br>\n". // Nummer zur Formatierung unbrauchbar
-                        " Bitte benutzen Sie Leerzeichen zur optischen Unterteilung";
-                     }           
+                $this->Landesvorwahl = $TelFragmente[0];                   // Die Ländervorwahl Vorwahl ist im ersten Feld
+
+                if (count($TelFragmente) > 2)                              // Die nationale Vorwahl ist im zweiten Feld. Gibt es diese hier ?
+                {
+                    $this->Ortsnetzkennzahl = "(0)".$TelFragmente[1];
+                    $NutzFeld += 1;                                      //  >>> Also sind es 2 Felder, die nachher beim Zusammensetzen ausgelassen werden.
+                }
+                $this->Teilnehmerkennzahl = "";
+                for($nn= $NutzFeld ;$nn<count($TelFragmente);$nn++)
+                { $this->Teilnehmerkennzahl .= $TelFragmente[$nn]; } // Die Zahlen ohne Vorwahlen zusammenfügen
+
             }
-       }
 
-       // N A T I O N A L E  Schreibweise: ---------------------------------------------------------------------------
-       else  /// Es hatte kein + am Anfang ...
-       {
+            else
+            {
+                // Pech... Ohne Leerzeichen kann die Rufnummer nur schwer unterteilt werden.
+                // Ich versuche wenigstens anhand der Vorwahl etwas zu erkennen.
 
-       $TelInlandBereich = explode(" ", $this->PhoneInput);
-       if (trim($TelInlandBereich[1]) != "")                      // Ist im Feld eins nichts, ist die Nummer aus einem Guss. Sonst ...
-          {
-          $this->Ortsnetzkennzahl = $TelInlandBereich[0];        // Hier ist die Ortsvorwahl zu erwarten
-          $this->Teilnehmerkennzahl = "";
-             for($x=1;$x<count($TelInlandBereich);$x++)
+                $l=strlen($this->PhoneInput);       // Länge der Telefonnummer ermitteln
+                if ($l < 6)  {$AnzSuche = $l;}       // Ist die Rufnummer kleiner als das Suchmuster muss ich die Länge des Suchmusters kürzen.
+                else {$AnzSuche = 6;}                // Sonst nehme ich mal die ersten 5 Zahlen sowie das Plus, um zu suchen.
+
+                $Feldname     = "Vorwahl";
+                for($n=$AnzSuche;$n>1;$n--)
+                {
+                    $SuchInVorwahl = substr($this->PhoneInput, 0, $n);                 // Als Suchmuster etwas von Vorderteil der Nummer nehmen
+                    $x =  $this->suche_ID_multi_array($Feldname, $SuchInVorwahl);
+                    if($x)                                                         // Glück gehabt. Die Vohrwahl passt zu einer in der Tabelle.
+                    {
+                        $this->Landesvorwahl= $SuchInVorwahl;
+                        $this->TabID= $x;
+                        $this->PHONE_WARNUNG .= "Landesvorwahl wurde erkannt, nicht aber die Ortsvorwahl !<br>";
+                        $this->Teilnehmerkennzahl = substr($this->PhoneInput, $n);
+                        break;                                                    // Schleife verlassen
+                    }
+                }
+
+
+                if ($x > 1) {$this->Landesvorwahl = $this->LandTabelle[$x]["Vorwahl"];}   // Es wurde eine passende internationale Vorwahl gefunden
+                else {
+                    // Die Vorwahl kann nicht erraten werden und der Rest klebt an einem Block.
+                    $this->PHONE_ERROR = "Kein g&uuml;ltiges Muster in der Rufnummer erkannt.<br>\n". // Nummer zur Formatierung unbrauchbar
+                        " Bitte benutzen Sie Leerzeichen zur optischen Unterteilung";
+                }
+            }
+        }
+
+        // N A T I O N A L E  Schreibweise: ---------------------------------------------------------------------------
+        else  /// Es hatte kein + am Anfang ...
+        {
+
+            $TelInlandBereich = explode(" ", $this->PhoneInput);
+            if (trim($TelInlandBereich[1]) != "")                      // Ist im Feld eins nichts, ist die Nummer aus einem Guss. Sonst ...
+            {
+                $this->Ortsnetzkennzahl = $TelInlandBereich[0];        // Hier ist die Ortsvorwahl zu erwarten
+                $this->Teilnehmerkennzahl = "";
+                for($x=1;$x<count($TelInlandBereich);$x++)
                 { $this->Teilnehmerkennzahl .= $TelInlandBereich[$x]; }
-            
-           $this->Teilnehmerkennzahl  = trim(eregi_replace("[^0-9]",  null,  $this->Teilnehmerkennzahl));
-          
-           if (!ereg ("^0", trim($this->Ortsnetzkennzahl)))
-          $this->PHONE_WARNUNG .= "Ortsvorwahl vermutlich falsch! (Sie beginnt ohne \"0\") <br>";
-          }
-          else
-          {    
-          $this->Teilnehmerkennzahl  = $this->PhoneInput;  
-          $this->PHONE_WARNUNG .= "Konnte keine Ortsvorwahl ermitteln. Die Nummer wird daher am Stück zurückgegeben !<br>";
-          }
+
+                $this->Teilnehmerkennzahl  = trim(eregi_replace("[^0-9]",  null,  $this->Teilnehmerkennzahl));
+
+                if (!ereg ("^0", trim($this->Ortsnetzkennzahl)))
+                $this->PHONE_WARNUNG .= "Ortsvorwahl vermutlich falsch! (Sie beginnt ohne \"0\") <br>";
+            }
+            else
+            {
+                $this->Teilnehmerkennzahl  = $this->PhoneInput;
+                $this->PHONE_WARNUNG .= "Konnte keine Ortsvorwahl ermitteln. Die Nummer wird daher am Stück zurückgegeben !<br>";
+            }
+        }
     }
-}    
-    
-    
-    
-    
+
+
     function VorwahlArray()
     {
-    // ______________________________######
-    
-    // Am Anfang stehen die Titel der Tabelle (etwa so wie in einer CSV-Datei)
-    
-    $Wertetabelle = 'Land; Vorwahl; Laendercode; NameEnglisch ; NameFranzoesisch; NameItalienisch
+        // ______________________________######
+
+        // Am Anfang stehen die Titel der Tabelle (etwa so wie in einer CSV-Datei)
+
+        $Wertetabelle = 'Land; Vorwahl; Laendercode; NameEnglisch ; NameFranzoesisch; NameItalienisch
     Ägypten                        ; +20    ; eg    ; Egypt                   ; Égypte                   ; Egitto
     Äquartorialguinea              ; +240   ; gq    ; Equatorial Guinea       ; Guinée équatoriale       ; Guinea Equatoriale
     Äthiopien                      ; +251   ; et    ; Ethiopia                ; Éthiopie                 ; Etiopia
@@ -695,56 +657,56 @@ $this->Ortsnetzkennzahl=  eregi_replace("\(00\)",  null,  $this->Ortsnetzkennzah
     Zypern (Nordzypern)            ; +90    ; cy
     Zypern                         ; +357   ; cy    ; Cyprus            ; Chypre                    ; Cipro
     ';
-    
-    // Erstelle die mehrdimensionalen, und assoziativen Arrays.
-    
-    $Zeile = explode(chr(13),$Wertetabelle);      // Zerlege die Einträge beim Zeilenumbruch
-    $TitelZeile = explode(";",$Zeile[0]);         // In der ersten Zeile stehen die Titel.
-    
-       while(list($key, $val) = each($Zeile))     // Durchlaufe alle Zeilen.
-       {
-         $Zeilenwerte = explode(";",$val);
-         $n = 0;
-             while(list($feld, $Wert) = each($Zeilenwerte))
-             {
-           $this->LandTabelle[$key][trim($TitelZeile[$n])] = trim($Zeilenwerte[$n]);
-           $n+= 1 ;
-             }
-       }
-       
-    // Nun habe ich eine mehrdimensionale Array, die im ersten Feld die ID hat
-    // Habe ich die, kann ich den Rest Assoziativ auslesen.
-    // Besonders spassig; ich kann jederzeit einen neuen Titel einfügen und neue Felder dazugeben :-)
-    // es macht auch nichts, wenn mal eine Angabe fehlen sollte.
-    
-    // ______________________________######
-          
-    }    
-    
+
+        // Erstelle die mehrdimensionalen, und assoziativen Arrays.
+
+        $Zeile = explode(chr(13),$Wertetabelle);      // Zerlege die Einträge beim Zeilenumbruch
+        $TitelZeile = explode(";",$Zeile[0]);         // In der ersten Zeile stehen die Titel.
+
+        while(list($key, $val) = each($Zeile))     // Durchlaufe alle Zeilen.
+        {
+            $Zeilenwerte = explode(";",$val);
+            $n = 0;
+            while(list($feld, $Wert) = each($Zeilenwerte))
+            {
+                $this->LandTabelle[$key][trim($TitelZeile[$n])] = trim($Zeilenwerte[$n]);
+                $n+= 1 ;
+            }
+        }
+         
+        // Nun habe ich eine mehrdimensionale Array, die im ersten Feld die ID hat
+        // Habe ich die, kann ich den Rest Assoziativ auslesen.
+        // Besonders spassig; ich kann jederzeit einen neuen Titel einfügen und neue Felder dazugeben :-)
+        // es macht auch nichts, wenn mal eine Angabe fehlen sollte.
+
+        // ______________________________######
+
+    }
+
 
     function SpaceMe($SpaceString, $AnzZeichen = 2)
     {
-    
-    $l=strlen ($SpaceString);                               // Bestimme die Länge der Zeichenkette
-    
-    if ($l % 2 != 0)                                         // Ist die Länge eine ungerade Zahl ...
-       { $SpaceString = " ".$SpaceString; }                  //... dann füge am Anfang ein Leerzeichen hinzu
-    
-    $SpaceString = wordwrap($SpaceString,$AnzZeichen," ",1); // Füge ein Leerzeichen nach einer bestimmten Anzahl Zeichen ein
-    return  trim($SpaceString);                              // Entferne nun die überflüssigen Leerzeichen und gib den Wert zurück
+
+        $l=strlen ($SpaceString);                               // Bestimme die Länge der Zeichenkette
+
+        if ($l % 2 != 0)                                         // Ist die Länge eine ungerade Zahl ...
+        { $SpaceString = " ".$SpaceString; }                  //... dann füge am Anfang ein Leerzeichen hinzu
+
+        $SpaceString = wordwrap($SpaceString,$AnzZeichen," ",1); // Füge ein Leerzeichen nach einer bestimmten Anzahl Zeichen ein
+        return  trim($SpaceString);                              // Entferne nun die überflüssigen Leerzeichen und gib den Wert zurück
     }
-    
-    
+
+
     function suche_ID_multi_array($Feldname, $SucheNach)
     {
-     for($x= count($this->LandTabelle);$x>0;$x--)
+        for($x= count($this->LandTabelle);$x>0;$x--)
         {
-         if (strtoupper($this->LandTabelle[$x][$Feldname]) == strtoupper($SucheNach) )
-              {
-              return $x;
-              break;
-              }
+            if (strtoupper($this->LandTabelle[$x][$Feldname]) == strtoupper($SucheNach) )
+            {
+                return $x;
+                break;
+            }
         }
-     }  
+    }
 }
 //================================================================================================

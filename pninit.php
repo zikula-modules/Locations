@@ -11,10 +11,6 @@
  * @url http://kaffeeringe.de
  */
 
-/*
- * generated at Fri Jul 04 17:14:11 GMT 2008 by ModuleStudio 0.4.10 (http://modulestudio.de)
- */
-
 /**
  * initialise the locations module
  *
@@ -27,11 +23,12 @@
  */
 function locations_init()
 {
+    $dom = ZLanguage::getModuleDomain('locations');
+
     // create the location table
     if (!DBUtil::createTable('locations_location')) {
         return false;
     }
-
 
     // set up all our module vars with initial values
     $sessionValue = SessionUtil::getVar('locations_GoogleMapsAPIKey');
@@ -51,12 +48,12 @@ function locations_init()
     if (!locations_defaultdata()) {
         LogUtil::registerError('_LOCATIONS_INIT_DEFAULTDATAPROBLEM');
     }
-    
+
     // create main category
     if (!_locations_createDefaultCategory()) {
         LogUtil::registerError('_LOCATIONS_INIT_CATEGORYPROBLEM');
     }
-    
+
     // Initialisation successful
     return true;
 }
@@ -86,7 +83,7 @@ function locations_upgrade($oldversion)
             }
             // set new ModVar
             pnModSetVar('locations', 'pagesize', 25);
-            
+
             // create main category
             _locations_createDefaultCategory();
     }
@@ -129,6 +126,8 @@ function locations_delete()
  */
 function locations_defaultdata()
 {
+    $dom = ZLanguage::getModuleDomain('locations');
+
     // ensure that tables are cleared
     if (!DBUtil::deleteWhere('locations_location', '1=1')) {
         return false;
@@ -250,7 +249,7 @@ function locations_init_interactiveinitstep2()
     }
 
     if (!SecurityUtil::confirmAuthKey()) {
-        LogUtil::registerError(DataUtil::formatForDisplayHTML(__('Invalid 'authkey':  this probably means that you pressed the 'Back' button, or that the page 'authkey' expired. Please refresh the page and try again.', $dom)));
+        LogUtil::registerAuthidError();
         return pnRedirect(pnModURL('Modules', 'admin', 'view'));
     }
 
@@ -330,46 +329,46 @@ function locations_init_interactivedelete()
 function _locations_createDefaultCategory($regpath = '/__SYSTEM__/Modules')
 {
     // load necessary classes
-	Loader :: loadClass('CategoryUtil');
-	Loader :: loadClassFromModule('Categories', 'Category');
-	Loader :: loadClassFromModule('Categories', 'CategoryRegistry');
+    Loader :: loadClass('CategoryUtil');
+    Loader :: loadClassFromModule('Categories', 'Category');
+    Loader :: loadClassFromModule('Categories', 'CategoryRegistry');
 
-	// get the language file
-	$lang = pnUserGetLang();
+    // get the language file
+    $lang = ZLanguage::getLanguageCode();
 
-	// get the category path for which we're going to insert our place holder category
-	$rootcat = CategoryUtil :: getCategoryByPath($regpath);
+    // get the category path for which we're going to insert our place holder category
+    $rootcat = CategoryUtil :: getCategoryByPath($regpath);
 
-	// create placeholder for all our migrated categories
-	$cat = new PNCategory();
-	$cat->setDataField('parent_id', $rootcat['id']);
-	$cat->setDataField('name', 'locations');
-	$cat->setDataField('value', '-1');
+    // create placeholder for all our migrated categories
+    $cat = new PNCategory();
+    $cat->setDataField('parent_id', $rootcat['id']);
+    $cat->setDataField('name', 'locations');
+    $cat->setDataField('value', '-1');
 
-	$cat->setDataField('display_name', array (
-		$lang => _LOCATIONSDISPLAYNAME
-	));
-	$cat->setDataField('display_desc', array (
-		$lang => _LOCATIONSDESCRIPTION
-	));
-	$cat->setDataField('security_domain', $rootcat['security_domain']);
+    $cat->setDataField('display_name', array (
+    $lang => _LOCATIONSDISPLAYNAME
+    ));
+    $cat->setDataField('display_desc', array (
+    $lang => _LOCATIONSDESCRIPTION
+    ));
+    $cat->setDataField('security_domain', $rootcat['security_domain']);
 
-	if (!$cat->validate('admin')) {
-		return false;
-	}
-	$cat->insert();
-	$cat->update();
+    if (!$cat->validate('admin')) {
+        return false;
+    }
+    $cat->insert();
+    $cat->update();
 
-	// get the category path for which we're going to insert our upgraded categories
-	$rootcat = CategoryUtil :: getCategoryByPath('/__SYSTEM__/Modules/locations');
+    // get the category path for which we're going to insert our upgraded categories
+    $rootcat = CategoryUtil :: getCategoryByPath('/__SYSTEM__/Modules/locations');
 
-	// create an entry in the categories registry
-	$registry = new PNCategoryRegistry();
-	$registry->setDataField('modname', 'locations');
-	$registry->setDataField('table', 'locations_location');
-	$registry->setDataField('property', 'Type');
-	$registry->setDataField('category_id', $rootcat['id']);
-	$registry->insert();
+    // create an entry in the categories registry
+    $registry = new PNCategoryRegistry();
+    $registry->setDataField('modname', 'locations');
+    $registry->setDataField('table', 'locations_location');
+    $registry->setDataField('property', 'Type');
+    $registry->setDataField('category_id', $rootcat['id']);
+    $registry->insert();
 
-	return true;
+    return true;
 }

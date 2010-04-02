@@ -11,11 +11,10 @@
  * @url http://kaffeeringe.de
  */
 
-/*
- * generated at Fri Jul 04 17:14:11 GMT 2008 by ModuleStudio 0.4.10 (http://modulestudio.de)
- */
+function smarty_function_locationsGoogleMap($params, &$render)
+{
+    $dom = ZLanguage::getModuleDomain('locations');
 
-function smarty_function_locationsGoogleMap($params, &$render) {
     $key = $params['key'];
     Loader::loadClass('locationsGMaps','modules/locations/classes/');
     $map = new locationsGMaps();
@@ -39,7 +38,7 @@ function smarty_function_locationsGoogleMap($params, &$render) {
     }
     // load the object array class corresponding to $objectType
     if (!($class = Loader::loadArrayClassFromModule('locations', $objectType))) {
-        pn_exit('Unable to load array class [' . DataUtil::formatForDisplay($objectType) . '] ...');
+        pn_exit(__f('Error! Unable to load class [%s%]', $objectType, $dom));
     }
     if ($params['distance'] && $params['distanceUnit']) {
         $objectArray = new $class();

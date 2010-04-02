@@ -11,11 +11,6 @@
  * @url http://kaffeeringe.de
  */
 
-/*
- * generated at Fri Jul 04 17:14:11 GMT 2008 by ModuleStudio 0.4.10 (http://modulestudio.de)
- */
-
-
 /**
  * Even though we're handling objects for multiple tables, we only have one function for any use case.
  * The specific functionality for each object is encapsulated in the actual class implementation within the
@@ -39,11 +34,11 @@ Loader::requireOnce('modules/locations/common.php');
  */
 function locations_searchapi_display($args)
 {
-    // DEBUG: permission check aspect starts
     if (!SecurityUtil::checkPermission('locations::', '::', ACCESS_READ)) {
         return LogUtil::registerPermissionError();
     }
-    // DEBUG: permission check aspect ends
+
+    $dom = ZLanguage::getModuleDomain('locations');
 
     // parameter specifying which type of objects we are treating
     $objectType = FormUtil::getPassedValue('ot', 'location', 'GET');
@@ -53,7 +48,7 @@ function locations_searchapi_display($args)
     }
     // load the object class corresponding to $objectType
     if (!($class = Loader::loadClassFromModule('locations', $objectType))) {
-        pn_exit(__f('Error! Unable to load module class [%s%] for module [%m%]';, array('s' => DataUtil::formatForDisplay($objectType))));
+        pn_exit(__f('Error! Unable to load class [%s]', $objectType, $dom));
     }
     // intantiate object model
     $object = new $class();
@@ -62,7 +57,7 @@ function locations_searchapi_display($args)
     // retrieve the ID of the object we wish to view
     $id = (int) FormUtil::getPassedValue($idField, isset($args[$idField]) && is_numeric($args[$idField]) ? $args[$idField] : 0, 'GET');
     if (!$id) {
-        pn_exit('Invalid ' . $idField . ' [' . DataUtil::formatForDisplay($id) . '] received ...');
+        pn_exit(__('Error! Invalid Id received.'), $dom);
     }
 
     // assign object data

@@ -11,10 +11,6 @@
  * @url http://kaffeeringe.de
  */
 
-/*
- * generated at Fri Jul 04 17:14:11 GMT 2008 by ModuleStudio 0.4.10 (http://modulestudio.de)
- */
-
 require_once 'system/pnForm/plugins/function.pnformvalidationsummary.php';
 
 class locationsFormFrame extends pnFormPlugin
@@ -33,7 +29,6 @@ class locationsFormFrame extends pnFormPlugin
     {
         $this->useTabs = (array_key_exists('useTabs', $params) ? $params['useTabs'] : false);
     }
-
 
     // This is called by the framework before the content of the block is rendered
     function renderBegin(&$render)

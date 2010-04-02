@@ -11,12 +11,6 @@
  * @url http://kaffeeringe.de
  */
 
-/*
- * generated at Fri Jul 04 17:14:11 GMT 2008 by ModuleStudio 0.4.10 (http://modulestudio.de)
- */
-
-
-
 Loader::loadClass('PNLocationArrayBase', 'modules/locations/classes/Base');
 
 /**
@@ -24,5 +18,5 @@ Loader::loadClass('PNLocationArrayBase', 'modules/locations/classes/Base');
  */
 class PNLocationArray extends PNLocationArrayBase
 {
-// feel free to add your logic here by implementing pre and post process methods
+    // feel free to add your logic here by implementing pre and post process methods
 }

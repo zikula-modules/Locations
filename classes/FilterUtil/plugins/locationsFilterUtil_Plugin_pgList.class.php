@@ -11,11 +11,6 @@
  * @url http://kaffeeringe.de
  */
 
-/*
- * generated at Fri Jul 04 17:14:11 GMT 2008 by ModuleStudio 0.4.10 (http://modulestudio.de)
- */
-
-
 Loader::loadClass('locationsFilterUtil_OpCommon', LOCATIONS_FILTERUTIL_CLASS_PATH);
 
 class locationsFilterUtil_Plugin_pgList extends locationsFilterUtil_OpCommon
@@ -30,7 +25,7 @@ class locationsFilterUtil_Plugin_pgList extends locationsFilterUtil_OpCommon
     public function __construct($config)
     {
         if (isset($config['fields']) && is_array($config['fields']))
-            $this->addFields($config['fields']);
+        $this->addFields($config['fields']);
 
         parent::__construct($config);
 
@@ -96,9 +91,9 @@ class locationsFilterUtil_Plugin_pgList extends locationsFilterUtil_OpCommon
             $items[] = $item['id'];
         }
         if (count($items) == 1)
-            $where = "$myfield = " . implode("", $items);
+        $where = "$myfield = " . implode("", $items);
         else
-            $where = "$myfield IN (" . implode(",", $items) . ")";
+        $where = "$myfield IN (" . implode(",", $items) . ")";
         return concat('where');
     }
 }

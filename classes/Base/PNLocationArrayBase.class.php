@@ -11,12 +11,6 @@
  * @url http://kaffeeringe.de
  */
 
-/*
- * generated at Fri Jul 04 17:14:11 GMT 2008 by ModuleStudio 0.4.10 (http://modulestudio.de)
- */
-
-
-
 Loader::loadClass('PNlocationsArray', 'modules/locations/classes');
 
 /**
@@ -47,16 +41,12 @@ abstract class PNLocationArrayBase extends PNlocationsArray
         // set the tablename this object maps to
         $this->_objType       = 'locations_location';
 
-
         // set the ID field for this object
         $this->_objField      = 'locationid';
-
-
 
         // set the access path under which the object's
         // input data can be retrieved upon input
         $this->_objPath       = 'location_array';
-
 
         // apply object permission filters
         $this->_objPermissionFilter[] = array('component_left'   => 'locations',
@@ -66,7 +56,6 @@ abstract class PNLocationArrayBase extends PNlocationsArray
                                               'instance_middle'  => '',
                                               'instance_right'   => '',
                                               'level'            => ACCESS_READ);
-
 
         // call initialization routine
         $this->_init($init, $where, $orderBy, $assocKey);
@@ -92,7 +81,7 @@ abstract class PNLocationArrayBase extends PNlocationsArray
                      'lu_date',
                      'lu_uid'
 
-);
+        );
     }
 
     /**
@@ -105,7 +94,7 @@ abstract class PNLocationArrayBase extends PNlocationsArray
 
     /**
      * Interceptor being called if an object is used within a string context.
-     * 
+     *
      * @return string
      */
     public function __toString() {

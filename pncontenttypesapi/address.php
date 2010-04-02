@@ -1,12 +1,14 @@
 <?php
 class locations_contenttypesapi_addressPlugin extends contentTypeBase
 {
+    $dom = ZLanguage::getModuleDomain('locations');
+
     var $locationid;
 
     function getModule() {         return 'locations'; }
     function getName() {           return 'address'; }
-    function getTitle() {          return __('Address', $dom); }
-    function getDescription() {    return __('Address from the Locations DB', $dom); }
+    function getTitle() {          return __('Location address', $dom); }
+    function getDescription() {    return __('Address from the locations database', $dom); }
     function isTranslatable() {    return false; }
 
     function loadData($data)
@@ -24,18 +26,19 @@ class locations_contenttypesapi_addressPlugin extends contentTypeBase
 
     function displayEditing()
     {
+        $dom = ZLanguage::getModuleDomain('locations');
+
         if (!empty($this->locationid))
         {
             return pnModFunc('locations', 'user', 'display', array('type' => 'short', 'locationid' => $this->locationid));
         }
-        return __('no valid address selected', $dom);
+        return __('Error! No valid address selected.', $dom);
     }
 
     function getDefaultData()
     {
         return array('locationid' => '1');
     }
-
 
     function startEditing(&$render)
     {

@@ -11,11 +11,8 @@
  * @url http://kaffeeringe.de
  */
 
-/*
- * generated at Fri Jul 04 17:14:11 GMT 2008 by ModuleStudio 0.4.10 (http://modulestudio.de)
- */
-
-function smarty_function_locationsGoogleMapsOverview($params, &$render) {
+function smarty_function_locationsGoogleMapsOverview($params, &$render)
+{
     $key = $params['key'];
     Loader::loadClass('locationsGMaps','modules/locations/classes/');
     $map = new locationsGMaps();
@@ -36,7 +33,7 @@ function smarty_function_locationsGoogleMapsOverview($params, &$render) {
     }
     PageUtil::addVar('rawtext', $map->getHeaderJS());
     PageUtil::addVar('rawtext', $map->getMapJS());
-    
+
     PageUtil::addVar('javascript', 'javascript/ajax/prototype.js');
     $js  = "<script type=\"text/javascript\">\n";
     $js .= "//<![CDATA[\n";
@@ -44,6 +41,6 @@ function smarty_function_locationsGoogleMapsOverview($params, &$render) {
     $js .= "//]]>\n";
     $js .= "</script>\n";
     PageUtil::addVar('rawtext', $js);
-    
+
     return ($map->printMap());
 }

@@ -2,12 +2,14 @@
 
 function locations_ajax_get()
 {
+    $dom = ZLanguage::getModuleDomain('locations');
+
     $fragment = FormUtil::getpassedValue('fragment');
     $field = FormUtil::getpassedValue('field');
 
     // load the object array class corresponding to $objectType
     if (!($class = Loader::loadArrayClassFromModule('locations', 'location'))) {
-        pn_exit('Unable to load array class [' . DataUtil::formatForDisplay('location') . '] ...');
+        pn_exit(__f('Error! Unable to load class [%s]', 'location', $dom));
     }
 
     // instantiate the object-array
@@ -34,7 +36,7 @@ function locations_ajax_get()
         asort($temp);
         $out = '<ul>';
         if($field == 'name') {
-            $out .= '<li class="dupe">' . _LOCATIONS_LOCATION_NAME_DUPE .'</li>';
+            $out .= '<li class="dupe">' . __('Locations dupe', $dom) .'</li>';
         }
         foreach($temp as $key => $li) {
             $out .= '<li';
@@ -44,7 +46,7 @@ function locations_ajax_get()
             $out .= '>' . DataUtil::formatForDisplay($li) .'<input type="hidden" id="' . DataUtil::formatForDisplay($li) . '" value="' . DataUtil::formatForDisplay($key) . '" /></li>';
         }
         $out .= '</ul>';
-        echo DataUtil::convertToUTF8($out);
+        echo $out;
 
     }
     return true;

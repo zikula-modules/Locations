@@ -11,11 +11,6 @@
  * @url http://kaffeeringe.de
  */
 
-/*
- * generated at Fri Jul 04 17:14:11 GMT 2008 by ModuleStudio 0.4.10 (http://modulestudio.de)
- */
-
-
 class locations_user_getLocationsWithinDistanceOfZIPHandler extends pnFormHandler
 {
 
@@ -29,18 +24,16 @@ class locations_user_getLocationsWithinDistanceOfZIPHandler extends pnFormHandle
     function initialize(&$render)
     {
         $this->width = '350px';
-
         $this->height = '400px';
-
         $this->distance = '7';
-
         $this->distanceUnit = 'k';
-
         return true;
     }
 
     function handleCommand(&$render, &$args)
     {
+        $dom = ZLanguage::getModuleDomain('locations');
+
         if (!$render->pnFormIsValid()) return false;
         if ($this->mode!='view') {
             if ($args['commandName'] == 'okay')
@@ -74,7 +67,7 @@ class locations_user_getLocationsWithinDistanceOfZIPHandler extends pnFormHandle
                 }
                 // load the object array class corresponding to $objectType
                 if (!($class = Loader::loadArrayClassFromModule('locations', $objectType))) {
-                    pn_exit('Unable to load array class [' . DataUtil::formatForDisplay($objectType) . '] ...');
+                    pn_exit(__f('Error! Unable to load class [%s%]', $objectType, $dom));
                 }
 
                 $objectArray = new $class();
@@ -88,9 +81,9 @@ class locations_user_getLocationsWithinDistanceOfZIPHandler extends pnFormHandle
                         $results[] = $location;
                     }
                 }
-                $render-> assign('results', $results); 
+                $render-> assign('results', $results);
 
-                if (count($results) == 0) { 
+                if (count($results) == 0) {
                     $this->mode='empty';
                 } else {
                     $this->mode='view';
