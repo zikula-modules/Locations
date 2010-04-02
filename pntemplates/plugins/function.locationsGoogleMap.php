@@ -28,7 +28,7 @@ function smarty_function_locationsGoogleMap($params, &$render)
     $map->setWidth(($params['width']) ? $params['width'] : '500px');
     $map->setHeight(($params['height']) ? $params['height'] : '500px');
     $map->setControlSize = 'small';
-    $map->addMarkerIcon(pnGetBaseURI().'/modules/locations/pnimages/marker.png',pnGetBaseURI().'/modules/locations/pnimages/shadow50.png',10,34,20,0);
+    $map->addMarkerIcon(pnGetBaseURL().'/modules/locations/pnimages/marker.png',pnGetBaseURI().'/modules/locations/pnimages/shadow50.png',10,34,20,0);
     $reflatlng = explode(',', $params['latlng']);
     $map->addMarkerByCoords($reflatlng[1], $reflatlng[0], $params['title'], $params['html'], $params['tooltip']);
 
