@@ -1,20 +1,11 @@
-<!--[* purpose of this template: view template for user area *]-->
+<!--[* $Id$ *]-->
 
 <!--[include file="locations_user_header.htm"]-->
 
 <h2><!--[gt text="Locations"]--></h2>
 
 <!--[securityutil_checkpermission_block component="locations::" instance=".*" level="ACCESS_ADD"]-->
-<p>
-    <!--[gt text="Location" assign="itemname"]-->
-    <!--[gt text="Create %i%" i=$itemname assign="createTitle"]-->
-    <!--[gt text="Edit %i%" i=$itemname assign="editTitle"]-->
-    <!--[gt text="Delete %i%" i=$itemname assign="deleteTitle"]-->
-    <a href="<!--[pnmodurl modname="locations" type="admin" func="edit" ot="location"]-->" title="<!--[$createTitle]-->">
-        <!--[pnimg src="insert_table_row.gif" modname="core" set="icons/extrasmall" __alt='Create' ]-->
-        <!--[$createTitle]-->
-    </a>
-</p>
+<p><a id="addnewitem" title="<!--[gt text="Add new location"]-->" href="<!--[pnmodurl modname="locations" type="admin" func="edit" ot="location"]-->"><!--[gt text="Add new location"]--></a></p>
 <!--[/securityutil_checkpermission_block]-->
 
 <table class="z-datatable">
@@ -65,11 +56,11 @@
                         </a>
 
                         <a href="<!--[pnmodurl modname="locations" type="admin" func="edit" ot="location" locationid=$location.locationid]-->">
-                            <!--[pnimg src="xedit.gif" modname="core" set="icons/extrasmall" __alt='Edit'  __title=$editTitle]-->
+                            <!--[pnimg src="xedit.gif" modname="core" set="icons/extrasmall" __alt='Edit'  __title='Edit']-->
                         </a>
                         <!--[securityutil_checkpermission_block component="locations::" instance=".*" level="ACCESS_DELETE"]-->
                         <a href="<!--[pnmodurl modname="locations" type="admin" func="delete" ot="location" locationid=$location.locationid]-->">
-                            <!--[pnimg src="db_remove.gif" modname="core" set="icons/extrasmall" __alt='Delete'  __title=$deleteTitle]-->
+                            <!--[pnimg src="db_remove.gif" modname="core" set="icons/extrasmall" __alt='Delete'  __title='Delete']-->
                         </a>
                         <!--[/securityutil_checkpermission_block]-->
 

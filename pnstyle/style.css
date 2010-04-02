@@ -1,19 +1,7 @@
-div.locationsForm div.z-formrow label,div.pn-frontendrow label {
-    width: 14em;
-}
-
-div.locationsLabelHelp {
-    font-style: italic;
-    font-size: 90%;
-}
-
-div.locationsForm div.locationsButtons {
-    margin: 10px 0px 10px 0px;
-}
-
-/* prevent indented date fields */
-div.locationsForm div.z-formrow span {
-    margin-left: 0 !important;
+#addnewitem {
+    background:url("../../../images/icons/extrasmall/filenew.gif") no-repeat scroll 0 50% transparent;
+    margin:1.5em 0;
+    padding:2px 0 2px 19px;
 }
 
 div.linktabs {

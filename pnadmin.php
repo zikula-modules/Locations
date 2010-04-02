@@ -40,7 +40,7 @@ function locations_admin_main($args)
     }
 
     // call view method
-    return locations_admin_config();
+    return locations_admin_modifyconfig();
 
 }
 
@@ -268,7 +268,7 @@ function locations_admin_delete($args)
     $id = FormUtil::getPassedValue($objectType . 'id', '', 'GET');
     DBUtil::deleteObjectByID('locations_' . $objectType, $id, $objectType . 'id');
 
-    LogUtil::registerStatus(__('Done! Description deleted.', $dom));
+    LogUtil::registerStatus(__('Done! Location deleted.', $dom));
 
     return pnRedirect(pnModURL('locations', 'user', 'view'));
 }
@@ -280,7 +280,7 @@ function locations_admin_delete($args)
  * @author       Steffen Voß
  * @return       Render output
  */
-function locations_admin_config()
+function locations_admin_modifyconfig()
 {
     // Create new pnForm reference
     $render = FormUtil::newpnForm('locations');
@@ -288,8 +288,7 @@ function locations_admin_config()
     // include event handler class
     Loader::requireOnce('modules/locations/classes/FormHandler/locations_admin_confighandler.class.php');
 
-
     // Execute form using supplied template and page event handler
-    return $render->pnFormExecute('locations_admin_config.htm', new locations_admin_configHandler());
+    return $render->pnFormExecute('locations_admin_modifyconfig.htm', new locations_admin_configHandler());
 }
 

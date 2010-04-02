@@ -1,7 +1,7 @@
-<!--[* Purpose of this template: 2nd step of init process: initial settings *]-->
+<!--[* $Id$ *]-->
 
 <h2><!--[gt text="Installation of locations"]--></h2>
-<form action="<!--[pnmodurl modname="LOCATIONS" type="init" func="interactiveinitstep2"]-->" method="post" enctype="application/x-www-form-urlencoded">
+<form action="<!--[pnmodurl modname="locations" type="init" func="interactiveinitstep2"]-->" method="post" enctype="application/x-www-form-urlencoded">
     <div>
         <fieldset>
             <legend><!--[gt text="Basic Settings"]--></legend>
@@ -26,11 +26,8 @@
         </fieldset>
         <fieldset>
             <legend><!--[gt text="Actions"]--></legend>
-
             <label for="locations_activate"><!--[gt text="Activate Locations Database"]--></label>
             <input id="locations_activate" name="activate" type="checkbox" value="1" checked="checked" />
-            <br /><br />
-
             <input name="submit" type="submit" value="<!--[gt text="Submit"]-->" style="margin-left: 17em" />
         </fieldset>
     </div>

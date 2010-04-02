@@ -22,11 +22,10 @@ function locations_adminapi_getlinks()
     $dom = ZLanguage::getModuleDomain('locations');
 
     $links = array();
-
-    $links[] = array('url' => pnModURL('locations', 'user', 'view'),
-                         'text' => pnML('_LOCATIONS_USERVIEW'));
     if (SecurityUtil::checkPermission('locations::', '::', ACCESS_ADMIN)) {
-        $links[] = array('url' => pnModURL('locations', 'admin', 'config'), 'text' => __('Settings', $dom));
+        $links[] = array('url' => pnModURL('locations', 'admin', 'view'), 'text' => __('View locations', $dom));
+        $links[] = array('url' => pnModURL('locations', 'admin', 'modifyconfig'), 'text' => __('Settings', $dom));
     }
+    $links[] = array('url' => pnModURL('locations', 'user', 'view'), 'text' => __('User frontend', $dom));
     return $links;
 }
