@@ -1,43 +1,39 @@
 <!--[* $Id$ *]-->
+<!--[gt text='Distance search' assign=templatetitle]-->
+<!--[include file="locations_user_header.htm"]-->
+
 <!--[if $mode == 'view']-->
-<h2><!--[gt text='Search Result']--></h2>
-<!--[$map]-->
-<br class="z-clearer" />
-<h3><!--[gt text='Search Result']--></h3>
+
+<h4><!--[gt text='Search result']--></h4>
+<div class="loc_mapbox z-clearfix">
+    <!--[$map]-->
+</div>
 <ul>
     <!--[foreach from=$results item='tipp']-->
     <li><a href="<!--[pnmodurl modname="locations" type="user" func="display" ot="location" locationid=$tipp.locationid]-->"><!--[$tipp.name]--></a></li>
     <!--[/foreach]-->
 </ul>
-<p>
-    <a href="<!--[pnmodurl modname="locations" type="user" func="getLocationsWithinDistanceOfZIP"]-->" title="<!--[gt text="Back to Distance Search"]-->">
-        <!--[pnimg src="agt_back.gif" modname="core" set="icons/extrasmall" __alt='Back'  __title='Back to overview' ]-->
-        <!--[gt text="Back to Distance Search"]-->
-    </a>
-</p>
+
 <!--[elseif $mode == 'empty']-->
-<h2><!--[gt text='Search Result']--></h2>
-<p><!--[gt text='No Locations found near this zip code/city']--></p>
-<br class="z-clearer" />
-<p>
-    <a href="<!--[pnmodurl modname="locations" type="user" func="getLocationsWithinDistanceOfZIP"]-->" title="<!--[gt text="Back to Distance Search"]-->">
-        <!--[pnimg src="agt_back.gif" modname="core" set="icons/extrasmall" __alt='Back'  __title='Back to overview' ]-->
-        <!--[gt text="Back to Distance Search"]-->
-    </a>
-</p>
+
+<h4><!--[gt text='Search result']--></h4>
+<p><!--[gt text='Sorry, no locations found near this zip code/city']--></p>
+
 <!--[else]-->
-<h2><!--[gt text='Distance Search']--></h2>
-<!--[pnform]-->
+
+<!--[pnform cssClass="z-form"]-->
 <!--[pnformvalidationsummary]-->
 <!--[pnformsetinitialfocus inputId="zip"]-->
-<!--[pnformlabel for='zip' __text="Zip and/or City"]-->:
-<!--[pnformtextinput id='zip' mandatory='1' maxLength='32']--><br/>
-<!--[pnformbutton commandName="okay" __text="Search"]-->
+<fieldset>
+    <legend><!--[gt text="Search terms"]--></legend>
+    <div class="z-formrow">
+        <!--[pnformlabel for='zip' __text="Zip and/or City"]-->
+        <!--[pnformtextinput id='zip' mandatory='1' maxLength='32']-->
+    </div>
+</fieldset>
+<div class="z-formbuttons">
+    <!--[pnformbutton commandName="okay" __text="Search"]-->
+</div>
 <!--[/pnform]-->
+
 <!--[/if]-->
-<p>
-    <a href="<!--[pnmodurl modname="locations" type="user" func="view" ot="location"]-->" title="<!--[gt text="Back to overview"]-->">
-        <!--[pnimg src="agt_back.gif" modname="core" set="icons/extrasmall" __alt='Back'  __title='Back to overview' ]-->
-        <!--[gt text="Back to overview"]-->
-    </a>
-</p>

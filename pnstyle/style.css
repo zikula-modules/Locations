@@ -1,7 +1,25 @@
-#addnewitem {
+#loc_view {
+    background:url("../../../images/icons/extrasmall/windowlist.gif") no-repeat scroll 0 50% transparent;
+    margin:0 5px;
+    padding:2px 0 2px 20px;
+}
+
+#loc_addnewitem {
     background:url("../../../images/icons/extrasmall/filenew.gif") no-repeat scroll 0 50% transparent;
-    margin:1.5em 0;
-    padding:2px 0 2px 19px;
+    margin:0 5px;
+    padding:2px 0 2px 20px;
+}
+
+#loc_distance {
+    background:url("../../../images/icons/extrasmall/search.gif") no-repeat scroll 0 50% transparent;
+    margin:0 5px;
+    padding:2px 0 2px 20px;
+}
+
+#loc_edit {
+    background:url("../../../images/icons/extrasmall/xedit.gif") no-repeat scroll 0 50% transparent;
+    margin:0 5px;
+    padding:2px 0 2px 20px;
 }
 
 div.linktabs {
@@ -36,13 +54,15 @@ div.autocomplete {
     width: 25em;
     background-color: white;
     border: 1px solid #888;
-    margin: 0;
-    padding: 0;
+    margin: 0 !important;
+    padding: 0 !important;
+    z-index: 99;
 }
 
 div.autocomplete ul {
-    margin: 0;
-    padding: 0;
+    list-style-type: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
 }
 
 div.autocomplete ul li.selected {
@@ -53,7 +73,7 @@ div.autocomplete ul li {
     margin: 0;
     padding: 0.1em 0 0.1em 0;
     line-height: 1.4em;
-    cursor: pointer;
+    cursor:pointer;
 }
 
 div.autocomplete ul li.dupe {
@@ -62,4 +82,12 @@ div.autocomplete ul li.dupe {
 
 #livesearch {
     margin: 1em 0 1em 0;
+}
+
+.loc_mapbox {
+    background:#FAFAFA;
+    border:1px solid #ddd;
+    margin:0.5em 0;
+    overflow:hidden;
+    padding:0.5em;
 }

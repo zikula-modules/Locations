@@ -21,8 +21,8 @@ function smarty_function_locationsGoogleMapsOverview($params, &$render)
     $map->disableTypeControls();
     $map->disableSidebar();
     $map->enableOnLoad();
-    $map->setWidth(($params['width']) ? $params['width'] : '400px');
-    $map->setHeight(($params['height']) ? $params['height'] : '400px');
+    $map->setWidth(($params['width']) ? $params['width'] : '500px');
+    $map->setHeight(($params['height']) ? $params['height'] : '500px');
     $map->setControlSize = 'small';
     foreach($params['input'] as $location) {
         $latlng     = explode(',', $location['latlng']);

@@ -1,11 +1,8 @@
 <!--[* $Id$ *]-->
-
+<!--[assign var="loctitle" value=$location.name]-->
+<!--[gt text="Address: %s" tag1=$loctitle assign=templatetitle]-->
 <!--[include file="locations_user_header.htm"]-->
-<!--[pnmodurl modname="locations" type="user" func="display" locationid=$location.locationid assign="returnurl"]-->
-<!--[pnpagesetvar name="title" value=$location.name]-->
-<h2><!--[$location.name|pnmodcallhooks|pnvarprephtmldisplay]--></h2>
 
-<h3 class="category"><!--[gt text="Address"]--></h3>
 <p class="vcard">
     <!--[if $location.logo]--><img src="<!--[$location.logo]-->" class="photo" /><!--[/if]-->
     <span class="fn n"><strong class="org"><!--[$location.name|pnmodcallhooks|pnvarprephtmldisplay]--></strong></span><br />
@@ -20,58 +17,37 @@
     <!--[if $location.email]--><!--[gt text="Email"]-->: <a class="email" href="mailto:<!--[$location.email|default:""]-->"><!--[$location.email|default:""]--></a><br /><!--[/if]-->
     <!--[if $location.url]--><!--[gt text="Url"]-->: <a class="url" href="<!--[$location.url|default:""]-->"><!--[$location.url|default:""]--></a><br /><!--[/if]--><br />
     <!--[gt text="Export"]-->: <a href="http://technorati.com/contacts/<!--[$baseurl]--><!--[pnmodurl modname="locations" type="user" func="display" locationid=$location.locationid]-->">vCard</a> | <a href="<!--[pnmodurl modname="locations" type="user" func="view" tpl="kml" filter=locationid:eq:`$location.locationid`]-->">kml</a><br />
+</p>
 
-    <!--[securityutil_checkpermission component="locations::" instance=".*" level="ACCESS_EDIT" assign="admin"]-->
-    <!--[securityutil_checkpermission component="locations::own" instance=".*" level="ACCESS_EDIT" assign="owner"]-->
-    <!--[pnusergetvar name="uid" assign="visitorID"]-->
-    <!--[if ((($visitorID == $location.cr_uid) && ($owner)) || $admin)]-->
-    <a href="<!--[pnmodurl modname="locations" type="admin" func="edit" ot="location" locationid=$location.locationid]-->" title="<!--[gt text="Edit"]-->">
-        <!--[pnimg src="xedit.gif" modname="core" set="icons/extrasmall" __alt='Edit'  __title='Edit' ]-->
-        <!--[gt text="Edit"]-->
-    </a><br />
-    <!--[/if]-->
-</p>
-<p>
-    <a href="<!--[pnmodurl modname="locations" type="user" func="view" ot="location"]-->" title="<!--[gt text="Back to overview"]-->">
-        <!--[pnimg src="agt_back.gif" modname="core" set="icons/extrasmall" __alt='Back'  __title='Back to overview' ]-->
-        <!--[gt text="Back to overview"]-->
-    </a>
-</p>
-<h3 class="category"><!--[gt text="Map"]--></h3>
+<h4><!--[gt text="Map"]--></h4>
 <!--[assign var="address" value="`$location.street`, `$location.zip` `$location.city`"]-->
-<!--[locationsGoogleMap latlng=$location.latlng address=$address title=$location.name html="<h2>`$location.name`</h2><p>`$location.street`<br/>`$location.zip` `$location.city`</p>" key=$GoogleMapsAPIKey distanceUnit="k" distance="0.5" zoom="16"]-->
+<div class="loc_mapbox z-clearfix">
+    <!--[locationsGoogleMap latlng=$location.latlng width='100%' address=$address title=$location.name html="<h2>`$location.name`</h2><p>`$location.street`<br/>`$location.zip` `$location.city`</p>" key=$GoogleMapsAPIKey distanceUnit="k" distance="0.5" zoom="16"]-->
+</div>
 
-
-<br style="z-clearfix" />
 <!--[if $nearby]-->
-<h3 class="category"><!--[gt text="Nearby"]--></h3>
+<h4><!--[gt text="Nearby"]--></h4>
 <ul>
     <!--[foreach from=$nearby item='tipp']-->
     <li><a href="<!--[pnmodurl modname="locations" type="user" func="display" ot="location" locationid=$tipp.locationid]-->"><!--[$tipp.name]--></a></li>
     <!--[/foreach]-->
 </ul>
-<br class="z-clearfix" />
 <!--[/if]-->
 
 <!--[pnmodavailable modname="crpCalendar" assign="crpCalendar"]-->
 <!--[if $crpCalendar]-->
 <!--[getDatesFromCrpCalendar bylocation=$location.locationid typeList="upcoming" assign="dates"]-->
 <!--[if $dates|@count > 0]-->
-<h3 class="category"><!--[gt text="Events"]--></h3>
+<h4><!--[gt text="Events"]--></h4>
 <ul>
     <!--[foreach item='date' from=$dates]-->
     <li><!--[$date.start_date|pndate_format:"datetimebrief"]--> | <a href="<!--[pnmodurl modname="crpCalendar" type="user" func="display" eventid=$date.eventid]-->"><!--[$date.title]--></a></li>
     <!--[/foreach]-->
 </ul>
-<div class="edit"><!--[gt text="LocationDate"]--> <a href="<!--[pnmodurl modname="crpCalendar" type="user" func="new"]-->"><!--[gt text="Add"]--></a></div>
+<div class="edit"><!--[gt text="Location date"]--> <a href="<!--[pnmodurl modname="crpCalendar" type="user" func="new"]-->"><!--[gt text="Add"]--></a></div>
 <!--[/if]-->
 <!--[/if]-->
-<br class="z-clearfix" />
-<a href="<!--[pnmodurl modname="locations" type="user" func="view" ot="location"]-->" title="<!--[gt text="Back to overview"]-->">
-    <!--[pnimg src="agt_back.gif" modname="core" set="icons/extrasmall" __alt='Back'  __title='Back to overview' ]-->
-    <!--[gt text="Back to overview"]-->
-</a>
-<br class="z-clearfix" />
+
 <!--[pnmodurl modname="locations" func="display" ot="location" locationid=$location.locationid assign="returnurl"]-->
 <!--[pnmodcallhooks hookobject="item" hookaction="display" hookid=$location.locationid module="locations" returnurl=$returnurl]-->
 

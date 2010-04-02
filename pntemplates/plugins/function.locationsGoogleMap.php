@@ -25,8 +25,8 @@ function smarty_function_locationsGoogleMap($params, &$render)
     $map->enableOnLoad();
     $map->disableZoomEncompass();
     $map->setZoomLevel($params['zoom']);
-    $map->setWidth(($params['width']) ? $params['width'] : '400px');
-    $map->setHeight(($params['height']) ? $params['height'] : '400px');
+    $map->setWidth(($params['width']) ? $params['width'] : '500px');
+    $map->setHeight(($params['height']) ? $params['height'] : '500px');
     $map->setControlSize = 'small';
     $map->addMarkerIcon(pnGetBaseURI().'/modules/locations/pnimages/marker.png',pnGetBaseURI().'/modules/locations/pnimages/shadow50.png',10,34,20,0);
     $reflatlng = explode(',', $params['latlng']);

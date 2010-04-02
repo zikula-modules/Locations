@@ -5,10 +5,7 @@
 <div class="z-admincontainer">
     <div class="z-adminpageicon"><!--[pnimg modname="core" src="windowlist.gif" set="icons/large" alt=$templatetitle]--></div>
     <h2><!--[$templatetitle]--></h2>
-
-    <!--[securityutil_checkpermission_block component="locations::" instance=".*" level="ACCESS_ADD"]-->
-    <p><a id="addnewitem" title="<!--[gt text="Add new location"]-->" href="<!--[pnmodurl modname="locations" type="admin" func="edit" ot="location"]-->"><!--[gt text="Add new location"]--></a></p>
-    <!--[/securityutil_checkpermission_block]-->
+    <p><a id="loc_addnewitem" title="<!--[gt text="Add new location"]-->" href="<!--[pnmodurl modname="locations" type="admin" func="edit" ot="location"]-->"><!--[gt text="Add new location"]--></a></p>
 
     <table class="z-admintable">
         <thead>
@@ -44,23 +41,17 @@
                 <td><!--[$location.name|pnmodcallhooks|pnvarprephtmldisplay|default:""]--></td>
                 <td><!--[$location.city|pnvarprepfordisplay|default:""]--></td>
                 <td>
-                    <a href="<!--[pnmodurl modname="locations" type="user" func="display" ot="location" locationid=$location.locationid]-->">
-                        <!--[pnimg src="demo.gif" modname="core" set="icons/extrasmall" __alt='Details'  __title='Details' ]-->
-                    </a>
+                    <a href="<!--[pnmodurl modname="locations" type="user" func="display" ot="location" locationid=$location.locationid]-->"><!--[pnimg src="demo.gif" modname="core" set="icons/extrasmall" __alt='Details'  __title='Details' ]--></a>
                     <!--[securityutil_checkpermission_block component="locations::" instance=".*" level="ACCESS_EDIT"]-->
-                    <a href="<!--[pnmodurl modname="locations" type="admin" func="edit" ot="location" locationid=$location.locationid]-->">
-                        <!--[pnimg src="xedit.gif" modname="core" set="icons/extrasmall" __alt='Edit'  __title='Edit']-->
-                    </a>
+                    <a href="<!--[pnmodurl modname="locations" type="admin" func="edit" ot="location" locationid=$location.locationid]-->"><!--[pnimg src="xedit.gif" modname="core" set="icons/extrasmall" __alt='Edit'  __title='Edit']--></a>
                     <!--[/securityutil_checkpermission_block]-->
                     <!--[securityutil_checkpermission_block component="locations::" instance=".*" level="ACCESS_DELETE"]-->
-                    <a href="<!--[pnmodurl modname="locations" type="admin" func="delete" ot="location" locationid=$location.locationid]-->">
-                        <!--[pnimg src="14_layer_deletelayer.gif" modname="core" set="icons/extrasmall" __alt='Delete'  __title='Delete']-->
-                    </a>
+                    <a href="<!--[pnmodurl modname="locations" type="admin" func="delete" ot="location" locationid=$location.locationid]-->"><!--[pnimg src="14_layer_deletelayer.gif" modname="core" set="icons/extrasmall" __alt='Delete'  __title='Delete']--></a>
                     <!--[/securityutil_checkpermission_block]-->
                 </td>
             </tr>
             <!--[foreachelse]-->
-            <tr class="z-datatableempty"><td colspan="4"><!--[gt text="No location found."]--></td></tr>
+            <tr class="z-admintableempty"><td colspan="4"><!--[gt text="No locations found."]--></td></tr>
             <!--[/foreach]-->
         </tbody>
     </table>

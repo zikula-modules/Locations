@@ -1,100 +1,64 @@
 <!--[* $Id$ *]-->
-
+<!--[gt text="View locations" assign=templatetitle]-->
 <!--[include file="locations_user_header.htm"]-->
-
-<h2><!--[gt text="Locations"]--></h2>
-
-<!--[securityutil_checkpermission_block component="locations::" instance=".*" level="ACCESS_ADD"]-->
-<p><a id="addnewitem" title="<!--[gt text="Add new location"]-->" href="<!--[pnmodurl modname="locations" type="admin" func="edit" ot="location"]-->"><!--[gt text="Add new location"]--></a></p>
-<!--[/securityutil_checkpermission_block]-->
 
 <table class="z-datatable">
     <thead>
         <tr>
-            <th align="left" valign="middle">
+            <th>
                 <!--[if $sort eq "name"]-->
-                <a href="<!--[pnmodurl modname="locations" type="user" func="view" ot="location" sort="name" sdir=$sdir]-->" style="font-style: italic">
-                    <!--[else]-->
-                    <a href="<!--[pnmodurl modname="locations" type="user" func="view" ot="location" sort="name" sdir="asc"]-->">
-                        <!--[/if]-->
-                        <!--[gt text="Name"]-->
-                    </a>
-                </th>
+                <a href="<!--[pnmodurl modname="locations" type="user" func="view" ot="location" sort="name" sdir=$sdir]-->" style="font-style: italic"><!--[gt text="Name"]--></a>
+                <!--[else]-->
+                <a href="<!--[pnmodurl modname="locations" type="user" func="view" ot="location" sort="name" sdir="asc"]-->"><!--[gt text="Name"]--></a>
+                <!--[/if]-->
+            </th>
+            <th>
+                <!--[if $sort eq "city"]-->
+                <a href="<!--[pnmodurl modname="locations" type="user" func="view" ot="location" sort="city" sdir=$sdir]-->" style="font-style: italic"><!--[gt text="City"]--></a>
+                <!--[else]-->
+                <a href="<!--[pnmodurl modname="locations" type="user" func="view" ot="location" sort="city" sdir="asc"]-->"><!--[gt text="City"]--></a>
+                <!--[/if]-->
+            </th>
+            <th><!--[gt text="Options"]--></th>
+        </tr>
+    </thead>
+    <tbody>
+        <!--[foreach from=$objectArray item="location"]-->
+        <tr class="<!--[cycle values="z-odd, z-even"]-->">
+            <td>
+                <a href="<!--[pnmodurl modname="locations" type="user" func="display" ot="location" locationid=$location.locationid]-->"><!--[$location.name|pnmodcallhooks|pnvarprephtmldisplay|default:""]--></a>
+            </td>
+            <td>
+                <a href="<!--[pnmodurl modname="locations" type="user" func="view" ot="location" filter="city:eq:`$location.city`"]-->"><!--[$location.city|pnvarprepfordisplay|default:""]--></a>
+            </td>
 
-                <th align="left" valign="middle">
-                    <!--[if $sort eq "city"]-->
-                    <a href="<!--[pnmodurl modname="locations" type="user" func="view" ot="location" sort="city" sdir=$sdir]-->" style="font-style: italic">
-                        <!--[else]-->
-                        <a href="<!--[pnmodurl modname="locations" type="user" func="view" ot="location" sort="city" sdir="asc"]-->">
-                            <!--[/if]-->
-                            <!--[gt text="City"]-->
-                        </a>
-                    </th>
+            <td class="z-nowrap">
+                <a href="<!--[pnmodurl modname="locations" type="user" func="display" ot="location" locationid=$location.locationid]-->"><!--[pnimg src="demo.gif" modname="core" set="icons/extrasmall" __alt='Details'  __title='Details' ]--></a>
+                <!--[securityutil_checkpermission_block component="locations::" instance=".*" level="ACCESS_ADD"]-->
+                <a href="<!--[pnmodurl modname="locations" type="admin" func="edit" ot="location" locationid=$location.locationid]-->"><!--[pnimg src="xedit.gif" modname="core" set="icons/extrasmall" __alt='Edit'  __title='Edit']--></a>
+                <!--[/securityutil_checkpermission_block]-->
+                <!--[securityutil_checkpermission_block component="locations::" instance=".*" level="ACCESS_DELETE"]-->
+                <a href="<!--[pnmodurl modname="locations" type="admin" func="delete" ot="location" locationid=$location.locationid]-->"><!--[pnimg src="14_layer_deletelayer.gif" modname="core" set="icons/extrasmall" __alt='Delete'  __title='Delete']--></a>
+                <!--[/securityutil_checkpermission_block]-->
+            </td>
+        </tr>
+        <!--[foreachelse]-->
+        <tr class="z-datatableempty"><td colspan="3"><!--[gt text="No locations found."]--></td></tr>
+        <!--[/foreach]-->
 
-                    <!--[securityutil_checkpermission_block component="locations::" instance=".*" level="ACCESS_ADD"]-->
-                    <th align="left" valign="middle"><!--[gt text="Options"]--></th>
-                    <!--[/securityutil_checkpermission_block]-->
-                </tr>
-            </thead>
-            <tbody>
+        <!--[pnvarcleanfrominput name="filter" assign="filter"]-->
+        <!--[if $filter]-->
+        <tr class="z-datatableempty">
+            <td colspan="3"><a href="<!--[pnmodurl modname="locations" type="user" func="main"]-->"><!--[gt text="Show all locations"]--></a></td>
+        </tr>
+        <!--[/if]-->
+    </tbody>
+</table>
+<!--[pager rowcount=$pager.numitems limit=$pager.itemsperpage template="pagercss.html" maxpages="7"]-->
 
-                <!--[foreach from=$objectArray item="location"]-->
+<h3><!--[gt text="Map"]--></h3>
+<div class="loc_mapbox z-clearfix">
+    <!--[locationsGoogleMapsOverview input=$objectArray width='100%' key=$GoogleMapsAPIKey]-->
+</div>
 
-                <tr class="<!--[cycle values="z-odd, z-even"]-->">
-
-                    <td align="left" valign="top">
-                        <a href="<!--[pnmodurl modname="locations" type="user" func="display" ot="location" locationid=$location.locationid]-->"><!--[$location.name|pnmodcallhooks|pnvarprephtmldisplay|default:""]--></a>
-                    </td>
-                    <td align="left" valign="top">
-                        <a href="<!--[pnmodurl modname="locations" type="user" func="view" ot="location" filter="city:eq:`$location.city`"]-->"><!--[$location.city|pnvarprepfordisplay|default:""]--></a>
-                    </td>
-
-                    <!--[securityutil_checkpermission_block component="locations::" instance=".*" level="ACCESS_ADD"]-->
-                    <td align="right" valign="top" style="white-space: nowrap">
-                        <a href="<!--[pnmodurl modname="locations" type="user" func="display" ot="location" locationid=$location.locationid]-->">
-                            <!--[pnimg src="demo.gif" modname="core" set="icons/extrasmall" __alt='Details'  __title='Details' ]-->
-                        </a>
-
-                        <a href="<!--[pnmodurl modname="locations" type="admin" func="edit" ot="location" locationid=$location.locationid]-->">
-                            <!--[pnimg src="xedit.gif" modname="core" set="icons/extrasmall" __alt='Edit'  __title='Edit']-->
-                        </a>
-                        <!--[securityutil_checkpermission_block component="locations::" instance=".*" level="ACCESS_DELETE"]-->
-                        <a href="<!--[pnmodurl modname="locations" type="admin" func="delete" ot="location" locationid=$location.locationid]-->">
-                            <!--[pnimg src="db_remove.gif" modname="core" set="icons/extrasmall" __alt='Delete'  __title='Delete']-->
-                        </a>
-                        <!--[/securityutil_checkpermission_block]-->
-
-                    </td>
-                    <!--[/securityutil_checkpermission_block]-->
-
-                </tr>
-                <!--[foreachelse]-->
-                <tr class="<!--[cycle values="z-odd, z-even"]-->">
-                    <td align="left" valign="top" colspan="14">
-                        <!--[gt text="No such %i% found." i=$itemsname]-->
-                    </td></tr>
-                    <!--[/foreach]-->
-                    <!--[pnvarcleanfrominput name="filter" assign="filter"]-->
-                    <!--[if $filter]-->
-                    <tr>
-                        <td>&nbsp;</td>
-                        <td><a href="<!--[pnmodurl modname="locations" type="user" func="main"]-->"><!--[gt text="All" i=$itemsname]--></a></td>
-                        <!--[securityutil_checkpermission_block component="locations::" instance=".*" level="ACCESS_ADD"]-->
-                        <td>&nbsp;</td>
-                        <!--[/securityutil_checkpermission_block]-->
-                    </tr>
-                    <!--[/if]-->
-                </tbody>
-            </table>
-            <!--[pager rowcount=$pager.numitems limit=$pager.itemsperpage template="pagercss.html" maxpages="7"]-->
-            <p>
-                <a href="<!--[pnmodurl modname="locations" type="user" func="getLocationsWithinDistanceOfZIP"]-->" title="<!--[gt text="Distance Search"]-->">
-                    <!--[pnimg src="agt_back.gif" modname="core" set="icons/extrasmall" __alt='Back'  __title='Back to overview' ]-->
-                    <!--[gt text="Distance Search"]-->
-                </a>
-            </p>
-            <h3><!--[gt text="Map"]--></h3>
-            <!--[locationsGoogleMapsOverview input=$objectArray width='400px' key=$GoogleMapsAPIKey]-->
-
-
-            <!--[include file="locations_user_footer.htm"]-->
+<!--[include file="locations_user_footer.htm"]-->

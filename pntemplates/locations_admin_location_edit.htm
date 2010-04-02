@@ -21,7 +21,10 @@
 
     <div class="z-adminpageicon"><!--[pnimg modname="core" src=$adminpageicon set="icons/large" alt=$templatetitle]--></div>
 
-    <h2><!--[$templatetitle]--></h2>
+    <h2 style="line-height:25px;">
+        <!--[$templatetitle]-->
+        <!--[pnimg id="ajax_indicator" style="display: none;" modname=core set=icons/extrasmall src="indicator_circle.gif" alt=""]-->
+    </h2>
 
     <!--[pnform cssClass='z-form']-->
 
@@ -42,7 +45,6 @@
         <div class="z-formrow">
             <!--[pnformlabel for="name" __text="Name"]-->
             <!--[pnformtextinput id="name" mandatory='true' __toolTip='Input the name of the location' textMode="singleline" maxLength='100']-->
-            <!--[pnimg id="name_indicator" style="display: none;" modname='core' set='icons/extrasmall' src="indicator_circle.gif" __alt=""]-->
             <div id="name_choices" class="autocomplete"></div>
             <script type="text/javascript">
                 livesearch('name', 2);
@@ -51,8 +53,7 @@
         </div>
         <div class="z-formrow">
             <!--[pnformlabel for="street" __text="Street"]-->
-            <!--[pnformtextinput id="street" mandatory='false' __toolTip='Input the street of the location' textMode="singleline" maxLength='100']-->
-            <!--[pnimg id="street_indicator" style="display: none;" modname='core' set='icons/extrasmall' src="indicator_circle.gif" __alt=""]-->
+            <!--[pnformtextinput id="street" __toolTip='Input the street of the location' textMode="singleline" maxLength='100']-->
             <div id="street_choices" class="autocomplete"></div>
             <script type="text/javascript">
                 livesearch('street', 3);
@@ -60,8 +61,7 @@
         </div>
         <div class="z-formrow">
             <!--[pnformlabel for="zip" __text="Zip"]-->
-            <!--[pnformtextinput id="zip" mandatory='false' __toolTip='Input the zip of the location' textMode="singleline" maxLength='10']-->
-            <!--[pnimg id="zip_indicator" style="display: none;" modname='core' set='icons/extrasmall' src="indicator_circle.gif" __alt=""]-->
+            <!--[pnformtextinput id="zip" __toolTip='Input the zip of the location' textMode="singleline" maxLength='10']-->
             <div id="zip_choices" class="autocomplete"></div>
             <script type="text/javascript">
                 livesearch('zip', 2);
@@ -69,8 +69,7 @@
         </div>
         <div class="z-formrow">
             <!--[pnformlabel for="city" __text="City"]-->
-            <!--[pnformtextinput id="city" mandatory='false' __toolTip='Input the city of the location' textMode="singleline" maxLength='100']-->
-            <!--[pnimg id="city_indicator" style="display: none;" modname='core' set='icons/extrasmall' src="indicator_circle.gif" __alt=""]-->
+            <!--[pnformtextinput id="city" __toolTip='Input the city of the location' textMode="singleline" maxLength='100']-->
             <div id="city_choices" class="autocomplete"></div>
             <script type="text/javascript">
                 livesearch('city', 2);
@@ -78,37 +77,37 @@
         </div>
         <div class="z-formrow">
             <!--[pnformlabel for="phone" __text="Phone"]-->
-            <!--[pnformtextinput id="phone" mandatory='false' __toolTip='Input the phone of the location' textMode="singleline" maxLength='100']-->
+            <!--[pnformtextinput id="phone" __toolTip='Input the phone of the location' textMode="singleline" maxLength='100']-->
         </div>
         <div class="z-formrow">
             <!--[pnformlabel for="fax" __text="Fax"]-->
-            <!--[pnformtextinput id="fax" mandatory='false' __toolTip='Input the fax of the location' textMode="singleline" maxLength='100']-->
+            <!--[pnformtextinput id="fax" __toolTip='Input the fax of the location' textMode="singleline" maxLength='100']-->
         </div>
         <div class="z-formrow">
             <!--[pnformlabel for="url" __text="Url"]-->
-            <!--[pnformurlinput id="url" mandatory='false' __toolTip='Input the city of the location' textMode="singleline" maxLength='100' __text="http://"]-->
+            <!--[pnformurlinput id="url" __toolTip='Input the city of the location' textMode="singleline" maxLength='100' __text="http://"]-->
         </div>
         <div class="z-formrow">
             <!--[pnformlabel for="email" __text="Email"]-->
-            <!--[pnformemailinput id="email" mandatory='false' __toolTip='Input the email of the location' textMode="singleline" maxLength='100']-->
+            <!--[pnformemailinput id="email" __toolTip='Input the email of the location' textMode="singleline" maxLength='100']-->
         </div>
         <div class="z-formrow">
             <!--[pnformlabel for="country" __text="Country"]-->
-            <!--[pnformtextinput id="country" mandatory='false' __toolTip='Input the country of the location' textMode="singleline" maxLength='100']-->
+            <!--[pnformtextinput id="country" __toolTip='Input the country of the location' textMode="singleline" maxLength='100']-->
         </div>
         <div class="z-formrow">
             <!--[pnformlabel for="state" __text="State"]-->
-            <!--[pnformtextinput id="state" mandatory='false' text=$inputValue __toolTip='Input the state of the location' textMode="singleline" maxLength='100']-->
+            <!--[pnformtextinput id="state" text=$inputValue __toolTip='Input the state of the location' textMode="singleline" maxLength='100']-->
         </div>
         <div class="z-formrow">
             <!--[pnformlabel for="latlng" __text="Latitude, Longitude"]-->
-            <!--[pnformtextinput readonly='true' cssClass="readonly" id="latlng" mandatory='false' __toolTip='Input the lat,lng of the location' textMode="singleline" maxLength='100']-->
+            <!--[pnformtextinput readonly='true' cssClass="readonly" id="latlng" __toolTip='Input the lat,lng of the location' textMode="singleline" maxLength='100']-->
             <em class="z-formnote z-sub"><!--[gt text="Coordinates are automatically generated from the address."]--></em>
         </div>
         <div class="z-formrow">
             <!--[pnformlabel for="logo" __text="Logo"]-->
             <div>
-                <!--[pnformtextinput id="logo" mandatory='false' __toolTip='Input the logo of the location' textMode="singleline" maxLength='100']-->
+                <!--[pnformtextinput id="logo" __toolTip='Input the logo of the location' textMode="singleline" maxLength='100']-->
                 <!--[if $mediashare]-->
                 <!--[pnmodurl modname='mediashare' type='external' func='finditem' url='relative' mode='url' assign='msurl']-->
                 <input type="button" value="Bild einfügen"
