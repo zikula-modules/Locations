@@ -4,24 +4,25 @@
 <h3><!--[gt text="Address"]--></h3>
 
 <p class="vcard">
-    <!--[if $location.logo]--><img src="<!--[$location.logo]-->" class="photo" /><!--[/if]-->
+    <!--[if $location.logo]--><img src="<!--[$location.logo|pnvarprepfordisplay]-->" class="photo" /><!--[/if]-->
     <span class="fn n"><strong class="org"><!--[$location.name|pnmodcallhooks|pnvarprephtmldisplay]--></strong></span><br />
     <span class="adr">
-        <!--[if $location.street]--><span class="street-address"><!--[$location.street|default:""]--></span><br /><!--[/if]-->
-        <!--[if $location.city]--><span class="postal-code"><!--[$location.zip|default:""]--></span> <span class="locality"><!--[$location.city|default:""]--></span><br /><!--[/if]-->
-        <!--[if $location.state]--><span class="region"><!--[$location.state|default:""]--></span><br /><!--[/if]-->
-        <!--[if $location.country]--><span class="country-name"><!--[$location.country|default:""]--></span><br /><!--[/if]-->
+        <!--[if $location.street]--><span class="street-address"><!--[$location.street|pnvarprepfordisplay|default:""]--></span><br /><!--[/if]-->
+        <!--[if $location.city]--><span class="postal-code"><!--[$location.zip|pnvarprepfordisplay|default:""]--></span> <span class="locality"><!--[$location.city|pnvarprepfordisplay|default:""]--></span><br /><!--[/if]-->
+        <!--[if $location.state]--><span class="region"><!--[$location.state|pnvarprepfordisplay|default:""]--></span><br /><!--[/if]-->
+        <!--[if $location.country]--><span class="country-name"><!--[$location.country|pnvarprepfordisplay|default:""]--></span><br /><!--[/if]-->
     </span>
-    <!--[if $location.phone]--><!--[gt text="Phone"]-->: <span class="tel"><!--[$location.phone|default:""]--></span><br /><!--[/if]-->
-    <!--[if $location.fax]--><!--[gt text="Fax"]-->: <span class="fax"><!--[$location.fax|default:""]--></span><br /><!--[/if]-->
-    <!--[if $location.email]--><!--[gt text="Email"]-->: <a class="email" href="mailto:<!--[$location.email|default:""]-->"><!--[$location.email|default:""]--></a><br /><!--[/if]-->
-    <!--[if $location.url]--><!--[gt text="Url"]-->: <a class="url" href="<!--[$location.url|default:""]-->"><!--[$location.url|default:""]--></a><br /><!--[/if]-->
+    <!--[if $location.phone]--><!--[gt text="Phone"]-->: <span class="tel"><!--[$location.phone|pnvarprepfordisplay|default:""]--></span><br /><!--[/if]-->
+    <!--[if $location.fax]--><!--[gt text="Fax"]-->: <span class="fax"><!--[$location.fax|pnvarprepfordisplay|default:""]--></span><br /><!--[/if]-->
+    <!--[if $location.email]--><!--[gt text="Email"]-->: <a class="email" href="mailto:<!--[$location.email|pnvarprepfordisplay|default:""]-->"><!--[$location.email|pnvarprepfordisplay|default:""]--></a><br /><!--[/if]-->
+    <!--[if $location.url]--><!--[gt text="Url"]-->: <a class="url" href="<!--[$location.url|pnvarprepfordisplay|default:""]-->"><!--[$location.url|pnvarprepfordisplay|default:""]--></a><br /><!--[/if]-->
 </p>
+
 <!--[if $nearby]-->
 <h3><!--[gt text="Nearby"]--></h3>
 <ul>
     <!--[foreach from=$nearby item='tipp']-->
-    <li><a href="<!--[pnmodurl modname="locations" type="user" func="display" ot="location" locationid=$tipp.locationid]-->"><!--[$tipp.name]--></a></li>
+    <li><a href="<!--[pnmodurl modname="locations" type="user" func="display" ot="location" locationid=$tipp.locationid]-->"><!--[$tipp.name|pnvarprepfordisplay]--></a></li>
     <!--[/foreach]-->
 </ul>
 <!--[/if]-->
@@ -32,6 +33,6 @@
 <a href="<!--[pnmodurl modname="locations" type="admin" func="edit" ot="location" locationid=$location.locationid]-->" title="<!--[gt text="Edit"]-->">
     <!--[pnimg src="xedit.gif" modname="core" set="icons/extrasmall" __alt='Edit'  __title='Edit' ]-->
     <!--[gt text="Edit"]-->
-</a><br />
-<!--[/if]-->
+</a>
 <!--[/securityutil_checkpermission_block]-->
+<!--[/if]-->
