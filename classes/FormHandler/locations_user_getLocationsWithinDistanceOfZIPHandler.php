@@ -23,7 +23,7 @@ class locations_user_getLocationsWithinDistanceOfZIPHandler extends pnFormHandle
 
     function initialize(&$render)
     {
-        $this->width = '500px';
+        $this->width = '100%';
         $this->height = '500px';
         $this->distance = '7';
         $this->distanceUnit = 'k';
@@ -91,7 +91,13 @@ class locations_user_getLocationsWithinDistanceOfZIPHandler extends pnFormHandle
                 $render-> assign('mode', $this->mode);
                 PageUtil::addVar('rawtext', $map->getHeaderJS());
                 PageUtil::addVar('rawtext', $map->getMapJS());
-                PageUtil::addVar('body', 'onload="onLoad()"');
+                PageUtil::addVar('javascript', 'javascript/ajax/prototype.js');
+                $js  = "<script type=\"text/javascript\">\n";
+                $js .= "//<![CDATA[\n";
+                $js .= " Event.observe(window, 'load', function() { onLoad(); } );\n";
+                $js .= "//]]>\n";
+                $js .= "</script>\n";
+                PageUtil::addVar('rawtext', $js);
 
                 $render-> assign('map', $map->getMap());
 
