@@ -14,25 +14,33 @@
         <!--[locationsFormFrame]-->
         <div class="z-formrow">
             <!--[pnformlabel for="GoogleMapsAPIKey" __text='Google Maps API Key']-->
-            <!--[pnformtextinput id="GoogleMapsAPIKey" group="config" maxLength='255' width='20em']-->
+            <!--[pnformtextinput id="GoogleMapsAPIKey" group="config" maxLength='255']-->
         </div>
         <div class="z-formrow">
+            <!--[pnformlabel for="pagesize" __text='Items per page']-->
+            <!--[pnformtextinput id="pagesize" group="config" maxLength='255']-->
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <legend><!--[gt text="Defaults"]--></legend>
+        <div class="z-formrow">
             <!--[pnformlabel for="DefaultCity" __text='Default City']-->
-            <!--[pnformtextinput id="DefaultCity" group="config" maxLength='255' width='20em']-->
+            <!--[pnformtextinput id="DefaultCity" group="config" maxLength='255']-->
         </div>
         <div class="z-formrow">
             <!--[pnformlabel for="DefaultState" __text='Default State']-->
-            <!--[pnformtextinput id="DefaultState" group="config" maxLength='255' width='20em']-->
+            <!--[pnformtextinput id="DefaultState" group="config" maxLength='255']-->
         </div>
         <div class="z-formrow">
             <!--[pnformlabel for="DefaultCountry" __text='Default Country']-->
-            <!--[pnformtextinput id="DefaultCountry" group="config" maxLength='255' width='20em']-->
+            <!--[pnformtextinput id="DefaultCountry" group="config" maxLength='255']-->
         </div>
         <!--[pnmodcallhooks hookobject="module" hookaction="modifyconfig" module="locations"]-->
         <!--[/locationsFormFrame]-->
     </fieldset>
     <div class="z-formbuttons">
-        <!--[pnformbutton commandName="save" __text="Update Configuration"]-->
+        <!--[pnformbutton commandName="save" __text="Update configuration"]-->
         <!--[pnformbutton commandName="cancel" __text="Cancel"]-->
     </div>
     <!--[/pnform]-->

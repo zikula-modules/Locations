@@ -48,7 +48,7 @@ class locations_admin_configHandler extends pnFormHandler
         else if ($args['commandName'] == 'cancel') {
         }
 
-        $url = pnModUrl('locations', 'admin', 'config');
+        $url = pnModUrl('locations', 'admin', 'modifyconfig');
         return $render->pnFormRedirect($url);
     }
 }
