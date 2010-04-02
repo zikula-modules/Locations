@@ -40,7 +40,7 @@ function locations_admin_main($args)
     }
 
     // call view method
-    return locations_admin_modifyconfig();
+    return locations_admin_view();
 
 }
 
@@ -219,7 +219,6 @@ function locations_admin_edit($args)
         return LogUtil::registerPermissionError(pnModURL('locations', 'user', 'main'));
     }
 
-
     // parameter specifying which type of objects we are treating
     $objectType = FormUtil::getPassedValue('ot', 'location', 'GET');
 
@@ -259,18 +258,28 @@ function locations_admin_delete($args)
     $dom = ZLanguage::getModuleDomain('locations');
 
     // parameter specifying which type of objects we are treating
-    $objectType = FormUtil::getPassedValue('ot', 'location', 'GET');
+    $objectType   = FormUtil::getPassedValue('ot', 'location', 'GETPOST');
+    $confirmation = FormUtil::getPassedValue('confirmation', '', 'GETPOST');
 
     if (!in_array($objectType, locations_getObjectTypes())) {
         $objectType = 'location';
     }
 
-    $id = FormUtil::getPassedValue($objectType . 'id', '', 'GET');
+    $id = (int)FormUtil::getPassedValue($objectType . 'id', '', 'GETPOST');
+
+    // Check for confirmation.
+    if (empty($confirmation)) {
+        $render = pnRender::getInstance('locations', false);
+        $render->assign('objectType', $objectType);
+        $render->assign('locationid', $id);
+        return $render->fetch('locations_admin_delete.htm');
+    }
+
     DBUtil::deleteObjectByID('locations_' . $objectType, $id, $objectType . 'id');
 
     LogUtil::registerStatus(__('Done! Location deleted.', $dom));
 
-    return pnRedirect(pnModURL('locations', 'user', 'view'));
+    return pnRedirect(pnModURL('locations', 'admin', 'view'));
 }
 
 

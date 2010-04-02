@@ -1,0 +1,22 @@
+<!--[* $Id$ *]-->
+<!--[gt text="Delete locations" assign='templatetitle']-->
+<!--[include file="locations_admin_header.htm"]-->
+
+<div class="z-admincontainer">
+    <h2><!--[$templatetitle]--></h2>
+    <p class="z-warningmsg"><!--[gt text="Do you really want to delete this location?"]--></p>
+    <form class="z-form" action="<!--[pnmodurl modname='locations' type='admin' func='delete']-->" method="post">
+        <fieldset>
+            <legend><!--[gt text='Confirmation prompt']--></legend>
+            <input type="hidden" name="objectType" value="<!--[$objectType|pnvarprepfordisplay]-->" />
+            <input type="hidden" name="locationid" value="<!--[$locationid|pnvarprepfordisplay]-->" />
+            <input type="hidden" name="authid" value="<!--[insert name="generateauthkey" module='locations']-->" />
+            <div class="z-formbuttons">
+                <!--[pnbutton src='button_ok.gif' name='confirmation' value='confirmation' set='icons/small' __alt='Delete' __title='Delete']-->
+                <a href="<!--[pnmodurl modname='locations' type='admin' func='view']-->"><!--[pnimg modname='core' src='button_cancel.gif' set='icons/small' __alt='Cancel'  __title='Cancel']--></a>
+            </div>
+        </fieldset>
+    </form>
+</div>
+
+<!--[include file="locations_admin_footer.htm"]-->
