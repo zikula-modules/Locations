@@ -1,6 +1,5 @@
 <!--[* $Id$ *]-->
 <!--[pnmodavailable modname="mediashare" assign="mediashare"]-->
-<!--[pnajaxheader modname=locations filename=locations.js]-->
 <!--[if $mediashare]-->
 <!--[pnpageaddvar name="javascript" value="modules/mediashare/pnjavascript/finditem.js"]-->
 <!--[/if]-->
@@ -45,11 +44,11 @@
         <div class="z-formrow">
             <!--[pnformlabel for="name" __text="Name"]-->
             <!--[pnformtextinput id="name" mandatory='true' __toolTip='Input the name of the location' textMode="singleline" maxLength='100']-->
+            <em class="z-formnote z-sub"><!--[gt text="Please enter the name of the location"]--></em>
             <div id="name_choices" class="autocomplete"></div>
             <script type="text/javascript">
                 livesearch('name', 2);
             </script>
-            <em class="z-formnote z-sub"><!--[gt text="Please enter the name of the location"]--></em>
         </div>
         <div class="z-formrow">
             <!--[pnformlabel for="street" __text="Street"]-->
