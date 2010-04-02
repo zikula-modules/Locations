@@ -1,0 +1,37 @@
+<!--[pnmodurl modname="locations" type="user" func="display" locationid=$location.locationid assign="returnurl"]-->
+<!--[pnpagesetvar name="title" value=$location.name]-->
+<h3><!--[gt text="Address"]--></h3>
+
+
+<p class="vcard">
+    <!--[if $location.logo]--><img src="<!--[$location.logo]-->" class="photo" /><!--[/if]-->
+    <span class="fn n"><strong class="org"><!--[$location.name|pnmodcallhooks|pnvarprephtmldisplay]--></strong></span><br />
+    <span class="adr">
+        <!--[if $location.street]--><span class="street-address"><!--[$location.street|default:""]--></span><br /><!--[/if]-->
+        <!--[if $location.city]--><span class="postal-code"><!--[$location.zip|default:""]--></span> <span class="locality"><!--[$location.city|default:""]--></span><br /><!--[/if]-->
+        <!--[if $location.state]--><span class="region"><!--[$location.state|default:""]--></span><br /><!--[/if]-->
+        <!--[if $location.country]--><span class="country-name"><!--[$location.country|default:""]--></span><br /><!--[/if]-->
+    </span>
+    <!--[if $location.phone]--><!--[gt text="Phone"]-->: <span class="tel"><!--[$location.phone|default:""]--></span><br /><!--[/if]-->
+    <!--[if $location.fax]--><!--[gt text="Fax"]-->: <span class="fax"><!--[$location.fax|default:""]--></span><br /><!--[/if]-->
+    <!--[if $location.email]--><!--[gt text="Email"]-->: <a class="email" href="mailto:<!--[$location.email|default:""]-->"><!--[$location.email|default:""]--></a><br /><!--[/if]-->
+    <!--[if $location.url]--><!--[gt text="Url"]-->: <a class="url" href="<!--[$location.url|default:""]-->"><!--[$location.url|default:""]--></a><br /><!--[/if]-->
+</p>
+<!--[if $nearby]-->
+<h3><!--[gt text="Nearby"]--></h3>
+<ul>
+    <!--[foreach from=$nearby item='tipp']-->
+    <li><a href="<!--[pnmodurl modname="locations" type="user" func="display" ot="location" locationid=$tipp.locationid]-->"><!--[$tipp.name]--></a></li>
+    <!--[/foreach]-->
+</ul>
+<!--[/if]-->
+<p><!--[pnimg src="mail_find.gif" modname="core" set="icons/extrasmall" __alt='Where is this?'  __title='Where is this?' ]-->&nbsp;<a href="<!--[pnmodurl modname="locations" type="user" func="display" ot="location" locationid=$location.locationid]-->"><!--[gt text="Where is this?"]--></a></p>
+<!--[securityutil_checkpermission_block component="locations::" instance=".*" level="ACCESS_EDIT"]-->
+<!--[pnvarcleanfrominput name="editmode" assign="editmode"]-->
+<!--[if $editmode]-->
+<a href="<!--[pnmodurl modname="locations" type="admin" func="edit" ot="location" locationid=$location.locationid]-->" title="<!--[gt text="Edit"]-->">
+    <!--[pnimg src="xedit.gif" modname="core" set="icons/extrasmall" __alt='Edit'  __title='Edit' ]-->
+    <!--[gt text="Edit"]-->
+</a><br />
+<!--[/if]-->
+<!--[/securityutil_checkpermission_block]-->

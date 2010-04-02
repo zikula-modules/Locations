@@ -1,0 +1,71 @@
+div.locationsForm div.z-formrow label, div.pn-frontendrow label {
+    width: 14em;
+}
+
+div.locationsLabelHelp {
+    font-style: italic;
+    font-size: 90%;
+}
+
+
+div.locationsForm div.locationsButtons {
+    margin: 10px 0px 10px 0px;
+}
+
+/* prevent indented date fields */
+div.locationsForm div.z-formrow span {
+    margin-left: 0 !important;
+}
+
+div.linktabs {
+    margin-bottom: 10px;
+}
+
+div.locationsLabelHelp {
+    margin-left:190px;
+}
+
+#pn-maincontent.pn-module-locations * .photo {
+    float: right;
+    padding: .5em;
+}
+
+.invisible {
+    display:none;
+}
+
+.sortable {
+    cursor: move;
+}
+
+.readonly {
+    background:lightgrey;
+    color:darkgrey;
+    cursor:default;
+}
+
+div.autocomplete {
+    position: absolute;
+    width: 25em;
+    background-color: white;
+    border: 1px solid #888;
+    margin: 0;
+    padding: 0;
+}
+div.autocomplete ul {
+    margin: 0;
+    padding: 0;
+}
+div.autocomplete ul li.selected { background-color: #ffb;}
+div.autocomplete ul li {
+    margin: 0;
+    padding: 0.1em 0 0.1em 0;
+    line-height: 1.4em;
+    cursor: pointer;
+}
+div.autocomplete ul li.dupe {
+    background-color: red!important;
+}
+#livesearch {
+    margin: 1em 0 1em 0;
+}

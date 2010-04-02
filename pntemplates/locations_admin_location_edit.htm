@@ -1,0 +1,175 @@
+<!--[* purpose of this template: build the pnForm to edit an instance of admin *]-->
+<!--[gt text="- none - html=1 assign=none"]-->
+<!--[pnmodavailable modname="mediashare" assign="mediashare"]-->
+<!--[pnajaxheader modname=locations filename=locations.js]-->
+<!--[if $mediashare]-->
+<!--[pnpageaddvar name="javascript" value="modules/mediashare/pnjavascript/finditem.js"]-->
+<!--[/if]-->
+<!--[include file="locations_admin_header.htm"]-->
+
+<!--[gt text="Location" assign="itemname"]-->
+<!--[if $mode == "edit"]-->
+    <!--[gt text="Edit %i%" i=$itemname assign="templateTitle"]-->
+    <!--[assign var="adminpageicon" value="edit.gif"]-->
+<!--[elseif $mode == "create"]-->
+    <!--[gt text="Create %i%" i=$itemname assign="templateTitle"]-->
+    <!--[assign var="adminpageicon" value="filenew.gif"]-->
+<!--[else]-->
+    <!--[gt text="Edit %i%" i=$itemname assign="templateTitle"]-->
+    <!--[assign var="adminpageicon" value="edit.gif"]-->
+<!--[/if]-->
+
+<div class="z-admincontainer">
+
+<div class="z-adminpageicon"><!--[pnimg modname="core" src=$adminpageicon set="icons/large" __alt=$templatetitle]--></div>
+
+<h2><!--[$templateTitle]--></h2>
+
+<!--[pnform]-->
+
+    <!--[* add validation summary and a <div> element for styling the form *]-->
+    <!--[locationsFormFrame]-->
+    <!--[*pnformvalidationsummary*]-->
+
+    <!--[pnformsetinitialfocus inputId="locationid"]-->
+
+    <fieldset>
+    <legend><!--[gt text="Content"]--></legend>
+    <div class="z-formrow">
+			<!--[pnformlabel for="Type" __text="Category"]-->
+			<!--[pnformcategoryselector id='Type' category=$maincat includeEmptyElement='1' enableDBUtil='1']-->
+		</div>
+        <div class="z-formrow">
+            <!--[pnformlabel for="name" __text="Name"]-->
+            <!--[pnformtextinput id="name" mandatory='true' __toolTip='Input the name of the location' textMode="singleline" maxLength='100']-->
+			<!--[pnimg id="name_indicator" style="display: none;" modname='core' set='icons/extrasmall' src="indicator_circle.gif" __alt=""]-->
+			<div id="name_choices" class="autocomplete"></div>
+		    <script type="text/javascript">
+		        livesearch('name', 2);
+		    </script>
+            <br />
+            <!--[locationsLabelHelp text="Input the name of the location"]-->
+        </div>
+        <div class="z-formrow">
+            <!--[pnformlabel for="street" __text="Street"]-->
+            <!--[pnformtextinput id="street" mandatory='false' __toolTip='Input the street of the location' textMode="singleline" maxLength='100']-->
+            <!--[pnimg id="street_indicator" style="display: none;" modname='core' set='icons/extrasmall' src="indicator_circle.gif" __alt=""]-->
+			<div id="street_choices" class="autocomplete"></div>
+		    <script type="text/javascript">
+		        livesearch('street', 3);
+		    </script>
+        </div>
+        <div class="z-formrow">
+            <!--[pnformlabel for="zip" __text="Zip"]-->
+            <!--[pnformtextinput id="zip" mandatory='false' __toolTip='Input the zip of the location' textMode="singleline" maxLength='10']-->
+            <!--[pnimg id="zip_indicator" style="display: none;" modname='core' set='icons/extrasmall' src="indicator_circle.gif" __alt=""]-->
+			<div id="zip_choices" class="autocomplete"></div>
+		    <script type="text/javascript">
+		        livesearch('zip', 2);
+		    </script>
+        </div>
+        <div class="z-formrow">
+            <!--[pnformlabel for="city" __text="City"]-->
+            <!--[pnformtextinput id="city" mandatory='false' __toolTip='Input the city of the location' textMode="singleline" maxLength='100']-->
+            <!--[pnimg id="city_indicator" style="display: none;" modname='core' set='icons/extrasmall' src="indicator_circle.gif" __alt=""]-->
+			<div id="city_choices" class="autocomplete"></div>
+		    <script type="text/javascript">
+		        livesearch('city', 2);
+		    </script>    
+        </div>
+        <div class="z-formrow">
+            <!--[pnformlabel for="phone" __text="Phone"]-->
+            <!--[pnformtextinput id="phone" mandatory='false' __toolTip='Input the phone of the location' textMode="singleline" maxLength='100']-->
+        </div>
+        <div class="z-formrow">
+            <!--[pnformlabel for="fax" __text="Fax"]-->
+            <!--[pnformtextinput id="fax" mandatory='false' __toolTip='Input the fax of the location' textMode="singleline" maxLength='100']-->
+        </div>
+        <div class="z-formrow">
+            <!--[pnformlabel for="url" __text="Url"]-->
+            <!--[pnformurlinput id="url" mandatory='false' __toolTip='Input the city of the location' textMode="singleline" maxLength='100' __text="http://"]-->
+        </div>
+        <div class="z-formrow">
+            <!--[pnformlabel for="email" __text="Email"]-->
+            <!--[pnformemailinput id="email" mandatory='false' __toolTip='Input the email of the location' textMode="singleline" maxLength='100']-->
+        </div>
+        <div class="z-formrow">
+            <!--[pnformlabel for="country" __text="Country"]-->
+            <!--[pnformtextinput id="country" mandatory='false' __toolTip='Input the country of the location' textMode="singleline" maxLength='100']-->
+        </div>
+        <div class="z-formrow">
+            <!--[pnformlabel for="state" __text="State"]-->
+            <!--[pnformtextinput id="state" mandatory='false' __text=$inputValue __toolTip='Input the state of the location' textMode="singleline" maxLength='100']-->
+        </div>
+        <div class="z-formrow">
+            <!--[pnformlabel for="latlng" __text="Latitude, Longitude"]-->
+            <!--[pnformtextinput readonly='true' cssClass="readonly" id="latlng" mandatory='false' __toolTip='Input the lat,lng of the location' textMode="singleline" maxLength='100']-->
+            <br />
+            <!--[locationsLabelHelp text="Coordinates are automatically generated from the address."]-->
+        </div>
+        <div class="z-formrow">
+            <!--[pnformlabel for="logo" __text="Logo"]-->
+            <!--[pnformtextinput id="logo" mandatory='false' __toolTip='Input the logo of the location' textMode="singleline" maxLength='100']-->
+            <!--[if $mediashare]-->
+            <!--[pnmodurl modname='mediashare' type='external' func='finditem' url='relative' mode='url' assign='msurl']-->
+            <input type="button" value="Bild einfügen" 
+            onclick="mediashareFindItem('logo', '<!--[pngetbaseurl]--><!--[$msurl|replace:'amp;':'']-->')">
+            <!--[/if]-->            
+        </div>
+
+    </fieldset>
+
+
+		<!--[if $mode == "edit"]-->
+            <!--[pnmodcallhooks hookobject="item" hookaction="modify" module="locations" hookid=$locationid assign="hooks"]-->
+        <!--[elseif $mode == "create"]-->
+            <!--[pnmodcallhooks hookobject="item" hookaction="new" module="locations" assign="hooks"]-->
+        <!--[else]-->
+            <!--[pnmodcallhooks hookobject="item" hookaction="modify" module="locations" hookid=$locationid assign="hooks"]-->
+        <!--[/if]-->
+    <!--[if $hooks]-->
+    <fieldset>
+        <legend><!--[gt text="Hooks"]--></legend>
+        <!--[$hooks]-->
+    </fieldset>
+    <!--[/if]-->
+    
+
+    <!--[gt text="Location" assign="itemname"]-->
+    <!--[gt text="Create %i%" i=$itemname assign="createTitle"]-->
+    <!--[gt text="Update %i%" i=$itemname assign="updateTitle"]-->
+    <!--[gt text="Delete %i%" i=$itemname assign="deleteTitle"]-->
+    <!--[gt text="Really delete %i%?" i=$itemname assign="deleteConfirmMsg"]-->
+
+    <!--[* add extra div for button styling *]-->
+    <!--[locationsButtons]-->
+    <!--[if $mode == "edit"]-->
+        <!--[pnformbutton commandName="update" __text=$updateTitle]-->
+        <!--[pnformbutton commandName="delete" __text=$deleteTitle __confirmMessage=$deleteConfirmMsg]-->
+    <!--[elseif $mode == "create"]-->
+        <!--[pnformbutton commandName="create" __text=$createTitle]-->
+    <!--[else]-->
+        <!--[pnformbutton commandName="update" __text="OK"]-->
+    <!--[/if]-->
+    <!--[pnformbutton commandName="cancel" __text="Cancel"]-->
+    <!--[/locationsButtons]-->
+
+  <!--[/locationsFormFrame]-->
+  <!--[if $mode ne "create"]-->
+    <fieldset>
+        <legend><!--[gt text="Meta Data"]--></legend>
+        <ul>
+            <!--[pnusergetvar name="uname" uid=$cr_uid assign="username"]-->
+            <li><!--[gt text="Created by %username%" username=$username]--></li>
+            <li><!--[gt text="Created on %date%" date=$cr_date|pndate_format]--></li>
+            <!--[pnusergetvar name="uname" uid=$lu_uid assign="username"]-->
+            <li><!--[gt text="Last updated by %username%" username=$username]--></li>
+            <li><!--[gt text="Updated on %date%" date=$lu_date|pndate_format]--></li>
+        </ul>
+    </fieldset>
+    <!--[/if]-->
+<!--[/pnform]-->
+
+</div>
+
+<!--[include file="locations_admin_footer.htm"]-->
