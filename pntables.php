@@ -89,7 +89,7 @@ function locations_pntables()
 
     // define additional indexes
     $pntable['locations_location_column_idx'] = array(
-        'locindex' => array('name', 'city', 'state', 'country'));
+        'locindex' => array('name', 'city', 'state'));
 
     // 2 tables I never used and removed in 1.2.0
     // Then need to remain here because the tables can't be dropped otherwise in the upgrade

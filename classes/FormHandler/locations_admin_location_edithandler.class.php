@@ -244,7 +244,7 @@ class locations_admin_location_editHandler extends pnFormHandler
             // Note: No need to check validation when deleting
 
             if (!SecurityUtil::checkPermission('locations::', '::', ACCESS_DELETE)) {
-                return LogUtil::registerError(_LOCATIONS_NOTAUTHORIZED);
+                return LogUtil::registerPermissionError();
             }
 
             // fetch posted data input values as an associative array

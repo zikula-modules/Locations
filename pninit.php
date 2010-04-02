@@ -44,14 +44,15 @@ function locations_init()
     pnModSetVar('locations', 'DefaultCountry', (($sessionValue <> false) ? $sessionValue : 'Germany'));
     SessionUtil::delVar('locations_DefaultCountry');
     pnModSetVar('locations', 'pagesize', 25);
+
     // create the default data for locations
     if (!locations_defaultdata()) {
-        LogUtil::registerError('_LOCATIONS_INIT_DEFAULTDATAPROBLEM');
+        LogUtil::registerError(__('Error! Could not set up the default module values.', $dom));
     }
 
     // create main category
     if (!_locations_createDefaultCategory()) {
-        LogUtil::registerError('_LOCATIONS_INIT_CATEGORYPROBLEM');
+        LogUtil::registerError(__('Error! Could not create the default categories', $dom));
     }
 
     // Initialisation successful
@@ -79,6 +80,9 @@ function locations_upgrade($oldversion)
                 return false;
             }
             if (!DBUtil::dropTable('locations_image')) {
+                return false;
+            }
+            if (!DBUtil::changeTable('locations_location')) {
                 return false;
             }
             // set new ModVar
@@ -292,42 +296,10 @@ function locations_init_interactiveinitstep3()
     return $render->fetch('locations_init_step3.htm');
 }
 
-/**
- * interactive update procedure
- *
- * @author       Steffen Voß
- * @return       pnRender output
- */
-function locations_init_interactiveupdate()
-{
-    if (!SecurityUtil::checkPermission('::', '::', ACCESS_ADMIN)) {
-        return LogUtil::registerPermissionError();
-    }
-
-    // TODO
-
-    return true;
-}
-
-/**
- * interactive delete
- *
- * @author       Steffen Voß
- * @return       pnRender output
- */
-function locations_init_interactivedelete()
-{
-    if (!SecurityUtil::checkPermission('::', '::', ACCESS_ADMIN)) {
-        return LogUtil::registerPermissionError();
-    }
-
-    $render = pnRender::getInstance('locations');
-    $render->assign('authid', SecurityUtil::generateAuthKey('Modules'));
-    return $render->fetch('locations_init_delete.htm');
-}
-
 function _locations_createDefaultCategory($regpath = '/__SYSTEM__/Modules')
 {
+    $dom = ZLanguage::getModuleDomain('locations');
+
     // load necessary classes
     Loader :: loadClass('CategoryUtil');
     Loader :: loadClassFromModule('Categories', 'Category');
@@ -346,10 +318,10 @@ function _locations_createDefaultCategory($regpath = '/__SYSTEM__/Modules')
     $cat->setDataField('value', '-1');
 
     $cat->setDataField('display_name', array (
-    $lang => _LOCATIONSDISPLAYNAME
+    $lang => __('Locations', $dom)
     ));
     $cat->setDataField('display_desc', array (
-    $lang => _LOCATIONSDESCRIPTION
+    $lang => __('Database for all kinds of locations', $dom)
     ));
     $cat->setDataField('security_domain', $rootcat['security_domain']);
 
