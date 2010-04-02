@@ -7,7 +7,7 @@
  * @license GNU/GPL - http://www.gnu.org/copyleft/gpl.html
  * @package Zikula_Generated_Modules
  * @subpackage locations
- * @author Steffen Voﬂ
+ * @author Steffen Vo√ü
  * @url http://kaffeeringe.de
  */
 
@@ -25,7 +25,7 @@ $modversion['help']           = 'pndocs/readme.txt';
 $modversion['changelog']      = 'pndocs/changelog.txt';
 $modversion['license']        = 'pndocs/license.txt';
 $modversion['official']       = 0;
-$modversion['author']         = 'Steffen Voﬂ';
+$modversion['author']         = 'Steffen Vo√ü';
 $modversion['contact']        = 'http://kaffeeringe.de';
 
 // I suspect these are not respected as the should

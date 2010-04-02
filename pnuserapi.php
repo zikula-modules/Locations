@@ -7,7 +7,7 @@
  * @license GNU/GPL - http://www.gnu.org/copyleft/gpl.html
  * @package Zikula_Generated_Modules
  * @subpackage locations
- * @author Steffen Voﬂ
+ * @author Steffen Vo√ü
  * @url http://kaffeeringe.de
  */
 
@@ -17,7 +17,7 @@ Loader::requireOnce('modules/locations/common.php');
 /**
  * This function retrieves locations for a dropdown list
  *
- * @author       Steffen Voﬂ
+ * @author       Steffen Vo√ü
  * @params       TODO
  * @return       Array
  */
@@ -47,7 +47,7 @@ function locations_userapi_getLocationsForDropdown($args)
 /**
  * This function retrieves locations for a dropdown list
  *
- * @author       Steffen Voﬂ
+ * @author       Steffen Vo√ü
  * @params       TODO
  * @return       Array
  * @param        locationid             integer    location ID
@@ -87,7 +87,7 @@ function locations_userapi_getLocationByID($args)
 /**
  * wrapper for getLocationByID
  *
- * @author       Steffen Voﬂ
+ * @author       Steffen Vo√ü
  * @params       TODO
  * @return       Array
  * @param        locationid             integer    location ID

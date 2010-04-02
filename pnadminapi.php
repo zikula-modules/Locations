@@ -7,14 +7,14 @@
  * @license GNU/GPL - http://www.gnu.org/copyleft/gpl.html
  * @package Zikula_Generated_Modules
  * @subpackage locations
- * @author Steffen Voﬂ
+ * @author Steffen Vo√ü
  * @url http://kaffeeringe.de
  */
 
 /**
  * get available admin panel links
  *
- * @author       Steffen Voﬂ
+ * @author       Steffen Vo√ü
  * @return       array      array of admin links
  */
 function locations_adminapi_getlinks()

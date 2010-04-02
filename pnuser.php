@@ -7,7 +7,7 @@
  * @license GNU/GPL - http://www.gnu.org/copyleft/gpl.html
  * @package Zikula_Generated_Modules
  * @subpackage locations
- * @author Steffen Voﬂ
+ * @author Steffen Vo√ü
  * @url http://kaffeeringe.de
  */
 
@@ -29,7 +29,7 @@ Loader::requireOnce('includes/pnForm.php');
  * This function is the default function, and is called whenever the
  * module's User area is called without defining arguments.
  *
- * @author       Steffen Voﬂ
+ * @author       Steffen Vo√ü
  * @params       TODO
  * @return       Render output
  */
@@ -47,7 +47,7 @@ function locations_user_main($args)
 /**
  * This function provides a generic item list overview.
  *
- * @author       Steffen Voﬂ
+ * @author       Steffen Vo√ü
  * @params       TODO
  * @param        ot             string    treated object type
  * @param        sort           string    sorting field
@@ -159,7 +159,7 @@ function locations_user_view($args)
 /**
  * This function provides a generic item detail view.
  *
- * @author       Steffen Voﬂ
+ * @author       Steffen Vo√ü
  * @params       TODO
  * @param        ot             string    treated object type
  * @param        tpl            string    name of alternative template (for alternative display options, feeds and xml output)
@@ -226,7 +226,7 @@ function locations_user_display($args)
 /**
  * This function does...
  *
- * @author       Steffen Voﬂ
+ * @author       Steffen Vo√ü
  * @return       Render output
  * FIXME
  */

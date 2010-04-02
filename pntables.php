@@ -7,7 +7,7 @@
  * @license GNU/GPL - http://www.gnu.org/copyleft/gpl.html
  * @package Zikula_Generated_Modules
  * @subpackage locations
- * @author Steffen Voﬂ
+ * @author Steffen Vo√ü
  * @url http://kaffeeringe.de
  */
 
@@ -18,7 +18,7 @@
  * loaded. It delivers the table information to the core.
  * It can be loaded explicitly using the pnModDBInfoLoad() API function.
  *
- * @author       Steffen Voﬂ
+ * @author       Steffen Vo√ü
  * @return       array       The table information.
  */
 function locations_pntables()

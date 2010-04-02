@@ -7,7 +7,7 @@
  * @license GNU/GPL - http://www.gnu.org/copyleft/gpl.html
  * @package Zikula_Generated_Modules
  * @subpackage locations
- * @author Steffen Voﬂ
+ * @author Steffen Vo√ü
  * @url http://kaffeeringe.de
  */
 
@@ -29,7 +29,7 @@ Loader::requireOnce('includes/pnForm.php');
  * This function is the default function, and is called whenever the
  * module's Admin area is called without defining arguments.
  *
- * @author       Steffen Voﬂ
+ * @author       Steffen Vo√ü
  * @params       TODO
  * @return       Render output
  */
@@ -48,7 +48,7 @@ function locations_admin_main($args)
 /**
  * This function provides a generic item list overview.
  *
- * @author       Steffen Voﬂ
+ * @author       Steffen Vo√ü
  * @params       TODO
  * @param        ot             string    treated object type
  * @param        sort           string    sorting field
@@ -143,7 +143,7 @@ function locations_admin_view($args)
 /**
  * This function provides a generic item detail view.
  *
- * @author       Steffen Voﬂ
+ * @author       Steffen Vo√ü
  * @params       TODO
  * @param        ot             string    treated object type
  * @param        tpl            string    name of alternative template (for alternative display options, feeds and xml output)
@@ -206,7 +206,7 @@ function locations_admin_display($args)
 /**
  * This function provides a generic handling of all edit requests.
  *
- * @author       Steffen Voﬂ
+ * @author       Steffen Vo√ü
  * @params       TODO
  * @param        ot             string    treated object type
  * @param        tpl            string    name of alternative template (for alternative display options, feeds and xml output)
@@ -245,7 +245,7 @@ function locations_admin_edit($args)
 
 /**
  *
- * @author       Steffen Voﬂ
+ * @author       Steffen Vo√ü
  * @params       TODO
  * @return       Render output
  */
@@ -286,7 +286,7 @@ function locations_admin_delete($args)
 /**
  * This function takes care of the module configuration.
  *
- * @author       Steffen Voﬂ
+ * @author       Steffen Vo√ü
  * @return       Render output
  */
 function locations_admin_modifyconfig()

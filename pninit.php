@@ -7,7 +7,7 @@
  * @license GNU/GPL - http://www.gnu.org/copyleft/gpl.html
  * @package Zikula_Generated_Modules
  * @subpackage locations
- * @author Steffen Voﬂ
+ * @author Steffen Vo√ü
  * @url http://kaffeeringe.de
  */
 
@@ -18,7 +18,7 @@
  * module instance
  * This function MUST exist in the pninit file for a module
  *
- * @author       Steffen Voﬂ
+ * @author       Steffen Vo√ü
  * @return       bool       true on success, false otherwise
  */
 function locations_init()
@@ -65,7 +65,7 @@ function locations_init()
  * This function can be called multiple times
  * This function MUST exist in the pninit file for a module
  *
- * @author       Steffen Voﬂ
+ * @author       Steffen Vo√ü
  * @param       int        $oldversion version to upgrade from
  * @return      bool       true on success, false otherwise
  */
@@ -103,7 +103,7 @@ function locations_upgrade($oldversion)
  * module instance
  * This function MUST exist in the pninit file for a module
  *
- * @author       Steffen Voﬂ
+ * @author       Steffen Vo√ü
  * @return       bool       true on success, false otherwise
  */
 function locations_delete()
@@ -125,7 +125,7 @@ function locations_delete()
  * This function is only ever called once during the lifetime of a particular
  * module instance
  *
- * @author       Steffen Voﬂ
+ * @author       Steffen Vo√ü
  * @return       bool       true on success, false otherwise
  */
 function locations_defaultdata()
@@ -142,7 +142,7 @@ function locations_defaultdata()
     array(
             'locationid' => __('1', $dom),
             'name' => __('Schaubude', $dom),
-            'street' => __('Legienstraﬂe 40', $dom),
+            'street' => __('Legienstra√üe 40', $dom),
             'zip' => __('24103', $dom),
             'city' => __('Kiel', $dom),
             'phone' => __('', $dom),
@@ -170,7 +170,7 @@ function locations_defaultdata()
     array(
             'locationid' => __('3', $dom),
             'name' => __('Metro Kino', $dom),
-            'street' => __('Holtenauerstraﬂe 162', $dom),
+            'street' => __('Holtenauerstra√üe 162', $dom),
             'zip' => __('24105', $dom),
             'city' => __('Kiel', $dom),
             'phone' => __('', $dom),
@@ -198,7 +198,7 @@ function locations_defaultdata()
     array(
             'locationid' => __('5', $dom),
             'name' => __('Prinz Willy', $dom),
-            'street' => __('Lutherstraﬂe 9', $dom),
+            'street' => __('Lutherstra√üe 9', $dom),
             'zip' => __('24114', $dom),
             'city' => __('Kiel', $dom),
             'phone' => __('', $dom),
@@ -219,7 +219,7 @@ function locations_defaultdata()
 /**
  * interactive installation procedure
  *
- * @author       Steffen Voﬂ
+ * @author       Steffen Vo√ü
  * @return       pnRender output
  */
 function locations_init_interactiveinit()
@@ -235,7 +235,7 @@ function locations_init_interactiveinit()
 /**
  * interactive installation procedure step 2
  *
- * @author       Steffen Voﬂ
+ * @author       Steffen Vo√ü
  * @return       pnRender output
  */
 function locations_init_interactiveinitstep2()
@@ -280,7 +280,7 @@ function locations_init_interactiveinitstep2()
 /**
  * interactive installation procedure step 3
  *
- * @author       Steffen Voﬂ
+ * @author       Steffen Vo√ü
  * @return       pnRender output
  */
 function locations_init_interactiveinitstep3()
