@@ -231,7 +231,6 @@ function locations_user_display($args)
 
     // get pnRender instance for this module
     $render = pnRender::getInstance('locations', false);
-    $render->assign($objectType, $objectData);
     $render->assign('modvar', pnModGetVar('locations'));
 
     // assign the object we loaded above.
