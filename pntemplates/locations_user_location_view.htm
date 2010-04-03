@@ -2,18 +2,20 @@
 <!--[gt text="View locations" assign=templatetitle]-->
 <!--[include file="locations_user_header.htm"]-->
 
-<form class="z-form" action="<!--[pnmodurl modname='locations' type='user' func='view']-->" method="post" enctype="application/x-www-form-urlencoded">
+<form id="loc_catfilter" class="z-form" action="<!--[pnmodurl modname='locations' type='user' func='view']-->" method="post" enctype="application/x-www-form-urlencoded">
     <div>
         <fieldset>
             <div>
                 <label for="locations_category"><!--[gt text="Category"]--></label>
                 <!--[pnml assign="lblDef" name="All"]-->
-                <!--[selector_category category=$categories name="locations_category" selectedValue=$selectedCat defaultValue="0" defaultText="$lblDef"]-->
-                <input type="submit" name="searchcat" value="<!--[gt text='Search']-->" />
+                <!--[selector_category category=$categories name="locations_category" selectedValue=$selectedCat defaultValue="0" editLink=false defaultText="$lblDef"]-->
+                <input type="submit" name="searchcat" value="<!--[gt text='Go']-->" />
             </div>
         </fieldset>
     </div>
 </form>
+
+<!--[locationsAlphalist field='name' id='loc_alphapager']-->
 
 <table class="z-datatable">
     <thead>
@@ -84,7 +86,7 @@
                 <label for="searchvalue"><!--[gt text="Search name"]-->:</label>
                 <input id="searchvalue" type="text" name="searchvalue" value="" />
                 <input type="hidden" name="filter" value="name:like:$searchvalue" />
-                <input type="submit" name="searchbutton" value="<!--[gt text='Go']-->" />
+                <input type="submit" name="searchbutton" value="<!--[gt text='Search']-->" />
             </div>
         </fieldset>
     </div>

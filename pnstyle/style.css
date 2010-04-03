@@ -1,25 +1,51 @@
+#loc_catfilter {
+    margin: 1em 0;
+    padding: 0;
+}
+
+ul#loc_alphapager {
+    background: none repeat scroll 0 0 #FAFAFA;
+    border-bottom: 1px solid #EEEEEE;
+    border-top: 1px solid #EEEEEE;
+    line-height: 1.5em;
+    list-style: none outside none;
+    margin: 1em 0;
+    padding: 2px;
+    text-align: center;
+}
+
+ul#loc_alphapager li {
+    border-right: 1px solid #AAAAAA;
+    display: inline;
+    padding: 0 0.4em;
+}
+
+ul#loc_alphapager li:first-child {
+    border-left: 1px solid #aaa;
+}
+
 #loc_view {
-    background:url("../../../images/icons/extrasmall/windowlist.gif") no-repeat scroll 0 50% transparent;
-    margin:0 5px;
-    padding:2px 0 2px 20px;
+    background: url("../../../images/icons/extrasmall/windowlist.gif") no-repeat scroll 0 50% transparent;
+    margin: 0 5px;
+    padding: 2px 0 2px 20px;
 }
 
 #loc_addnewitem {
-    background:url("../../../images/icons/extrasmall/filenew.gif") no-repeat scroll 0 50% transparent;
-    margin:0 5px;
-    padding:2px 0 2px 20px;
+    background: url("../../../images/icons/extrasmall/filenew.gif") no-repeat scroll 0 50% transparent;
+    margin: 0 5px;
+    padding: 2px 0 2px 20px;
 }
 
 #loc_distance {
-    background:url("../../../images/icons/extrasmall/search.gif") no-repeat scroll 0 50% transparent;
-    margin:0 5px;
-    padding:2px 0 2px 20px;
+    background: url("../../../images/icons/extrasmall/search.gif") no-repeat scroll 0 50% transparent;
+    margin: 0 5px;
+    padding: 2px 0 2px 20px;
 }
 
 #loc_edit {
-    background:url("../../../images/icons/extrasmall/xedit.gif") no-repeat scroll 0 50% transparent;
-    margin:0 5px;
-    padding:2px 0 2px 20px;
+    background: url("../../../images/icons/extrasmall/xedit.gif") no-repeat scroll 0 50% transparent;
+    margin: 0 5px;
+    padding: 2px 0 2px 20px;
 }
 
 div.linktabs {
@@ -73,7 +99,7 @@ div.autocomplete ul li {
     margin: 0;
     padding: 0.1em 0 0.1em 0;
     line-height: 1.4em;
-    cursor:pointer;
+    cursor: pointer;
 }
 
 div.autocomplete ul li.dupe {
@@ -85,9 +111,9 @@ div.autocomplete ul li.dupe {
 }
 
 .loc_mapbox {
-    background:#FAFAFA;
-    border:1px solid #ddd;
-    margin:0.5em 0;
-    overflow:hidden;
-    padding:0.5em;
+    background: #FAFAFA;
+    border: 1px solid #ddd;
+    margin: 0.5em 0;
+    overflow: hidden;
+    padding: 0.5em;
 }
