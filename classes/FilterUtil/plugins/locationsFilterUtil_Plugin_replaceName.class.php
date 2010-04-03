@@ -2,13 +2,13 @@
 /**
  * Zikula Application Framework
  *
- * @copyright (c) 2008, Zikula Development Team
+ * @copyright (c) 2010, Locations Development Team
  * @link http://www.zikula.org
  * @license GNU/GPL - http://www.gnu.org/copyleft/gpl.html
  * @package Zikula_Generated_Modules
  * @subpackage locations
  * @author Steffen Voﬂ
- * @url http://kaffeeringe.de
+ * @url http://code.zikula.org/locations
  */
 
 Loader::loadClass('locationsFilterUtil_ReplaceCommon', LOCATIONS_FILTERUTIL_CLASS_PATH);
