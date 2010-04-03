@@ -23,9 +23,9 @@ class locations_user_getLocationsWithinDistanceOfZIPHandler extends pnFormHandle
 
     function initialize(&$render)
     {
-        $this->width = '100%';
-        $this->height = '500px';
-        $this->distance = '7';
+        $this->width = pnModGetVar('locations', 'mapWidth');
+        $this->height = pnModGetVar('locations', 'mapHeight');
+        $this->distance = pnModGetVar('locations', 'mapDistanceZip');
         $this->distanceUnit = 'k';
         return true;
     }

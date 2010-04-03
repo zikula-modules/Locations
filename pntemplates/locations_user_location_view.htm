@@ -74,8 +74,8 @@
 
 <!--[if !empty($objectArray)]-->
 <h3><!--[gt text="Map"]--></h3>
-<div class="loc_mapbox z-clearfix">
-    <!--[locationsGoogleMapsOverview input=$objectArray width='100%' key=$GoogleMapsAPIKey]-->
+<div class="loc_mapbox z-clearfix" style="<!--[if $modvar.mapWidth eq '100%']-->display:block<!--[else]-->width: <!--[$modvar.mapWidth|pnvarprepfordisplay]--><!--[/if]-->;">
+    <!--[locationsGoogleMapsOverview input=$objectArray width=$modvar.mapWidth height=$modvar.mapHeight key=$GoogleMapsAPIKey]-->
 </div>
 <!--[/if]-->
 

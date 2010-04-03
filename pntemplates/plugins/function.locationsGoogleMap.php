@@ -28,7 +28,7 @@ function smarty_function_locationsGoogleMap($params, &$render)
     $map->setWidth(($params['width']) ? $params['width'] : '500px');
     $map->setHeight(($params['height']) ? $params['height'] : '500px');
     $map->setControlSize = 'small';
-    $map->addMarkerIcon(pnGetBaseURL().'/modules/locations/pnimages/marker.png',pnGetBaseURI().'/modules/locations/pnimages/shadow50.png',10,34,20,0);
+    $map->addMarkerIcon(pnGetBaseURL().'/modules/locations/pnimages/marker.png',pnGetBaseURL().'/modules/locations/pnimages/shadow50.png',10,34,20,0);
     $reflatlng = explode(',', $params['latlng']);
     $map->addMarkerByCoords($reflatlng[1], $reflatlng[0], $params['title'], $params['html'], $params['tooltip']);
 
@@ -56,7 +56,7 @@ function smarty_function_locationsGoogleMap($params, &$render)
             $latlng     = explode(',', $location['latlng']);
             $html       = '<p><strong>'.$location['name'].'</strong><br />'.$location['street'].'<br/>'.$location['zip'].' '.$location['city'].' <a href=\''.pnModUrl('locations', 'user', 'display', array('ot' => 'location', 'locationid' => $location['locationid'])).'\'>'.__('more', $dom).'</a></p>';
             $map->addMarkerByCoords($latlng[1], $latlng[0], $location['name'], $html);
-            $map->addMarkerIcon(pnGetBaseURL().'/modules/locations/pnimages/mm_20_yellow.png', pnGetBaseURI().'/modules/locations/pnimages/mm_20_shadow.png', 10, 20, 10, 10);
+            $map->addMarkerIcon(pnGetBaseURL().'/modules/locations/pnimages/mm_20_yellow.png', pnGetBaseURL().'/modules/locations/pnimages/mm_20_shadow.png', 10, 20, 10, 10);
 
         }
     }

@@ -148,6 +148,7 @@ function locations_user_view($args)
 
     // get pnRender instance for this module
     $render = pnRender::getInstance('locations', false);
+    $render->assign('modvar', pnModGetVar('locations'));
     $render->assign('categories', $categories);
     $render->assign('selectedCat', $category);
 
@@ -230,6 +231,8 @@ function locations_user_display($args)
 
     // get pnRender instance for this module
     $render = pnRender::getInstance('locations', false);
+    $render->assign($objectType, $objectData);
+    $render->assign('modvar', pnModGetVar('locations'));
 
     // assign the object we loaded above.
     // since the same code is used the handle the entry of the new object,

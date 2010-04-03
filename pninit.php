@@ -44,6 +44,11 @@ function locations_init()
     pnModSetVar('locations', 'DefaultCountry', (($sessionValue <> false) ? $sessionValue : 'Germany'));
     SessionUtil::delVar('locations_DefaultCountry');
     pnModSetVar('locations', 'pagesize', 25);
+    pnModSetVar('locations', 'mapWidth', '100%');
+    pnModSetVar('locations', 'mapHeight', '500px');
+    pnModSetVar('locations', 'mapDistanceZip', 7);
+    pnModSetVar('locations', 'mapZoomDisplay', 16);
+    pnModSetVar('locations', 'mapDistanceDisplay', 0.5);
 
     // create the default data for locations
     if (!locations_defaultdata()) {
@@ -87,6 +92,11 @@ function locations_upgrade($oldversion)
             }
             // set new ModVar
             pnModSetVar('locations', 'pagesize', 25);
+            pnModSetVar('locations', 'mapWidth', '100%');
+            pnModSetVar('locations', 'mapHeight', '500px');
+            pnModSetVar('locations', 'mapDistanceZip', 7);
+            pnModSetVar('locations', 'mapZoomDisplay', 16);
+            pnModSetVar('locations', 'mapDistanceDisplay', 0.5);
 
             // create main category
             _locations_createDefaultCategory();

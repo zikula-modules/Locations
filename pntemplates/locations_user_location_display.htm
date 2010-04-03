@@ -21,8 +21,8 @@
 
 <h4><!--[gt text="Map"]--></h4>
 <!--[assign var="address" value="`$location.street`, `$location.zip` `$location.city`"]-->
-<div class="loc_mapbox z-clearfix">
-    <!--[locationsGoogleMap latlng=$location.latlng width='100%' address=$address title=$location.name html="<h2>`$location.name`</h2><p>`$location.street`<br/>`$location.zip` `$location.city`</p>" key=$GoogleMapsAPIKey distanceUnit="k" distance="0.5" zoom="16"]-->
+<div class="loc_mapbox z-clearfix" style="<!--[if $modvar.mapWidth eq '100%']-->display:block<!--[else]-->width: <!--[$modvar.mapWidth|pnvarprepfordisplay]--><!--[/if]-->;">
+    <!--[locationsGoogleMap latlng=$location.latlng width=$modvar.mapWidth height=$modvar.mapHeight address=$address title=$location.name html="<h2>`$location.name`</h2><p>`$location.street`<br/>`$location.zip` `$location.city`</p>" key=$GoogleMapsAPIKey distanceUnit="k" distance=$modvar.mapDistanceDisplay zoom=$modvar.mapZoomDisplay]-->
 </div>
 
 <!--[if $nearby]-->
