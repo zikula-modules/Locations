@@ -67,6 +67,7 @@ function locations_user_view($args)
 
     // parameter specifying which type of objects we are treating
     $objectType = FormUtil::getPassedValue('ot', 'location', 'GET');
+    $category = FormUtil :: getPassedValue('locations_category', null);
 
     if (!in_array($objectType, locations_getObjectTypes())) {
         $objectType = 'location';
@@ -79,6 +80,25 @@ function locations_user_view($args)
     // instantiate the object-array
     $objectArray = new $class();
 
+    if ($category > 0) {
+        if (!($categoryclass = Loader::loadClass('CategoryUtil'))) {
+            pn_exit (__f('Error! Unable to load class [%s]', 'CategoryUtil', $dom));
+        }
+
+        if (!is_array($objectArray->_objCategoryFilter)) {
+            $objectArray->_objCategoryFilter = array();
+        }
+
+        $categoryWithSubIDs = array($category);
+        $subCats = CategoryUtil::getSubCategories($category);
+
+        foreach($subCats as $subCat) {
+            $categoryWithSubIDs[] = $subCat['id'];
+        }
+
+        $objectArray->_objCategoryFilter['Type'] = $categoryWithSubIDs;
+    }
+
     // parameter for used sorting field
     $sort = FormUtil::getPassedValue('sort', '', 'GET');
     if (empty($sort) || !in_array($sort, $objectArray->getAllowedSortingFields())) {
@@ -89,13 +109,11 @@ function locations_user_view($args)
     $sdir = FormUtil::getPassedValue('sdir', '', 'GET');
     if ($sdir != 'asc' && $sdir != 'desc') $sdir = 'asc';
 
-
     // startnum is the current offset which is used to calculate the pagination
     $startnum = (int) FormUtil::getPassedValue('pos', 1, 'GET');
 
     // pagesize is the number of items displayed on a page for pagination
     $pagesize = pnModGetVar('locations', 'pagesize', 25);
-
 
     // convenience vars to make code clearer
     $where = '';
@@ -121,9 +139,17 @@ function locations_user_view($args)
     // get total number of records for building the pagination by method call
     $objcount = $objectArray->getCount($where);
 
+    // load the category registry util
+    if (!($catclass = Loader :: loadClass('CategoryRegistryUtil')))
+    pn_exit('Unable to load class [CategoryRegistryUtil] ...');
+    if (!($catclass = Loader :: loadClass('CategoryUtil')))
+    pn_exit('Unable to load class [CategoryUtil] ...');
+    $categories = CategoryRegistryUtil :: getRegisteredModuleCategory('locations', 'locations', 'Type', '/__SYSTEM__/Modules/locations');
+
     // get pnRender instance for this module
     $render = pnRender::getInstance('locations', false);
-
+    $render->assign('categories', $categories);
+    $render->assign('selectedCat', $category);
 
     // assign current sorting information
     $render->assign('sort', $sort);

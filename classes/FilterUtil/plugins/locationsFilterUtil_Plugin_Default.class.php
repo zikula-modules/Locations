@@ -65,7 +65,7 @@ class locationsFilterUtil_Plugin_Default extends locationsFilterUtil_OpCommon
                 return array('where' => $this->column[$field]." >= '" . $value . "'");
                 break;
             case 'like':
-                return array('where' => $this->column[$field]." like '" . $value . "'");
+                return array('where' => $this->column[$field]." like '%" . $value . "%'");
                 break;
             case 'null':
                 return array('where' => $this->column[$field]." = '' OR ".$this->column[$field]." IS NULL");

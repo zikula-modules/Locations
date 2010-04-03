@@ -2,6 +2,19 @@
 <!--[gt text="View locations" assign=templatetitle]-->
 <!--[include file="locations_user_header.htm"]-->
 
+<form class="z-form" action="<!--[pnmodurl modname='locations' type='user' func='view']-->" method="post" enctype="application/x-www-form-urlencoded">
+    <div>
+        <fieldset>
+            <div>
+                <label for="locations_category"><!--[gt text="Category"]--></label>
+                <!--[pnml assign="lblDef" name="All"]-->
+                <!--[selector_category category=$categories name="locations_category" selectedValue=$selectedCat defaultValue="0" defaultText="$lblDef"]-->
+                <input type="submit" name="searchcat" value="<!--[gt text='Search']-->" />
+            </div>
+        </fieldset>
+    </div>
+</form>
+
 <table class="z-datatable">
     <thead>
         <tr>
@@ -19,6 +32,7 @@
                 <a href="<!--[pnmodurl modname="locations" type="user" func="view" ot="location" sort="city" sdir="asc"]-->"><!--[gt text="City"]--></a>
                 <!--[/if]-->
             </th>
+            <th><!--[gt text="Category"]--></th>
             <th><!--[gt text="Options"]--></th>
         </tr>
     </thead>
@@ -31,7 +45,7 @@
             <td>
                 <a href="<!--[pnmodurl modname="locations" type="user" func="view" ot="location" filter="city:eq:`$location.city`"]-->"><!--[$location.city|pnvarprepfordisplay|default:""]--></a>
             </td>
-
+            <td><!--[assignedcategorieslist item=$location]--></td>
             <td class="z-nowrap">
                 <a href="<!--[pnmodurl modname="locations" type="user" func="display" ot="location" locationid=$location.locationid]-->"><!--[pnimg src="demo.gif" modname="core" set="icons/extrasmall" __alt='Details'  __title='Details' ]--></a>
                 <!--[securityutil_checkpermission_block component="locations::" instance=".*" level="ACCESS_ADD"]-->
@@ -43,22 +57,37 @@
             </td>
         </tr>
         <!--[foreachelse]-->
-        <tr class="z-datatableempty"><td colspan="3"><!--[gt text="No locations found."]--></td></tr>
+        <tr class="z-datatableempty"><td colspan="4"><!--[gt text="No locations found."]--></td></tr>
         <!--[/foreach]-->
 
         <!--[pnvarcleanfrominput name="filter" assign="filter"]-->
         <!--[if $filter]-->
         <tr class="z-datatableempty">
-            <td colspan="3"><a href="<!--[pnmodurl modname="locations" type="user" func="main"]-->"><!--[gt text="Show all locations"]--></a></td>
+            <td colspan="4"><a href="<!--[pnmodurl modname="locations" type="user" func="main"]-->"><!--[gt text="Show all locations"]--></a></td>
         </tr>
         <!--[/if]-->
     </tbody>
 </table>
 <!--[pager rowcount=$pager.numitems limit=$pager.itemsperpage]-->
 
+<!--[if !empty($objectArray)]-->
 <h3><!--[gt text="Map"]--></h3>
 <div class="loc_mapbox z-clearfix">
     <!--[locationsGoogleMapsOverview input=$objectArray width='100%' key=$GoogleMapsAPIKey]-->
 </div>
+<!--[/if]-->
+
+<form class="z-form" action="<!--[pnmodurl modname='locations' type=user func='view']-->" method="post" enctype="application/x-www-form-urlencoded">
+    <div>
+        <fieldset>
+            <div>
+                <label for="searchvalue"><!--[gt text="Search name"]-->:</label>
+                <input id="searchvalue" type="text" name="searchvalue" value="" />
+                <input type="hidden" name="filter" value="name:like:$searchvalue" />
+                <input type="submit" name="searchbutton" value="<!--[gt text='Go']-->" />
+            </div>
+        </fieldset>
+    </div>
+</form>
 
 <!--[include file="locations_user_footer.htm"]-->
