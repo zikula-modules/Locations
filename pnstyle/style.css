@@ -48,31 +48,17 @@ ul#loc_alphapager li:first-child {
     padding: 2px 0 2px 20px;
 }
 
-div.linktabs {
-    margin-bottom: 10px;
-}
-
-div.locationsLabelHelp {
-    margin-left: 190px;
-}
-
-#pn-maincontent.pn-module-locations * .photo {
+#locations .photo {
     float: right;
-    padding: .5em;
+    padding: 0.5em;
 }
 
-.invisible {
-    display: none;
-}
-
-.sortable {
-    cursor: move;
-}
-
-.readonly {
-    background: lightgrey;
-    color: darkgrey;
-    cursor: default;
+.loc_mapbox {
+    background: #FAFAFA;
+    border: 1px solid #ddd;
+    margin: 0.5em 0;
+    overflow: hidden;
+    padding: 0.5em;
 }
 
 div.autocomplete {
@@ -108,12 +94,4 @@ div.autocomplete ul li.dupe {
 
 #livesearch {
     margin: 1em 0 1em 0;
-}
-
-.loc_mapbox {
-    background: #FAFAFA;
-    border: 1px solid #ddd;
-    margin: 0.5em 0;
-    overflow: hidden;
-    padding: 0.5em;
 }
