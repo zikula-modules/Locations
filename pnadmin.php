@@ -80,7 +80,7 @@ function locations_admin_view($args)
     // instantiate the object-array
     $objectArray = new $class();
 
-    if (pnModGetVar('locations', 'enablecategorization' && $category > 0)) {
+    if (pnModGetVar('locations', 'enablecategorization') && $category > 0) {
         $category = FormUtil :: getPassedValue('locations_category', null);
 
         if (!($categoryclass = Loader::loadClass('CategoryUtil'))) {
