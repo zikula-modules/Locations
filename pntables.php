@@ -73,7 +73,7 @@ function locations_pntables()
 
     $pntable['locations_location_primary_key_column'] = 'locationid';
     // enable categorization services
-    $pntable['locations_location_db_extra_enable_categorization'] = true;
+    $pntable['locations_location_db_extra_enable_categorization'] = pnModGetVar('locations', 'enablecategorization');
 
     // enable attribution services
     $pntable['locations_location_db_extra_enable_attribution'] = true;

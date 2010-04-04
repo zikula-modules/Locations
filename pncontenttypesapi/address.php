@@ -1,10 +1,25 @@
 <?php
+/**
+ * Zikula Application Framework
+ *
+ * @copyright (c) 2010, Locations Development Team
+ * @link http://www.zikula.org
+ * @license GNU/GPL - http://www.gnu.org/copyleft/gpl.html
+ * @package Zikula_Generated_Modules
+ * @subpackage locations
+ * @author Steffen Voß
+ * @url http://code.zikula.org/locations
+ */
+
+/**
+ * class for interaction with Content module
+ */
+
 class locations_contenttypesapi_addressPlugin extends contentTypeBase
 {
-    $dom = ZLanguage::getModuleDomain('locations');
-
     var $locationid;
 
+    $dom = ZLanguage::getModuleDomain('locations');
     function getModule() {         return 'locations'; }
     function getName() {           return 'address'; }
     function getTitle() {          return __('Location address', $dom); }
@@ -44,10 +59,10 @@ class locations_contenttypesapi_addressPlugin extends contentTypeBase
     {
         array_push($render->plugins_dir, 'modules/locations/pntemplates/pnform');
     }
-}
 
+}
 
 function locations_contenttypesapi_address($args)
 {
-    return new locations_contenttypesapi_addressPlugin($args['data']);
+    return new locations_contenttypesapi_addressPlugin();
 }

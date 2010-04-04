@@ -2,6 +2,7 @@
 <!--[gt text="View locations" assign=templatetitle]-->
 <!--[include file="locations_user_header.htm"]-->
 
+<!--[if $modvar.enablecategorization]-->
 <form id="loc_catfilter" class="z-form" action="<!--[pnmodurl modname='locations' type='user' func='view']-->" method="post" enctype="application/x-www-form-urlencoded">
     <div>
         <fieldset>
@@ -14,6 +15,7 @@
         </fieldset>
     </div>
 </form>
+<!--[/if]-->
 
 <!--[locationsAlphalist field='name' id='loc_alphapager' class='z-clearfix']-->
 
@@ -34,7 +36,9 @@
                 <a href="<!--[pnmodurl modname="locations" type="user" func="view" ot="location" sort="city" sdir="asc"]-->"><!--[gt text="City"]--></a>
                 <!--[/if]-->
             </th>
+            <!--[if $modvar.enablecategorization]-->
             <th><!--[gt text="Category"]--></th>
+            <!--[/if]-->
             <th><!--[gt text="Options"]--></th>
         </tr>
     </thead>
@@ -47,7 +51,9 @@
             <td>
                 <a href="<!--[pnmodurl modname="locations" type="user" func="view" ot="location" filter="city:eq:`$location.city`"]-->"><!--[$location.city|pnvarprepfordisplay|default:""]--></a>
             </td>
+            <!--[if $modvar.enablecategorization]-->
             <td><!--[assignedcategorieslist item=$location]--></td>
+            <!--[/if]-->
             <td class="z-nowrap">
                 <a href="<!--[pnmodurl modname="locations" type="user" func="display" ot="location" locationid=$location.locationid]-->"><!--[pnimg src="demo.gif" modname="core" set="icons/extrasmall" __alt='Details'  __title='Details' ]--></a>
                 <!--[securityutil_checkpermission_block component="locations::" instance=".*" level="ACCESS_ADD"]-->
@@ -59,13 +65,13 @@
             </td>
         </tr>
         <!--[foreachelse]-->
-        <tr class="z-datatableempty"><td colspan="4"><!--[gt text="No locations found."]--></td></tr>
+        <tr class="z-datatableempty"><td colspan="<!--[if $modvar.enablecategorization]-->4<!--[else]-->3<!--[/if]-->"><!--[gt text="No locations found."]--></td></tr>
         <!--[/foreach]-->
 
         <!--[pnvarcleanfrominput name="filter" assign="filter"]-->
         <!--[if $filter]-->
         <tr class="z-datatableempty">
-            <td colspan="4"><a href="<!--[pnmodurl modname="locations" type="user" func="main"]-->"><!--[gt text="Show all locations"]--></a></td>
+            <td colspan="<!--[if $modvar.enablecategorization]-->4<!--[else]-->3<!--[/if]-->"><a href="<!--[pnmodurl modname="locations" type="user" func="main"]-->"><!--[gt text="Show all locations"]--></a></td>
         </tr>
         <!--[/if]-->
     </tbody>
@@ -73,7 +79,7 @@
 <!--[pager rowcount=$pager.numitems limit=$pager.itemsperpage]-->
 
 <!--[if !empty($objectArray)]-->
-<h3><!--[gt text="Map"]--></h3>
+<h4><!--[gt text="Map"]--></h4>
 <div class="loc_mapbox z-clearfix" style="<!--[if $modvar.mapWidth eq '100%']-->display:block<!--[else]-->width: <!--[$modvar.mapWidth|pnvarprepfordisplay]--><!--[/if]-->;">
     <!--[locationsGoogleMapsOverview input=$objectArray width=$modvar.mapWidth height=$modvar.mapHeight key=$GoogleMapsAPIKey]-->
 </div>

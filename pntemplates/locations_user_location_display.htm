@@ -1,6 +1,10 @@
 <!--[* $Id$ *]-->
 <!--[assign value=$location.name var='templatetitle']-->
+<!--[if $modvar.enablecategorization]-->
 <!--[assign var="templatetitle" value="`$location.__CATEGORIES__.Type.display_name.$lang` - `$location.name`"]-->
+<!--[else]-->
+<!--[assign var="templatetitle" value=$location.name]-->
+<!--[/if]-->
 <!--[include file="locations_user_header.htm"]-->
 
 <h4><!--[gt text="Address"]--></h4>

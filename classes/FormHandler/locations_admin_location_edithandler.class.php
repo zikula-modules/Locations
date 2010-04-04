@@ -112,6 +112,7 @@ class locations_admin_location_editHandler extends pnFormHandler
         }
         // assign data to template
         $render->assign($objectData);
+        $render->assign('modvar', pnModGetVar('locations'));
 
         // assign mode var to referenced render instance
         $render->assign('mode', $this->mode);

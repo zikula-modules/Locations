@@ -80,10 +80,17 @@ function locations_admin_view($args)
     // instantiate the object-array
     $objectArray = new $class();
 
-    if ($category > 0) {
+    if (pnModGetVar('locations', 'enablecategorization' && $category > 0)) {
+        $category = FormUtil :: getPassedValue('locations_category', null);
+
         if (!($categoryclass = Loader::loadClass('CategoryUtil'))) {
             pn_exit (__f('Error! Unable to load class [%s]', 'CategoryUtil', $dom));
         }
+        if (!($categoryclass = Loader::loadClass('CategoryRegistryUtil'))) {
+            pn_exit (__f('Error! Unable to load class [%s]', 'CategoryRegistryUtil', $dom));
+        }
+
+        $categories = CategoryRegistryUtil :: getRegisteredModuleCategory('locations', 'locations', 'Type', '/__SYSTEM__/Modules/locations');
 
         if (!is_array($objectArray->_objCategoryFilter)) {
             $objectArray->_objCategoryFilter = array();
@@ -141,13 +148,6 @@ function locations_admin_view($args)
     // get total number of records for building the pagination by method call
     $objcount = $objectArray->getCount($where);
 
-    // load the category registry util
-    if (!($catclass = Loader :: loadClass('CategoryRegistryUtil')))
-    pn_exit('Unable to load class [CategoryRegistryUtil] ...');
-    if (!($catclass = Loader :: loadClass('CategoryUtil')))
-    pn_exit('Unable to load class [CategoryUtil] ...');
-    $categories = CategoryRegistryUtil :: getRegisteredModuleCategory('locations', 'locations', 'Type', '/__SYSTEM__/Modules/locations');
-
     // get pnRender instance for this module
     $render = pnRender::getInstance('locations', false);
     $render->assign('categories', $categories);
@@ -166,69 +166,6 @@ function locations_admin_view($args)
 
     // fetch and return the appropriate template
     return locations_processRenderTemplate($render, 'admin', $objectType, 'view', $args);
-}
-
-
-/**
- * This function provides a generic item detail view.
- *
- * @author       Steffen Voß
- * @params       TODO
- * @param        ot             string    treated object type
- * @param        tpl            string    name of alternative template (for alternative display options, feeds and xml output)
- * @param        raw            boolean   optional way to display a template instead of fetching it (needed for standalone output)
- * @return       Render output
- */
-function locations_admin_display($args)
-{
-    if (!SecurityUtil::checkPermission('locations::', '::', ACCESS_ADMIN)) {
-        return LogUtil::registerPermissionError(pnModURL('locations', 'user', 'main'));
-    }
-
-    $dom = ZLanguage::getModuleDomain('locations');
-
-    // parameter specifying which type of objects we are treating
-    $objectType = FormUtil::getPassedValue('ot', 'location', 'GET');
-
-    if (!in_array($objectType, locations_getObjectTypes())) {
-        $objectType = 'location';
-    }
-    // load the object class corresponding to $objectType
-    if (!($class = Loader::loadClassFromModule('locations', $objectType))) {
-        pn_exit(__f('Error! Unable to load class [%s]', $objectType, $dom));
-    }
-    // intantiate object model
-    $object = new $class();
-    $idField = $object->getIDField();
-
-    // retrieve the ID of the object we wish to view
-    $id = (int) FormUtil::getPassedValue($idField, isset($args[$idField]) && is_numeric($args[$idField]) ? $args[$idField] : 0, 'GET');
-    if (!$id) {
-        pn_exit('Invalid ' . $idField . ' [' . DataUtil::formatForDisplay($id) . '] received ...');
-    }
-
-    // assign object data
-    // this performs a new database select operation
-    // while the result will be saved within the object, we assign it to a local variable for convenience
-    $objectData = $object->get($id, $idField);
-    if (!is_array($objectData) || !isset($objectData[$idField]) || !is_numeric($objectData[$idField])) {
-        return LogUtil::registerError(__('No such item found.', $dom));
-    }
-
-    // get pnRender instance for this module
-    $render = pnRender::getInstance('locations', false);
-
-    // assign Google Maps Key to template
-    $render->assign('GoogleMapsAPIKey', pnModGetVar('locations', 'GoogleMapsAPIKey'));
-
-    // assign the object we loaded above.
-    // since the same code is used the handle the entry of the new object,
-    // we need to check wether we have a valid object.
-    // If not, we just pass in an empty data-array.
-    $render->assign($objectType, $objectData);
-
-    // fetch and return the appropriate template
-    return locations_processRenderTemplate($render, 'admin', $objectType, 'display', $args);
 }
 
 
@@ -280,7 +217,7 @@ function locations_admin_edit($args)
  */
 function locations_admin_delete($args)
 {
-    if (!SecurityUtil::checkPermission('locations::', '::', ACCESS_ADMIN)) {
+    if (!SecurityUtil::checkPermission('locations::', '::', ACCESS_DELETE)) {
         return LogUtil::registerPermissionError(pnModURL('locations', 'user', 'main'));
     }
 

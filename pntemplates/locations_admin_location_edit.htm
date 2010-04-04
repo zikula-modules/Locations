@@ -35,12 +35,14 @@
 
     <fieldset>
         <legend><!--[gt text="Content"]--></legend>
+        <!--[if $modvar.enablecategorization]-->
         <div class="z-formrow">
             <!--[pnformlabel for="Type" __text="Category"]-->
             <div>
                 <!--[pnformcategoryselector id='Type' category=$maincat selectedValue=$__CATEGORIES__.Type.id includeEmptyElement=true enableDBUtil=true]-->
             </div>
         </div>
+        <!--[/if]-->
         <div class="z-formrow">
             <!--[pnformlabel for="name" __text="Name"]-->
             <!--[pnformtextinput id="name" mandatory='true' __toolTip='Input the name of the location' textMode="singleline" maxLength='100']-->

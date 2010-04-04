@@ -67,7 +67,6 @@ function locations_user_view($args)
 
     // parameter specifying which type of objects we are treating
     $objectType = FormUtil::getPassedValue('ot', 'location', 'GET');
-    $category = FormUtil :: getPassedValue('locations_category', null);
 
     if (!in_array($objectType, locations_getObjectTypes())) {
         $objectType = 'location';
@@ -80,10 +79,17 @@ function locations_user_view($args)
     // instantiate the object-array
     $objectArray = new $class();
 
-    if ($category > 0) {
+    if (pnModGetVar('locations', 'enablecategorization' && $category > 0)) {
+        $category = FormUtil :: getPassedValue('locations_category', null);
+
         if (!($categoryclass = Loader::loadClass('CategoryUtil'))) {
             pn_exit (__f('Error! Unable to load class [%s]', 'CategoryUtil', $dom));
         }
+        if (!($categoryclass = Loader::loadClass('CategoryRegistryUtil'))) {
+            pn_exit (__f('Error! Unable to load class [%s]', 'CategoryRegistryUtil', $dom));
+        }
+
+        $categories = CategoryRegistryUtil :: getRegisteredModuleCategory('locations', 'locations', 'Type', '/__SYSTEM__/Modules/locations');
 
         if (!is_array($objectArray->_objCategoryFilter)) {
             $objectArray->_objCategoryFilter = array();
@@ -138,13 +144,6 @@ function locations_user_view($args)
 
     // get total number of records for building the pagination by method call
     $objcount = $objectArray->getCount($where);
-
-    // load the category registry util
-    if (!($catclass = Loader :: loadClass('CategoryRegistryUtil')))
-    pn_exit('Unable to load class [CategoryRegistryUtil] ...');
-    if (!($catclass = Loader :: loadClass('CategoryUtil')))
-    pn_exit('Unable to load class [CategoryUtil] ...');
-    $categories = CategoryRegistryUtil :: getRegisteredModuleCategory('locations', 'locations', 'Type', '/__SYSTEM__/Modules/locations');
 
     // get pnRender instance for this module
     $render = pnRender::getInstance('locations', false);
