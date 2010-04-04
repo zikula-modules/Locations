@@ -10,7 +10,7 @@
     <!--[pnform cssClass='z-form']-->
     <!--[locationsFormFrame]-->
     <fieldset>
-        <legend><!--[gt text="Settings"]--></legend>
+        <legend><!--[gt text="General settings"]--></legend>
         <div class="z-formrow">
             <!--[pnformlabel for="enablecategorization" __text='Enable categorization']-->
             <!--[pnformcheckbox id="enablecategorization" group="config"]-->
@@ -19,6 +19,10 @@
             <!--[pnformlabel for="pagesize" __text='Items per page']-->
             <!--[pnformtextinput id="pagesize" group="config" maxLength='255']-->
         </div>
+    </fieldset>
+
+    <fieldset>
+        <legend><!--[gt text="Google Maps settings"]--></legend>
         <div class="z-formrow">
             <!--[pnformlabel for="GoogleMapsAPIKey" __text='Google Maps API Key']-->
             <!--[pnformtextinput id="GoogleMapsAPIKey" group="config" maxLength='255']-->
@@ -51,11 +55,10 @@
                 <!--[gt text='kilometres']-->
             </span>
         </div>
-
     </fieldset>
 
     <fieldset>
-        <legend><!--[gt text="Defaults"]--></legend>
+        <legend><!--[gt text="Default location"]--></legend>
         <div class="z-formrow">
             <!--[pnformlabel for="DefaultCity" __text='Default City']-->
             <!--[pnformtextinput id="DefaultCity" group="config" maxLength='255']-->
@@ -70,6 +73,7 @@
         </div>
         <!--[pnmodcallhooks hookobject="module" hookaction="modifyconfig" module="locations"]-->
     </fieldset>
+
     <div class="z-formbuttons">
         <!--[pnformbutton commandName="save" __text="Update configuration"]-->
         <!--[pnformbutton commandName="cancel" __text="Cancel"]-->
