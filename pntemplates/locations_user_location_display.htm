@@ -1,8 +1,9 @@
 <!--[* $Id$ *]-->
-<!--[assign var="loctitle" value=$location.name]-->
-<!--[gt text="Address: %s" tag1=$loctitle assign=templatetitle]-->
+<!--[assign value=$location.name var='templatetitle']-->
+<!--[assign var="templatetitle" value="`$location.__CATEGORIES__.Type.display_name.$lang` - `$location.name`"]-->
 <!--[include file="locations_user_header.htm"]-->
 
+<h4><!--[gt text="Address"]--></h4>
 <p class="vcard">
     <!--[if $location.logo]--><img src="<!--[$location.logo|pnvarprepfordisplay]-->" class="photo" /><!--[/if]-->
     <span class="fn n"><strong class="org"><!--[$location.name|pnmodcallhooks|pnvarprephtmldisplay]--></strong></span><br />

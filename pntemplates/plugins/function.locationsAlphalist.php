@@ -26,6 +26,7 @@ function smarty_function_locationsAlphalist($params, &$smarty)
 
     $html = '<ul';
     $html .= !empty($params['id']) ? ' id="'.$params['id'].'"' : '';
+    $html .= !empty($params['class']) ? ' class="'.$params['class'].'"' : '';
     $html .= '>';
     $html .= '<li><a href="' . pnModUrl('locations', 'user', 'view') . '">' . __('All', $dom) . '</a></li>';
 
