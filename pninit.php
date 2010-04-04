@@ -164,6 +164,7 @@ function locations_defaultdata()
             'country' => __('Germany', $dom),
             'state' => __('Schleswig-Holstein', $dom),
             'latlng' => __('54.327828,10.129710', $dom),
+            'description' => '',
             'logo' => __('', $dom)),
     array(
             'locationid' => __('2', $dom),
@@ -178,6 +179,7 @@ function locations_defaultdata()
             'country' => __('Germany', $dom),
             'state' => __('Schleswig-Holstein', $dom),
             'latlng' => __('54.319375,10.132035', $dom),
+            'description' => '',
             'logo' => __('', $dom)),
     array(
             'locationid' => __('3', $dom),
@@ -192,6 +194,7 @@ function locations_defaultdata()
             'country' => __('Germany', $dom),
             'state' => __('Schleswig-Holstein', $dom),
             'latlng' => __('54.339814,10.133697', $dom),
+            'description' => '',
             'logo' => __('', $dom)),
     array(
             'locationid' => __('4', $dom),
@@ -206,6 +209,7 @@ function locations_defaultdata()
             'country' => __('Germany', $dom),
             'state' => __('Schleswig-Holstein', $dom),
             'latlng' => __('54.318646,10.132500', $dom),
+            'description' => '',
             'logo' => __('', $dom)),
     array(
             'locationid' => __('5', $dom),
@@ -220,6 +224,7 @@ function locations_defaultdata()
             'country' => __('Germany', $dom),
             'state' => __('Schleswig-Holstein', $dom),
             'latlng' => __('54.315341,10.117084', $dom),
+            'description' => '',
             'logo' => __('', $dom))
     );
     // insert it into the location table

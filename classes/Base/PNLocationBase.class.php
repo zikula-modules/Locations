@@ -79,6 +79,7 @@ abstract class PNLocationBase extends PNlocations
         $string .= '        city' . "\n";
         $string .= '        zip' . "\n";
         $string .= '        latlng' . "\n";
+        $string .= '        description' . "\n";
         $string .= '        logo' . "\n";
         $string .= '        url' . "\n";
         $string .= "\n";

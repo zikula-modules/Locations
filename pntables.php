@@ -49,6 +49,7 @@ function locations_pntables()
         'country' => 'pn_country',
         'state' => 'pn_state',
         'latlng' => 'pn_latlng',
+        'description' => 'pn_description',
         'logo' => 'pn_logo');
 
     // set the data dictionary for the table columns
@@ -65,6 +66,7 @@ function locations_pntables()
         'country' => "C(100) DEFAULT ''",
         'state' => "C(100) DEFAULT ''",
         'latlng' => "C(100) DEFAULT ''",
+        'description' => "X NOTNULL DEFAULT ''",
         'logo' => "C(100) DEFAULT ''");
 
     // add standard fields to the table definition and data dictionary

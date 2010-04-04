@@ -107,6 +107,7 @@ abstract class PNLocationArrayBase extends PNlocationsArray
         $string .= '        city' . "\n";
         $string .= '        zip' . "\n";
         $string .= '        latlng' . "\n";
+        $string .= '        description' . "\n";
         $string .= '        logo' . "\n";
         $string .= '        url' . "\n";
         $string .= "\n";
