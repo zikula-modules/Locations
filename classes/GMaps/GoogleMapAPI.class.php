@@ -198,7 +198,7 @@ class GoogleMapAPI {
      *
      * @var string
      */
-    var $js_alert = '<b>Javascript must be enabled in order to use Google Maps.</b>';
+    var $js_alert = '<p><b>Javascript must be enabled in order to use Google Maps.</b></p>';
 
     /**
      * determines if sidebar is enabled
