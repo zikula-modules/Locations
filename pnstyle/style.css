@@ -4,20 +4,20 @@
 }
 
 ul#loc_alphapager {
-    background:none repeat scroll 0 0 #FAFAFA;
-    border-bottom:1px solid #EEEEEE;
-    border-top:1px solid #EEEEEE;
-    line-height:1.5em;
-    list-style:none outside none;
-    margin:1em 0;
-    padding:2px;
+    background: none repeat scroll 0 0 #FAFAFA;
+    border-bottom: 1px solid #EEEEEE;
+    border-top: 1px solid #EEEEEE;
+    line-height: 1.5em;
+    list-style: none outside none;
+    margin: 1em 0;
+    padding: 2px;
 }
 
 ul#loc_alphapager li {
-    border-right:1px solid #AAAAAA;
-    float:left;
-    margin:1px;
-    padding:0 0.4em;
+    border-right: 1px solid #AAAAAA;
+    float: left;
+    margin: 1px;
+    padding: 0 0.4em;
 }
 
 ul#loc_alphapager li:first-child {
