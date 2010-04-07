@@ -39,6 +39,7 @@ function locations_pntables()
     $columns = array(
         'locationid' => 'pn_locationid',
         'name' => 'pn_name',
+        'urltitle' => 'pn_urltitle',
         'street' => 'pn_street',
         'zip' => 'pn_zip',
         'city' => 'pn_city',
@@ -56,6 +57,7 @@ function locations_pntables()
     $columnDef = array(
         'locationid' => "I AUTO PRIMARY",
         'name' => "C(100) NOTNULL DEFAULT ''",
+        'urltitle' => "X NOTNULL DEFAULT ''",
         'street' => "C(100) DEFAULT ''",
         'zip' => "C(100) DEFAULT ''",
         'city' => "C(100) DEFAULT ''",

@@ -11,6 +11,9 @@
  * @url http://code.zikula.org/locations
  */
 
+// preload common used classes
+Loader::requireOnce('modules/locations/common.php');
+
 /**
  * This handler class handles the page events of the pnForm called by the locations_admin_edit() function.
  * It aims on the location object type.
@@ -179,6 +182,11 @@ class locations_admin_location_editHandler extends pnFormHandler
             $geocode = $map->getGeocode($locationData['street'].', '.$locationData['zip'].', '.$locationData['city'].', '.$locationData['country']);
             $locationData['latlng'] = $geocode['lat'].','.$geocode['lon'];
 
+            // define the permalink title if not present
+            if (!isset($locationData['urltitle']) || empty($locationData['urltitle'])) {
+                $locationData['urltitle'] = locations_createPermalink($locationData['name']);
+            }
+
             // usually one would use $location->getDataFromInput() to get the data, this is the way PNObject works
             // but since we want also use pnForm we simply assign the fetched data and call the post process functionality here
             $location->setData($locationData);
@@ -197,9 +205,7 @@ class locations_admin_location_editHandler extends pnFormHandler
             // redirect to the detail page of the newly created location
             $returnUrl = pnModUrl('locations', 'user', 'display',
             array('ot' => 'location', 'locationid' => $this->locationid));
-            pnModCallHooks('item', 'create', $this->locationid, array (
-                           'module' => 'locations'
-                           ));
+            pnModCallHooks('item', 'create', $this->locationid, array ('module' => 'locations'));
         }
         elseif ($args['commandName'] == 'update') {
             // event handling if user clicks on update
@@ -220,6 +226,11 @@ class locations_admin_location_editHandler extends pnFormHandler
             // usually one would use $location->getDataFromInput() to get the data, this is the way PNObject works
             // but since we want also use pnForm we simply assign the fetched data and call the post process functionality here
 
+            // define the permalink title if not present
+            if (!isset($locationData['urltitle']) || empty($locationData['urltitle'])) {
+                $locationData['urltitle'] = locations_createPermalink($locationData['name']);
+            }
+
             $location->setData($locationData);
             $location->getDataFromInputPostProcess();
 
@@ -235,9 +246,7 @@ class locations_admin_location_editHandler extends pnFormHandler
             // redirect to the detail page of the treated location
             $returnUrl = pnModUrl('locations', 'user', 'display',
             array('ot' => 'location', 'locationid' => $this->locationid));
-            pnModCallHooks('item', 'update', $locationData['locationid'], array (
-                           'module' => 'locations'
-                           ));
+            pnModCallHooks('item', 'update', $locationData['locationid'], array ('module' => 'locations'));
         }
         elseif ($args['commandName'] == 'delete') {
             // event handling if user clicks on delete
@@ -274,9 +283,7 @@ class locations_admin_location_editHandler extends pnFormHandler
             // redirect to the list of locations
             $returnUrl = pnModUrl('locations', 'user', 'view',
             array('ot' => 'location'));
-            pnModCallHooks('item', 'delete', $this->locationid, array (
-                           'module' => 'locations'
-                           ));
+            pnModCallHooks('item', 'delete', $this->locationid, array ('module' => 'locations'));
         }
         else if ($args['commandName'] == 'cancel') {
             // event handling if user clicks on cancel
@@ -308,3 +315,4 @@ class locations_admin_location_editHandler extends pnFormHandler
         return true;
     }
 }
+

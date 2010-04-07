@@ -27,7 +27,7 @@ function smarty_function_locationsGoogleMapsOverview($params, &$render)
     foreach($params['input'] as $location) {
         $latlng     = explode(',', $location['latlng']);
         if ($latlng[0] && $latlng[1]) {
-            $html       = '<p><strong>'.$location['name'].'</strong></p><p>'.$location['street'].'<br />'.$location['zip'].' '.$location['city'].' <a href=\''. pnModUrl('locations', 'user', 'display', array('ot' => 'location', 'locationid' => $location['locationid'])).'\'>'.__('more', $dom).'</a></p>';
+            $html       = '<p><strong>'.$location['name'].'</strong></p><p>'.$location['street'].'<br />'.$location['zip'].' '.$location['city'].' <a href=\''. pnModUrl('locations', 'user', 'display', array('locationid' => $location['locationid'])).'\'>'.__('more', $dom).'</a></p>';
             $map->addMarkerByCoords($latlng[1], $latlng[0], $location['name'], $html);
         }
     }

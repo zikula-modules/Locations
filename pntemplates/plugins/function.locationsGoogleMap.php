@@ -54,7 +54,7 @@ function smarty_function_locationsGoogleMap($params, &$render)
         $nearBy = array_slice(orderBy($nearBy, 'distance'), 0, 5); // change 5 into the number of locations you want to display nearby
         foreach($nearBy as $location) {
             $latlng     = explode(',', $location['latlng']);
-            $html       = '<p><strong>'.$location['name'].'</strong></p><p>'.$location['street'].'<br />'.$location['zip'].' '.$location['city'].' <a href=\''. pnModUrl('locations', 'user', 'display', array('ot' => 'location', 'locationid' => $location['locationid'])).'\'>'.__('more', $dom).'</a></p>';
+            $html       = '<p><strong>'.$location['name'].'</strong></p><p>'.$location['street'].'<br />'.$location['zip'].' '.$location['city'].' <a href=\''. pnModUrl('locations', 'user', 'display', array('locationid' => $location['locationid'])).'\'>'.__('more', $dom).'</a></p>';
             $map->addMarkerByCoords($latlng[1], $latlng[0], $location['name'], $html);
             $map->addMarkerIcon(pnGetBaseURL().'/modules/locations/pnimages/mm_20_yellow.png', pnGetBaseURL().'/modules/locations/pnimages/mm_20_shadow.png', 10, 20, 10, 10);
 

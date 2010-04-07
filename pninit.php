@@ -11,6 +11,9 @@
  * @url http://code.zikula.org/locations
  */
 
+// preload common used classes
+Loader::requireOnce('modules/locations/common.php');
+
 /**
  * initialise the locations module
  *
@@ -102,6 +105,8 @@ function locations_upgrade($oldversion)
 
             // create main category
             _locations_createDefaultCategory();
+            // populate permalinks for existing content
+            _locations_createPermalinks();
     }
 
 
@@ -361,3 +366,31 @@ function _locations_createDefaultCategory($regpath = '/__SYSTEM__/Modules')
 
     return true;
 }
+
+function _locations_createPermalinks()
+{
+    // get all the ID and permalink of the table
+    $data = DBUtil::selectObjectArray('locations_location', '', '', -1, -1, 'locationid', null, null, array('locationid', 'name', 'urltitle'));
+
+    // loop the data searching for non equal permalinks
+    $perma = '';
+    foreach (array_keys($data) as $locationid) {
+        $perma = strtolower(locations_createPermalink($data[$locationid]['name']));
+        if ($data[$locationid]['urltitle'] != $perma) {
+            $data[$locationid]['urltitle'] = $perma;
+        } else {
+            unset($data[$locationid]);
+        }
+    }
+
+    if (empty($data)) {
+        return true;
+        // store the modified permalinks
+    } elseif (DBUtil::updateObjectArray($data, 'locations_location', 'locationid')) {
+        // let the calling process know that we have finished successfully
+        return true;
+    } else {
+        return false;
+    }
+}
+

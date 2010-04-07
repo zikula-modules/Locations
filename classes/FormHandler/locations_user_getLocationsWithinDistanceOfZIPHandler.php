@@ -76,7 +76,7 @@ class locations_user_getLocationsWithinDistanceOfZIPHandler extends pnFormHandle
                     $latlng     = explode(',', $location['latlng']);
                     $distance   = $map->geoGetDistance($latlng[1], $latlng[0], $reflatlng['lon'], $reflatlng['lat'], $this->distanceUnit);
                     if ($distance < $this->distance) {
-                        $html       = '<p><strong>'.$location['name'].'</strong></p><p>'.$location['street'].'<br />'.$location['zip'].' '.$location['city'].' <a href=\''. pnModUrl('locations', 'user', 'display', array('ot' => 'location', 'locationid' => $location['locationid'])).'\'>'.__('more', $dom).'</a></p>';
+                        $html       = '<p><strong>'.$location['name'].'</strong></p><p>'.$location['street'].'<br />'.$location['zip'].' '.$location['city'].' <a href=\''. pnModUrl('locations', 'user', 'display', array('locationid' => $location['locationid'])).'\'>'.__('more', $dom).'</a></p>';
                         $map->addMarkerByCoords($latlng[1], $latlng[0], $location['name'], $html);
                         $results[] = $location;
                     }

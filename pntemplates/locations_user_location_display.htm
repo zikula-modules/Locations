@@ -34,7 +34,7 @@
 <h4><!--[gt text="Nearby"]--></h4>
 <ul>
     <!--[foreach from=$nearby item='tipp']-->
-    <li><a href="<!--[pnmodurl modname="locations" type="user" func="display" ot="location" locationid=$tipp.locationid]-->"><!--[$tipp.name|pnvarprepfordisplay]--></a></li>
+    <li><a href="<!--[pnmodurl modname="locations" type="user" func="display" locationid=$tipp.locationid]-->"><!--[$tipp.name|pnvarprepfordisplay]--></a></li>
     <!--[/foreach]-->
 </ul>
 <!--[/if]-->
@@ -53,7 +53,7 @@
 <!--[/if]-->
 <!--[/if]-->
 
-<!--[pnmodurl modname="locations" func="display" ot="location" locationid=$location.locationid assign="returnurl"]-->
+<!--[pnmodurl modname="locations" func="display" locationid=$location.locationid assign="returnurl"]-->
 <!--[pnmodcallhooks hookobject="item" hookaction="display" hookid=$location.locationid module="locations" returnurl=$returnurl]-->
 
 <!--[include file="locations_user_footer.htm"]-->

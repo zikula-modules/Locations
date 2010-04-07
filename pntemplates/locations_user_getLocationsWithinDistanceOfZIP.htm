@@ -10,7 +10,7 @@
 </div>
 <ul>
     <!--[foreach from=$results item='tipp']-->
-    <li><a href="<!--[pnmodurl modname="locations" type="user" func="display" ot="location" locationid=$tipp.locationid]-->"><!--[$tipp.name|pnvarprepfordisplay]--></a></li>
+    <li><a href="<!--[pnmodurl modname="locations" type="user" func="display" locationid=$tipp.locationid]-->"><!--[$tipp.name|pnvarprepfordisplay]--></a></li>
     <!--[/foreach]-->
 </ul>
 
