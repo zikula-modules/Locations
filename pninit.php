@@ -338,13 +338,8 @@ function _locations_createDefaultCategory($regpath = '/__SYSTEM__/Modules')
     $cat->setDataField('parent_id', $rootcat['id']);
     $cat->setDataField('name', 'locations');
     $cat->setDataField('value', '-1');
-
-    $cat->setDataField('display_name', array (
-    $lang => __('Locations', $dom)
-    ));
-    $cat->setDataField('display_desc', array (
-    $lang => __('Database for all kinds of locations', $dom)
-    ));
+    $cat->setDataField('display_name', array ($lang => __('Locations', $dom)));
+    $cat->setDataField('display_desc', array ($lang => __('Database for all kinds of locations', $dom)));
     $cat->setDataField('security_domain', $rootcat['security_domain']);
 
     if (!$cat->validate('admin')) {

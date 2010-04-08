@@ -90,9 +90,7 @@ class locations_admin_location_editHandler extends pnFormHandler
             }
             // try to guarantee that only one person at a time can be editing this location
             $returnUrl = pnModUrl('locations', 'admin', 'display', array('ot' => $objectType, 'locationid' => $this->locationid));
-            pnModAPIFunc('PageLock', 'user', 'pageLock',
-            array('lockName' => "LocationsLocation{$this->locationid}",
-                                       'returnUrl' => $returnUrl));
+            pnModAPIFunc('PageLock', 'user', 'pageLock', array('lockName' => "LocationsLocation{$this->locationid}",'returnUrl' => $returnUrl));
         }
         else {
             if (!SecurityUtil::checkPermission('locations::', '::', ACCESS_ADD)) {
@@ -180,7 +178,12 @@ class locations_admin_location_editHandler extends pnFormHandler
             $map = new locationsGMaps();
             $map->setAPIKey($key);
             $geocode = $map->getGeocode($locationData['street'].', '.$locationData['zip'].', '.$locationData['city'].', '.$locationData['country']);
-            $locationData['latlng'] = $geocode['lat'].','.$geocode['lon'];
+            if (isset($geocode['lat']) || !empty($geocode['lat']) || isset($geocode['lon']) || !empty($geocode['lon'])) {
+                $latlng = true;
+                $locationData['latlng'] = $geocode['lat'].','.$geocode['lon'];
+            } else {
+                $latlng = false;
+            }
 
             // define the permalink title if not present
             if (!isset($locationData['urltitle']) || empty($locationData['urltitle'])) {
@@ -200,7 +203,11 @@ class locations_admin_location_editHandler extends pnFormHandler
                 return LogUtil::registerError(__('Error! Creation attempt failed.', $dom));
             }
 
-            LogUtil::registerStatus(__('Done! Location created.', $dom));
+            if ($latlng === true) {
+                LogUtil::registerStatus(__f('Done! Created location. Latitude set to %1$s and longitude set to %2$s.', array($geocode['lat'], $geocode['lon']), $dom));
+            } else {
+                LogUtil::registerStatus(__('Done! Created location. But could not found latitude and longitude values.', $dom));
+            }
 
             // redirect to the detail page of the newly created location
             $returnUrl = pnModUrl('locations', 'user', 'display',
@@ -222,15 +229,20 @@ class locations_admin_location_editHandler extends pnFormHandler
             $map = new locationsGMaps();
             $map->setAPIKey($key);
             $geocode = $map->getGeocode($locationData['street'].', '.$locationData['zip'].', '.$locationData['city'].', '.$locationData['country']);
-            $locationData['latlng'] = $geocode['lat'].','.$geocode['lon'];
-            // usually one would use $location->getDataFromInput() to get the data, this is the way PNObject works
-            // but since we want also use pnForm we simply assign the fetched data and call the post process functionality here
+            if (isset($geocode['lat']) || !empty($geocode['lat']) || isset($geocode['lon']) || !empty($geocode['lon'])) {
+                $latlng = true;
+                $locationData['latlng'] = $geocode['lat'].','.$geocode['lon'];
+            } else {
+                $latlng = false;
+            }
 
             // define the permalink title if not present
             if (!isset($locationData['urltitle']) || empty($locationData['urltitle'])) {
                 $locationData['urltitle'] = locations_createPermalink($locationData['name']);
             }
 
+            // usually one would use $location->getDataFromInput() to get the data, this is the way PNObject works
+            // but since we want also use pnForm we simply assign the fetched data and call the post process functionality here
             $location->setData($locationData);
             $location->getDataFromInputPostProcess();
 
@@ -241,11 +253,14 @@ class locations_admin_location_editHandler extends pnFormHandler
                 return LogUtil::registerError(__('Error! Update attempt failed.', $dom));
             }
 
-            LogUtil::registerStatus(__('Done! Location updated.', $dom));
+            if ($latlng === true) {
+                LogUtil::registerStatus(__f('Done! Updated location. Latitude set to %1$s and longitude set to %2$s.', array($geocode['lat'], $geocode['lon']), $dom));
+            } else {
+                LogUtil::registerStatus(__('Done! Updated location. But could not found latitude and longitude values.', $dom));
+            }
 
             // redirect to the detail page of the treated location
-            $returnUrl = pnModUrl('locations', 'user', 'display',
-            array('ot' => 'location', 'locationid' => $this->locationid));
+            $returnUrl = pnModUrl('locations', 'user', 'display', array('ot' => 'location', 'locationid' => $this->locationid));
             pnModCallHooks('item', 'update', $locationData['locationid'], array ('module' => 'locations'));
         }
         elseif ($args['commandName'] == 'delete') {
@@ -272,7 +287,6 @@ class locations_admin_location_editHandler extends pnFormHandler
             // add persisted primary key to fetched values
             $locationData['locationid'] = $this->locationid;
 
-
             // delete location
             if ($location->delete() === false) {
                 return LogUtil::registerError(__('Error! Sorry! Deletion attempt failed.', $dom));
@@ -281,8 +295,7 @@ class locations_admin_location_editHandler extends pnFormHandler
             LogUtil::registerStatus(__f('Done! Location deleted.', $dom));
 
             // redirect to the list of locations
-            $returnUrl = pnModUrl('locations', 'user', 'view',
-            array('ot' => 'location'));
+            $returnUrl = pnModUrl('locations', 'user', 'view', array('ot' => 'location'));
             pnModCallHooks('item', 'delete', $this->locationid, array ('module' => 'locations'));
         }
         else if ($args['commandName'] == 'cancel') {
@@ -290,23 +303,19 @@ class locations_admin_location_editHandler extends pnFormHandler
 
             if ($this->mode == 'edit') {
                 // redirect to the detail page of the treated location
-                $returnUrl = pnModUrl('locations', 'user', 'display',
-                array('ot' => 'location', 'locationid' => $this->locationid));
+                $returnUrl = pnModUrl('locations', 'user', 'display', array('ot' => 'location', 'locationid' => $this->locationid));
             }
             else {
                 // redirect to the list of locations
-                $returnUrl = pnModUrl('locations', 'user', 'view',
-                array('ot' => 'location'));
+                $returnUrl = pnModUrl('locations', 'user', 'view', array('ot' => 'location'));
             }
         }
 
         if ($returnUrl != null) {
             if ($this->mode == 'edit') {
-                pnModAPIFunc('PageLock', 'user', 'releaseLock',
-                array('lockName' => "LocationsLocation{$this->locationid}"));
-            }
+                pnModAPIFunc('PageLock', 'user', 'releaseLock', array('lockName' => "LocationsLocation{$this->locationid}"));}
 
-            return $render->pnFormRedirect($returnUrl);
+                return $render->pnFormRedirect($returnUrl);
         }
 
         // We should in principle not end here at all, since the above command handlers should

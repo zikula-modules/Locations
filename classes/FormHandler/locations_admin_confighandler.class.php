@@ -39,10 +39,10 @@ class locations_admin_configHandler extends pnFormHandler
 
             // update all module vars
             if (!pnModSetVars('locations', $data['config'])) {
-                return LogUtil::registerError('Failed to set configuration variables');
+                return LogUtil::registerError('Error! Failed to set configuration variables');
             }
 
-            LogUtil::registerStatus(__('Done! Module configuration updated.', $dom));
+            LogUtil::registerStatus(__('Done! Updated module configuration.', $dom));
             pnModCallHooks('module', 'updateconfig', 'locations', array('module' => 'locations'));
         }
         else if ($args['commandName'] == 'cancel') {

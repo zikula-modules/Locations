@@ -211,7 +211,7 @@ function locations_userapi_decodeurl($args)
     }
 
     // define the available user functions
-    $funcs = array('main', 'view', 'display');
+    $funcs = array('main', 'view', 'display', 'getLocationsWithinDistanceOfZIP');
 
     // set the correct function name based on our input
 
