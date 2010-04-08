@@ -25,8 +25,10 @@ class locations_user_getLocationsWithinDistanceOfZIPHandler extends pnFormHandle
     {
         $this->width = pnModGetVar('locations', 'mapWidth');
         $this->height = pnModGetVar('locations', 'mapHeight');
-        $this->distance = pnModGetVar('locations', 'mapDistanceZip');
         $this->distanceUnit = 'k';
+
+        // assign all module vars
+        $render->assign('config', pnModGetVar('locations'));
         return true;
     }
 
@@ -49,8 +51,9 @@ class locations_user_getLocationsWithinDistanceOfZIPHandler extends pnFormHandle
                 $map->setWidth($this->width);
                 $map->setHeight($this->height);
                 $map->setControlSize = 'small';
-                $search = $render->pnFormGetValues();
 
+                $search = $render->pnFormGetValues();
+                $this->distance = $search['config']['mapDistanceZip'];
                 $DefaultCity = pnModGetVar('locations', 'DefaultCity');
                 $render->assign('DefaultCity', $DefaultCity);
                 $DefaultState = pnModGetVar('locations', 'DefaultState');
