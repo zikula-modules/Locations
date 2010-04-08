@@ -370,7 +370,7 @@ function _locations_createPermalinks()
     // loop the data searching for non equal permalinks
     $perma = '';
     foreach (array_keys($data) as $locationid) {
-        $perma = strtolower(locations_createPermalink($data[$locationid]['name']));
+        $perma = DataUtil::formatPermalink($data[$locationid]['name']);
         if ($data[$locationid]['urltitle'] != $perma) {
             $data[$locationid]['urltitle'] = $perma;
         } else {

@@ -46,12 +46,3 @@ function locations_processRenderTemplate(&$render, $type, $objectType, $func, $a
     return $render->fetch($template);
 }
 
-
-/**
- * create nice permalinks
- */
-function locations_createPermalink($name) {
-    $name = str_replace(array('ä', 'ö', 'ü', 'Ä', 'Ö', 'Ü', 'ß', '.', '/'), array('ae', 'oe', 'ue', 'Ae', 'Oe', 'Ue', 'ss', '', '-'), $name);
-    $name = DataUtil::formatPermalink($name);
-    return strtolower($name);
-}

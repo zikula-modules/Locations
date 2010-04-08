@@ -187,7 +187,7 @@ class locations_admin_location_editHandler extends pnFormHandler
 
             // define the permalink title if not present
             if (!isset($locationData['urltitle']) || empty($locationData['urltitle'])) {
-                $locationData['urltitle'] = locations_createPermalink($locationData['name']);
+                $locationData['urltitle'] = DataUtil::formatPermalink($locationData['name']);
             }
 
             // usually one would use $location->getDataFromInput() to get the data, this is the way PNObject works
@@ -238,7 +238,7 @@ class locations_admin_location_editHandler extends pnFormHandler
 
             // define the permalink title if not present
             if (!isset($locationData['urltitle']) || empty($locationData['urltitle'])) {
-                $locationData['urltitle'] = locations_createPermalink($locationData['name']);
+                $locationData['urltitle'] = DataUtil::formatPermalink($locationData['name']);
             }
 
             // usually one would use $location->getDataFromInput() to get the data, this is the way PNObject works
