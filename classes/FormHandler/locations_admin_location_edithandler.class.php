@@ -84,7 +84,7 @@ class locations_admin_location_editHandler extends pnFormHandler
                 return $render->pnFormSetErrorMsg(__('Error! The location could not be found.', $dom));
             }
 
-            if (!SecurityUtil::checkPermission('locations::', '::', ACCESS_EDIT)  && !((SecurityUtil::checkPermission('locations::own', '::', ACCESS_EDIT) && (pnUserGetVar('uid') == $objectData->cr_uid)))) {
+            if (!SecurityUtil::checkPermission('locations::', '::', ACCESS_EDIT)) {
                 // set an error message and return false
                 return $render->pnFormSetErrorMsg(__('Error! You are not authorized to perform this action', $dom));
             }

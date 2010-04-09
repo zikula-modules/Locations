@@ -14,11 +14,7 @@
             <!--[/securityutil_checkpermission_block]-->
             <!--[if $func eq 'display']-->
             <!--[securityutil_checkpermission component="locations::" instance=".*" level="ACCESS_EDIT" assign="admin"]-->
-            <!--[securityutil_checkpermission component="locations::own" instance=".*" level="ACCESS_EDIT" assign="owner"]-->
-            <!--[pnusergetvar name="uid" assign="visitorID"]-->
-            <!--[if ((($visitorID == $location.cr_uid) && ($owner)) || $admin)]-->
             <a id="loc_edit" href="<!--[pnmodurl modname="locations" type="admin" func="edit" locationid=$location.locationid]-->" title="<!--[gt text="Edit"]-->"><!--[gt text="Edit"]--></a> |
-            <!--[/if]-->
             <!--[/if]-->
             <a id="loc_distance" href="<!--[pnmodurl modname="locations" type="user" func="getLocationsWithinDistanceOfZIP"]-->" title="<!--[gt text="Distance search"]-->"><!--[gt text="Distance search"]--></a>
             ]
