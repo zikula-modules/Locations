@@ -65,7 +65,7 @@ class locations_admin_location_editHandler extends pnFormHandler
         $objectType = 'location';
         // load the object class corresponding to $objectType
         if (!($class = Loader::loadClassFromModule('locations', $objectType))) {
-            pn_exit(__f('Error! Unable to load class [%s]', $objectType, $dom));
+            pn_exit(__f('Error! Unable to load class [%s].', $objectType, $dom));
         }
 
         $this->mode = 'create';
@@ -119,7 +119,7 @@ class locations_admin_location_editHandler extends pnFormHandler
         $render->assign('mode', $this->mode);
 
         if (!($class = Loader::loadClass('CategoryRegistryUtil'))) {
-            pn_exit(__f('Error! Unable to load class [%s]', 'CategoryRegistryUtil', $dom));
+            pn_exit(__f('Error! Unable to load class [%s].', 'CategoryRegistryUtil', $dom));
         }
 
         $maincat  = CategoryRegistryUtil::getRegisteredModuleCategory ('locations', 'locations_location', 'Type');
@@ -159,7 +159,7 @@ class locations_admin_location_editHandler extends pnFormHandler
         $objectType = 'location';
         // load the object class corresponding to $objectType
         if (!($class = Loader::loadClassFromModule('locations', $objectType))) {
-            pn_exit(__f('Error! Unable to load class [%s%]', $objectType, $dom));
+            pn_exit(__f('Error! Unable to load class [%s]..', $objectType, $dom));
         }
 
         // instantiate the class we just loaded

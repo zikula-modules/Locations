@@ -38,7 +38,7 @@ function smarty_function_locationsGoogleMap($params, &$render)
     }
     // load the object array class corresponding to $objectType
     if (!($class = Loader::loadArrayClassFromModule('locations', $objectType))) {
-        pn_exit(__f('Error! Unable to load class [%s%]', $objectType, $dom));
+        pn_exit(__f('Error! Unable to load class [%s]..', $objectType, $dom));
     }
     if ($params['distance'] && $params['distanceUnit']) {
         $objectArray = new $class();

@@ -74,7 +74,7 @@ function locations_admin_view($args)
     }
     // load the object array class corresponding to $objectType
     if (!($class = Loader::loadArrayClassFromModule('locations', $objectType))) {
-        pn_exit(__f('Error! Unable to load class [%s]', $objectType, $dom));
+        pn_exit(__f('Error! Unable to load class [%s].', $objectType, $dom));
     }
 
     // instantiate the object-array
@@ -84,10 +84,10 @@ function locations_admin_view($args)
         $category = FormUtil :: getPassedValue('locations_category', null);
 
         if (!($categoryclass = Loader::loadClass('CategoryUtil'))) {
-            pn_exit (__f('Error! Unable to load class [%s]', 'CategoryUtil', $dom));
+            pn_exit (__f('Error! Unable to load class [%s].', 'CategoryUtil', $dom));
         }
         if (!($categoryclass = Loader::loadClass('CategoryRegistryUtil'))) {
-            pn_exit (__f('Error! Unable to load class [%s]', 'CategoryRegistryUtil', $dom));
+            pn_exit (__f('Error! Unable to load class [%s].', 'CategoryRegistryUtil', $dom));
         }
 
         $categories = CategoryRegistryUtil :: getRegisteredModuleCategory('locations', 'locations', 'Type', '/__SYSTEM__/Modules/locations');

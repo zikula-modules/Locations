@@ -27,7 +27,7 @@ function locations_userapi_getLocationsForDropdown($args)
 
     // load the object array class corresponding to $objectType
     if (!($class = Loader::loadArrayClassFromModule('locations', 'location'))) {
-        pn_exit(__f('Error! Unable to load class [%s]', 'location', $dom));
+        pn_exit(__f('Error! Unable to load class [%s].', 'location', $dom));
     }
 
     // instantiate the object-array
@@ -63,7 +63,7 @@ function locations_userapi_getLocationByID($args)
 
     // load the object class corresponding to $objectType
     if (!($class = Loader::loadClassFromModule('locations', 'location'))) {
-        pn_exit(__f('Error! Unable to load class [%s]', 'location', $dom));
+        pn_exit(__f('Error! Unable to load class [%s].', 'location', $dom));
     }
     // intantiate object model
     $object = new $class();
