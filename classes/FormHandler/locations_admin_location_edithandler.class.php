@@ -86,7 +86,7 @@ class locations_admin_location_editHandler extends pnFormHandler
 
             if (!SecurityUtil::checkPermission('locations::', '::', ACCESS_EDIT)) {
                 // set an error message and return false
-                return $render->pnFormSetErrorMsg(__('Error! You are not authorized to perform this action', $dom));
+                return $render->pnFormSetErrorMsg(__('Error! You are not authorized to perform this action.', $dom));
             }
             // try to guarantee that only one person at a time can be editing this location
             $returnUrl = pnModUrl('locations', 'admin', 'display', array('ot' => $objectType, 'locationid' => $this->locationid));
@@ -95,7 +95,7 @@ class locations_admin_location_editHandler extends pnFormHandler
         else {
             if (!SecurityUtil::checkPermission('locations::', '::', ACCESS_ADD)) {
                 // set an error message and return false
-                return $render->pnFormSetErrorMsg(__('Error! You are not authorized to perform this action', $dom));
+                return $render->pnFormSetErrorMsg(__('Error! You are not authorized to perform this action.', $dom));
             }
             // get module vars
             $config = pnModGetVar('locations');
@@ -159,7 +159,7 @@ class locations_admin_location_editHandler extends pnFormHandler
         $objectType = 'location';
         // load the object class corresponding to $objectType
         if (!($class = Loader::loadClassFromModule('locations', $objectType))) {
-            pn_exit(__f('Error! Unable to load class [%s]..', $objectType, $dom));
+            pn_exit(__f('Error! Unable to load class [%s].', $objectType, $dom));
         }
 
         // instantiate the class we just loaded
@@ -289,7 +289,7 @@ class locations_admin_location_editHandler extends pnFormHandler
 
             // delete location
             if ($location->delete() === false) {
-                return LogUtil::registerError(__('Error! Sorry! Deletion attempt failed.', $dom));
+                return LogUtil::registerError(__('Error! Deletion attempt failed.', $dom));
             }
 
             LogUtil::registerStatus(__f('Done! Location deleted.', $dom));

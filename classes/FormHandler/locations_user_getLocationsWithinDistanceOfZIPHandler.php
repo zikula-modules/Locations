@@ -70,7 +70,7 @@ class locations_user_getLocationsWithinDistanceOfZIPHandler extends pnFormHandle
                 }
                 // load the object array class corresponding to $objectType
                 if (!($class = Loader::loadArrayClassFromModule('locations', $objectType))) {
-                    pn_exit(__f('Error! Unable to load class [%s]..', $objectType, $dom));
+                    pn_exit(__f('Error! Unable to load class [%s].', $objectType, $dom));
                 }
 
                 $objectArray = new $class();

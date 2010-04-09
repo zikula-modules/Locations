@@ -56,7 +56,7 @@ function locations_init()
 
     // create the default data for locations
     if (!locations_defaultdata()) {
-        LogUtil::registerError(__('Error! Could not set up the default module values.', $dom));
+        LogUtil::registerError(__('Error! Could not set up the default module vars.', $dom));
     }
 
     // create main category

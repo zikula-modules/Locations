@@ -81,7 +81,7 @@ function locations_userapi_getLocationByID($args)
     // while the result will be saved within the object, we assign it to a local variable for convenience
     $objectData = $object->get($id, $idField);
     if (!is_array($objectData) || !isset($objectData[$idField]) || !is_numeric($objectData[$idField])) {
-        return LogUtil::registerError(__('No such item found.', $dom));
+        return LogUtil::registerError(__('Error! No such location found.', $dom));
     }
     return $objectData;
 }

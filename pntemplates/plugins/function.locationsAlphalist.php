@@ -7,7 +7,7 @@
  * @license GNU/GPL - http://www.gnu.org/copyleft/gpl.html
  * @package Zikula_Generated_Modules
  * @subpackage locations
- * @author Steffen Voß
+ * @author Carsten Volmer
  * @url http://code.zikula.org/locations
  */
 
@@ -16,7 +16,7 @@ function smarty_function_locationsAlphalist($params, &$smarty)
     $dom = ZLanguage::getModuleDomain('locations');
 
     if (!isset($params['field'])) {
-        $smarty->trigger_error(__f('Error! in %1$s: the %2$s parameter must be specified.', array('locationsAlphalist', 'field')));
+        $smarty->trigger_error(__f('Error! In %1$s the parameter %2$s must be specified.', array('locationsAlphalist', 'field')));
     }
 
     $field = $params['field'];

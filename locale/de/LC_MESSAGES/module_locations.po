@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: locations\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-04-09 17:18+0000\n"
-"PO-Revision-Date: 2010-04-09 19:12+0100\n"
+"POT-Creation-Date: 2010-04-09 19:29+0000\n"
+"PO-Revision-Date: 2010-04-09 20:59+0100\n"
 "Last-Translator: Carsten Volmer <carsten@zikula.org>\n"
 "Language-Team: Carsten Volmer <carsten@zikula.org>\n"
 "MIME-Version: 1.0\n"
@@ -23,16 +23,19 @@ msgstr ""
 #: pnadmin.php:87
 #: pnadmin.php:90
 #: pnajax.php:12
+#: pntemplates/plugins/function.locationsGoogleMap.php:41
 #: pnuserapi.php:30
 #: pnuserapi.php:66
 #: pnuser.php:76
 #: pnuser.php:86
 #: pnuser.php:89
 #: pnuser.php:211
+#: classes/FormHandler/locations_user_getLocationsWithinDistanceOfZIPHandler.php:73
 #: classes/FormHandler/locations_admin_location_edithandler.class.php:68
 #: classes/FormHandler/locations_admin_location_edithandler.class.php:122
+#: classes/FormHandler/locations_admin_location_edithandler.class.php:162
 #, php-format
-msgid "Error! Unable to load class [%s]"
+msgid "Error! Unable to load class [%s]."
 msgstr "Fehler! Die Klasse [%s] konnte nicht geladen werden."
 
 #: pnadmin.php:246
@@ -57,8 +60,7 @@ msgid "Locations"
 msgstr "Locations"
 
 #: pnversion.php:18
-#: pninit.php:347
-msgid "Database for all kinds of locations"
+msgid "Database for all kinds of locations."
 msgstr "Datenbank für Locations aller Art."
 
 #: pnversion.php:19
@@ -71,16 +73,10 @@ msgstr "locations"
 msgid "more"
 msgstr "Mehr"
 
-#: pntemplates/plugins/function.locationsGoogleMap.php:41
-#: classes/FormHandler/locations_user_getLocationsWithinDistanceOfZIPHandler.php:73
-#: classes/FormHandler/locations_admin_location_edithandler.class.php:162
-msgid "Error! Unable to load class [%s%]"
-msgstr "Fehler! Die Klasse [%s] konnte nicht geladen werden."
-
 #: pntemplates/plugins/function.locationsAlphalist.php:19
 #, php-format
-msgid "Error! in %1$s: the %2$s parameter must be specified."
-msgstr ""
+msgid "Error! In %1$s the parameter %2$s must be specified."
+msgstr "Fehler! In %1$s ist der Parameter %2$s nicht angegeben."
 
 #: pntemplates/plugins/function.locationsAlphalist.php:24
 msgid "A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z"
@@ -93,28 +89,28 @@ msgstr "Alle"
 #: pnsearchapi.php:63
 #: pnsearchapi.php:87
 msgid "Error! Could not load items."
-msgstr ""
+msgstr "Fehler! Einträge konnten nicht geladen werden."
 
 #: pnuserapi.php:76
 msgid "Error! Invalid Id received."
-msgstr ""
+msgstr "Fehler! Ungültige ID empfangen."
 
 #: pnuserapi.php:84
 #: pnuser.php:228
-msgid "No such item found."
-msgstr ""
+msgid "Error! No such location found."
+msgstr "Fehler! Keine entsprechenden Locations gefunden."
 
 #: pncontenttypesapi/address.php:26
 msgid "Location address"
-msgstr ""
+msgstr "Adresse einer Location"
 
 #: pncontenttypesapi/address.php:30
 msgid "Address from the locations database"
-msgstr ""
+msgstr "Anzeige einer Adresse aus der Locations-Datenbank"
 
 #: pncontenttypesapi/address.php:55
 msgid "Error! No valid address selected."
-msgstr ""
+msgstr "Fehler! Keine gültige Adresse ausgewählt."
 
 #: pnadminapi.php:26
 #: pntemplates/locations_user_header.htm:11
@@ -133,55 +129,59 @@ msgid "User frontend"
 msgstr "Benutzer Frontend"
 
 #: pninit.php:59
-msgid "Error! Could not set up the default module values."
-msgstr ""
+msgid "Error! Could not set up the default module vars."
+msgstr "Fehler! Die Standardkategorien konnte leider nicht erstellt werden."
 
 #: pninit.php:64
 msgid "Error! Could not create the default categories"
-msgstr ""
+msgstr "Fehler! Die Standardkategorien konnte leider nicht erstellt werden."
+
+#: pninit.php:347
+msgid "Database for all kinds of locations"
+msgstr "Datenbank für Locations aller Art."
 
 #: classes/FormHandler/locations_admin_location_edithandler.class.php:84
 msgid "Error! The location could not be found."
-msgstr ""
+msgstr "Fehler! Die Location konnte nicht gefunden werden."
 
 #: classes/FormHandler/locations_admin_location_edithandler.class.php:89
 #: classes/FormHandler/locations_admin_location_edithandler.class.php:98
-msgid "Error! You are not authorized to perform this action"
-msgstr ""
+msgid "Error! You are not authorized to perform this action."
+msgstr "Fehler! Keine Autorisierung für die gewünschte Aktion vorhanden."
 
 #: classes/FormHandler/locations_admin_location_edithandler.class.php:203
 msgid "Error! Creation attempt failed."
-msgstr ""
+msgstr "Fehler! Die Erstellung ist fehlgeschlagen."
 
 #: classes/FormHandler/locations_admin_location_edithandler.class.php:207
 #, php-format
 msgid "Done! Created location. Latitude set to %1$s and longitude set to %2$s."
-msgstr ""
+msgstr "Erledigt! Die Location wurde erfolgreich angelegt. Ermittelter Breitengrad %1$s und Längengrad %2$s."
 
 #: classes/FormHandler/locations_admin_location_edithandler.class.php:209
 msgid "Done! Created location. But could not found latitude and longitude values."
-msgstr ""
+msgstr "Erledigt! Die Location wurde erfolgreich angelegt. Jedoch konnten Breiten- und Längengrad nicht ermittelt werden."
 
 #: classes/FormHandler/locations_admin_location_edithandler.class.php:253
 msgid "Error! Update attempt failed."
-msgstr ""
+msgstr "Fehler! Die Aktualisierung ist fehlgeschlagen."
 
 #: classes/FormHandler/locations_admin_location_edithandler.class.php:257
 #, php-format
 msgid "Done! Updated location. Latitude set to %1$s and longitude set to %2$s."
-msgstr ""
+msgstr "Erledigt! Die Location wurde erfolgreich aktualisiert. Ermittelter Breitengrad %1$s und Längengrad %2$s."
 
 #: classes/FormHandler/locations_admin_location_edithandler.class.php:259
 msgid "Done! Updated location. But could not found latitude and longitude values."
-msgstr ""
+msgstr "Erledigt! Die Location wurde erfolgreich aktualisiert. Jedoch konnten Breiten- und Längengrad nicht ermittelt werden."
 
 #: classes/FormHandler/locations_admin_location_edithandler.class.php:292
-msgid "Error! Sorry! Deletion attempt failed."
-msgstr ""
+msgid "Error! Deletion attempt failed."
+msgstr "Fehler! Die Erstellung ist fehlgeschlagen."
 
 #: classes/FormHandler/locations_admin_confighandler.class.php:45
 msgid "Done! Updated module configuration."
-msgstr ""
+msgstr "Erledigt! Die Modulkonfiguration wurde aktualisiert."
 
 #: pntemplates/locations_admin_modifyconfig.htm:3
 msgid "Modify configuration"
@@ -232,8 +232,8 @@ msgid "Map height"
 msgstr "Kartenhöhe"
 
 #: pntemplates/locations_admin_modifyconfig.htm:41
-msgid "Default distance value for the zip code search"
-msgstr ""
+msgid "Default distance value for the zip-code/city search"
+msgstr "Vorgegebene Reichweite für die PLZ/Ort Umkreissuche"
 
 #: pntemplates/locations_admin_modifyconfig.htm:44
 #: pntemplates/locations_admin_modifyconfig.htm:55
@@ -243,11 +243,11 @@ msgstr "Kilometer"
 
 #: pntemplates/locations_admin_modifyconfig.htm:48
 msgid "Zoom level for location detail view"
-msgstr ""
+msgstr "Zoomstufe der Karte für die Location Detailansicht"
 
 #: pntemplates/locations_admin_modifyconfig.htm:52
 msgid "Distance value for location detail view"
-msgstr ""
+msgstr "Reichweite der Karte für die Location Detailansicht"
 
 #: pntemplates/locations_admin_modifyconfig.htm:61
 msgid "Default location"
@@ -292,12 +292,12 @@ msgstr "Location anlegen"
 #: pntemplates/locations_user_location_view.htm:60
 #: pntemplates/locations_admin_location_view.htm:74
 msgid "Edit"
-msgstr ""
+msgstr "Bearbeiten"
 
 #: pntemplates/locations_user_header.htm:19
 #: pntemplates/locations_user_getLocationsWithinDistanceOfZIP.htm:2
 msgid "Distance search"
-msgstr ""
+msgstr "Umkreissuche"
 
 #: pntemplates/locations_user_location_view.htm:10
 #: pntemplates/locations_user_location_view.htm:40
@@ -372,12 +372,12 @@ msgstr "Suchen"
 #: pntemplates/locations_init_step2.htm:3
 #: pntemplates/locations_init_step3.htm:3
 #: pntemplates/locations_init_interactive.htm:2
-msgid "Installation of locations"
-msgstr ""
+msgid "Installation of the 'locations' module"
+msgstr "Installation des Moduls 'locations'"
 
 #: pntemplates/locations_init_step2.htm:8
 msgid "Basic Settings"
-msgstr ""
+msgstr "Basiseinstellungen"
 
 #: pntemplates/locations_init_step2.htm:28
 msgid "Actions"
@@ -385,7 +385,7 @@ msgstr "Aktionen"
 
 #: pntemplates/locations_init_step2.htm:30
 msgid "Activate locations database"
-msgstr ""
+msgstr "Locations-Datenbank aktivieren"
 
 #: pntemplates/locations_init_step2.htm:34
 #: pntemplates/locations_admin_location_view.htm:94
@@ -394,11 +394,11 @@ msgstr "Absenden"
 
 #: pntemplates/locations_init_step3.htm:4
 msgid "Last installation step"
-msgstr ""
+msgstr "Letzter Installationsschritt"
 
 #: pntemplates/locations_init_step3.htm:5
 msgid "Thank you for installing locations.<br />Click on the bottom link to finish the installation."
-msgstr ""
+msgstr "Viele Dank für die Installation von 'locations'.<br />Bitte auf den u.a. Link klicken, um die Installation abzuschließen."
 
 #: pntemplates/locations_init_step3.htm:7
 #: pntemplates/locations_init_interactive.htm:18
@@ -406,44 +406,44 @@ msgid "Continue"
 msgstr "Fortsetzen"
 
 #: pntemplates/locations_init_interactive.htm:3
-msgid "Welcome to the installation of locations"
-msgstr ""
+msgid "Welcome to the installation of the 'locations' module"
+msgstr "Willkommen bei der Installation des Moduls 'locations'"
 
 #: pntemplates/locations_init_interactive.htm:4
 msgid "Basically generated by ModuleStudio, http://modulestudio.de"
-msgstr ""
+msgstr "Ursprünglich generiert von ModuleStudio, http://modulestudio.de"
 
 #: pntemplates/locations_init_interactive.htm:5
 msgid "For example, the module contains the following functions:"
-msgstr ""
+msgstr "Das Modul verfügbt beispielsweise über folgende Funktionen:"
 
 #: pntemplates/locations_init_interactive.htm:7
 msgid "Easy management of addresses"
-msgstr ""
+msgstr "Einfache Verwaltung von Adressen"
 
 #: pntemplates/locations_init_interactive.htm:8
 msgid "Show addresses on maps"
-msgstr ""
+msgstr "Anzeige von Adressen auf einer Karte"
 
 #: pntemplates/locations_init_interactive.htm:9
 msgid "Export as vCards"
-msgstr ""
+msgstr "Als vCards exportieren"
 
 #: pntemplates/locations_init_interactive.htm:10
 msgid "Locations as KML"
-msgstr ""
+msgstr "Location als KML"
 
 #: pntemplates/locations_init_interactive.htm:13
 msgid "Locations uses the current technologies of Zikula:"
-msgstr ""
+msgstr "Locations nutzt die aktuellen Zikula-Technologien:"
 
 #: pntemplates/locations_init_interactive.htm:14
 msgid "All parts of locations are always up to state-of-the-art."
-msgstr ""
+msgstr "Alle Teile des Moduls sind permament auf den letzten Stand."
 
 #: pntemplates/locations_init_interactive.htm:15
 msgid "Functions, hooks, blocks, templates and plugins."
-msgstr ""
+msgstr "Funktionen, Hooks, Blöcke, Templates und Plugins."
 
 #: pntemplates/contenttype/address_edit.html:3
 #: pntemplates/locations_user_location_display.htm:9
@@ -500,38 +500,38 @@ msgstr "In der Umgebung"
 
 #: pntemplates/locations_user_location_display.htm:47
 msgid "Events"
-msgstr ""
+msgstr "Termine"
 
 #: pntemplates/locations_user_location_display.htm:53
 msgid "Location date"
-msgstr ""
+msgstr "Location Datum"
 
 #: pntemplates/locations_user_location_display.htm:53
 msgid "Add"
-msgstr ""
+msgstr "Hinzufügen"
 
 #: pntemplates/locations_admin_location_view.htm:36
 #: pntemplates/locations_admin_location_view.htm:38
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #: pntemplates/locations_admin_location_view.htm:89
 msgid "With selected locations"
-msgstr ""
+msgstr "Mit den ausgewählten Locations"
 
 #: pntemplates/locations_admin_location_view.htm:91
 msgid "Choose action"
-msgstr ""
+msgstr "Aktion auswählen"
 
 #: pntemplates/locations_admin_location_edit.htm:9
 #: pntemplates/locations_admin_location_edit.htm:15
 msgid "Edit location"
-msgstr ""
+msgstr "Location bearbeiten"
 
 #: pntemplates/locations_admin_location_edit.htm:12
 #: pntemplates/locations_admin_location_edit.htm:145
 msgid "Create location"
-msgstr ""
+msgstr "Location anlegen"
 
 #: pntemplates/locations_admin_location_edit.htm:37
 msgid "Content"
@@ -539,19 +539,19 @@ msgstr "Inhalt"
 
 #: pntemplates/locations_admin_location_edit.htm:48
 msgid "Input the name of the location"
-msgstr ""
+msgstr "Name der Location eingeben"
 
 #: pntemplates/locations_admin_location_edit.htm:49
 msgid "Please enter the name of the location"
-msgstr ""
+msgstr "Bitte den Namen der Location eingeben"
 
 #: pntemplates/locations_admin_location_edit.htm:52
 msgid "PermaLink URL title"
-msgstr ""
+msgstr "PermaLink URL Titel"
 
 #: pntemplates/locations_admin_location_edit.htm:54
 msgid "(Blank = auto-generate)"
-msgstr ""
+msgstr "(Leer = Automatische Erstellung)"
 
 #: pntemplates/locations_admin_location_edit.htm:57
 msgid "Street"
@@ -688,6 +688,11 @@ msgid "Zip and/or City"
 msgstr "PLZ und/oder Stadt"
 
 #: pntemplates/locations_user_getLocationsWithinDistanceOfZIP.htm:34
-msgid "Distance value for the zip code search"
-msgstr "Reichweite bei der PLZ-Suche"
+msgid "Distance value for the zip-code/city search"
+msgstr "Reichweite für die PLZ/Ort Umkreissuche"
 
+#~ msgid "Error! Unable to load class [%s].."
+#~ msgstr "Fehler! Die Klasse [%s] konnte nicht geladen werden."
+
+#~ msgid "Error! Unable to load class [%s%]"
+#~ msgstr "Fehler! Die Klasse [%s] konnte nicht geladen werden."
