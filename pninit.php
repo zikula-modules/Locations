@@ -174,8 +174,8 @@ function locations_defaultdata()
             'logo' => ''),
     array(
             'locationid' => '2',
-            'name' => 'Weltruf',
-            'urltitle' => 'Weltruf',
+            'name' => 'weltruf',
+            'urltitle' => 'weltruf',
             'street' => 'Lange Reihe 21',
             'zip' => '24103',
             'city' => 'Kiel',
