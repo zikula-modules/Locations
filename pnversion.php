@@ -34,7 +34,7 @@ $modversion['user']           = 1;
 
 // permission schema
 $modversion['securityschema'] = array('locations::'         => '::',
-                                       'locations:Location:' => 'LocationID::');
+                                      'locations:Location:' => 'LocationID::');
 
 // recommended and required modules
 $modversion['dependencies'] = array(array('modname'    => 'crpTag',
