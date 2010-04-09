@@ -19,11 +19,16 @@ class locations_contenttypesapi_addressPlugin extends contentTypeBase
 {
     var $locationid;
 
-    $dom = ZLanguage::getModuleDomain('locations');
     function getModule() {         return 'locations'; }
     function getName() {           return 'address'; }
-    function getTitle() {          return __('Location address', $dom); }
-    function getDescription() {    return __('Address from the locations database', $dom); }
+    function getTitle() {
+        $dom = ZLanguage::getModuleDomain('locations');
+        return __('Location address', $dom);
+    }
+    function getDescription() {
+        $dom = ZLanguage::getModuleDomain('locations');
+        return __('Address from the locations database', $dom);
+    }
     function isTranslatable() {    return false; }
 
     function loadData($data)

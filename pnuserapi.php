@@ -39,8 +39,9 @@ function locations_userapi_getLocationsForDropdown($args)
 
     foreach ($objectData as $key => $object) {
         $return[$key]['value'] = $object['locationid'];
-        $return[$key]['text'] = $object['name'];
+        $return[$key]['text'] = $object['name']. ', ' . $object['street']. ', ' . $object['zip']. ' ' . $object['city'];
     }
+
     return($return);
 }
 
