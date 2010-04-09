@@ -241,9 +241,12 @@ function locations_admin_delete($args)
         return $render->fetch('locations_admin_delete.htm');
     }
 
-    DBUtil::deleteObjectByID('locations_' . $objectType, $id, $objectType . 'id');
-
-    LogUtil::registerStatus(__('Done! Location deleted.', $dom));
+    if (DBUtil::deleteObjectByID('locations_' . $objectType, $id, $objectType . 'id')) {
+        pnModCallHooks('item', 'delete', $id, array ('module' => 'locations'));
+        LogUtil::registerStatus(__('Done! Location deleted.', $dom));
+    } else {
+        LogUtil::registerError(__('Error! Could not delete location.', $dom));
+    }
 
     return pnRedirect(pnModURL('locations', 'admin', 'view'));
 }
@@ -267,3 +270,37 @@ function locations_admin_modifyconfig()
     return $render->pnFormExecute('locations_admin_modifyconfig.htm', new locations_admin_configHandler());
 }
 
+
+/**
+ * This function deletes all selected locations
+ *
+ * @author       Carsten Volmer
+ * @return       Render output
+ */
+function locations_admin_deleteselected($args)
+{
+    // Confirm authorisation code.
+    if (!SecurityUtil::confirmAuthKey()) {
+        return LogUtil::registerAuthidError(pnModURL('locations', 'admin', 'view'));
+    }
+
+    $dom = ZLanguage::getModuleDomain('locations');
+
+    // Get parameters from whatever input we need.
+    $locations = isset($args['locations']) ? $args['locations'] : FormUtil::getPassedValue('locations', null, 'POST');
+    $action    = isset($args['action'])    ? $args['action']    : FormUtil::getPassedValue('action', null, 'POST');
+
+    // loop round each comment deleted them in turn
+    foreach ($locations as $location) {
+        if ($action == 'delete') {
+            if (DBUtil::deleteObjectByID('locations_location', $location, 'location' . 'id')) {
+                pnModCallHooks('item', 'delete', $location, array ('module' => 'locations'));
+                LogUtil::registerStatus(__('Done! Location deleted.', $dom));
+            } else {
+                LogUtil::registerError(__('Error! Could not delete location.', $dom));
+            }
+        }
+    }
+
+    return pnRedirect(pnModURL('locations', 'admin', 'view'));
+}

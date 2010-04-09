@@ -1,4 +1,5 @@
 <!--[* $Id$ *]-->
+<!--[pnpageaddvar name="javascript" value="modules/locations/pnjavascript/toggle.js"]-->
 <!--[gt text="View locations" assign='templatetitle']-->
 <!--[include file="locations_admin_header.htm"]-->
 
@@ -23,61 +24,78 @@
 
     <p><a id="loc_addnewitem" title="<!--[gt text="Add new location"]-->" href="<!--[pnmodurl modname="locations" type="admin" func="edit"]-->"><!--[gt text="Add new location"]--></a></p>
 
-    <table class="z-admintable">
-        <thead>
-            <tr>
-                <th>
-                    <!--[if $sort eq "locationid"]-->
-                    <a href="<!--[pnmodurl modname="locations" type="admin" func="view" sort="locationid" sdir=$sdir]-->" style="font-style: italic"><!--[gt text="ID"]--></a>
-                    <!--[else]-->
-                    <a href="<!--[pnmodurl modname="locations" type="admin" func="view" sort="locationid" sdir="asc"]-->"><!--[gt text="ID"]--></a>
-                    <!--[/if]-->
-                </th>
-                <th>
-                    <!--[if $sort eq "name"]-->
-                    <a href="<!--[pnmodurl modname="locations" type="admin" func="view" sort="name" sdir=$sdir]-->" style="font-style: italic"><!--[gt text="Name"]--></a>
-                    <!--[else]-->
-                    <a href="<!--[pnmodurl modname="locations" type="admin" func="view" sort="name" sdir="asc"]-->"><!--[gt text="Name"]--></a>
-                    <!--[/if]-->
-                </th>
-                <th>
-                    <!--[if $sort eq "city"]-->
-                    <a href="<!--[pnmodurl modname="locations" type="admin" func="view" sort="city" sdir=$sdir]-->" style="font-style: italic"><!--[gt text="City"]--></a>
-                    <!--[else]-->
-                    <a href="<!--[pnmodurl modname="locations" type="admin" func="view" sort="city" sdir="asc"]-->"><!--[gt text="City"]--></a>
-                    <!--[/if]-->
-                </th>
-                <!--[if $modvar.enablecategorization]-->
-                <th><!--[gt text="Category"]--></th>
-                <!--[/if]-->
-                <th><!--[gt text="Options"]--></th>
-            </tr>
-        </thead>
-        <tbody>
-            <!--[foreach from=$objectArray item="location"]-->
-            <tr class="<!--[cycle values="z-odd,z-even"]-->">
-                <td><!--[$location.locationid|pnvarprepfordisplay|default:""]--></td>
-                <td><!--[$location.name|pnmodcallhooks|pnvarprephtmldisplay|default:""]--></td>
-                <td><!--[$location.city|pnvarprepfordisplay|default:""]--></td>
-                <!--[if $modvar.enablecategorization]-->
-                <td><!--[assignedcategorieslist item=$location]--></td>
-                <!--[/if]-->
-                <td class="z-nowrap">
-                    <a href="<!--[pnmodurl modname="locations" type="user" func="display" locationid=$location.locationid]-->"><!--[pnimg src="demo.gif" modname="core" set="icons/extrasmall" __alt='Details'  __title='Details' ]--></a>
-                    <!--[securityutil_checkpermission_block component="locations::" instance=".*" level="ACCESS_EDIT"]-->
-                    <a href="<!--[pnmodurl modname="locations" type="admin" func="edit" locationid=$location.locationid]-->"><!--[pnimg src="xedit.gif" modname="core" set="icons/extrasmall" __alt='Edit'  __title='Edit']--></a>
-                    <!--[/securityutil_checkpermission_block]-->
-                    <!--[securityutil_checkpermission_block component="locations::" instance=".*" level="ACCESS_DELETE"]-->
-                    <a href="<!--[pnmodurl modname="locations" type="admin" func="delete" locationid=$location.locationid]-->"><!--[pnimg src="14_layer_deletelayer.gif" modname="core" set="icons/extrasmall" __alt='Delete'  __title='Delete']--></a>
-                    <!--[/securityutil_checkpermission_block]-->
-                </td>
-            </tr>
-            <!--[foreachelse]-->
-            <tr class="z-admintableempty"><td colspan="<!--[if $modvar.enablecategorization]-->5<!--[else]-->4<!--[/if]-->"><!--[gt text="No locations found."]--></td></tr>
-            <!--[/foreach]-->
-        </tbody>
-    </table>
-    <!--[pager rowcount=$pager.numitems limit=$pager.itemsperpage]-->
+    <form class="z-form" action="<!--[pnmodurl modname='locations' type='admin' func='deleteselected']-->" method="post">
+        <div>
+            <input type="hidden" name="authid" value="<!--[insert name='generateauthkey' module='locations']-->" />
+            <table id="loc_adminlist" class="z-admintable">
+                <thead>
+                    <tr>
+                        <th><input type="checkbox" id="alllocations" name="alllocations" onclick="CheckAll('locations');" /></th>
+                        <th>
+                            <!--[if $sort eq "locationid"]-->
+                            <a href="<!--[pnmodurl modname="locations" type="admin" func="view" sort="locationid" sdir=$sdir]-->" style="font-style: italic"><!--[gt text="ID"]--></a>
+                            <!--[else]-->
+                            <a href="<!--[pnmodurl modname="locations" type="admin" func="view" sort="locationid" sdir="asc"]-->"><!--[gt text="ID"]--></a>
+                            <!--[/if]-->
+                        </th>
+                        <th>
+                            <!--[if $sort eq "name"]-->
+                            <a href="<!--[pnmodurl modname="locations" type="admin" func="view" sort="name" sdir=$sdir]-->" style="font-style: italic"><!--[gt text="Name"]--></a>
+                            <!--[else]-->
+                            <a href="<!--[pnmodurl modname="locations" type="admin" func="view" sort="name" sdir="asc"]-->"><!--[gt text="Name"]--></a>
+                            <!--[/if]-->
+                        </th>
+                        <th>
+                            <!--[if $sort eq "city"]-->
+                            <a href="<!--[pnmodurl modname="locations" type="admin" func="view" sort="city" sdir=$sdir]-->" style="font-style: italic"><!--[gt text="City"]--></a>
+                            <!--[else]-->
+                            <a href="<!--[pnmodurl modname="locations" type="admin" func="view" sort="city" sdir="asc"]-->"><!--[gt text="City"]--></a>
+                            <!--[/if]-->
+                        </th>
+                        <!--[if $modvar.enablecategorization]-->
+                        <th><!--[gt text="Category"]--></th>
+                        <!--[/if]-->
+                        <th><!--[gt text="Options"]--></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!--[foreach from=$objectArray item="location"]-->
+                    <tr class="<!--[cycle values="z-odd,z-even"]-->">
+                        <td><input type="checkbox" class="locations_checkbox" name="locations[]" value="<!--[$location.locationid]-->" onclick="CheckCheckAll('locations');" /></td>
+                        <td><!--[$location.locationid|pnvarprepfordisplay|default:""]--></td>
+                        <td><!--[$location.name|pnmodcallhooks|pnvarprephtmldisplay|default:""]--></td>
+                        <td><!--[$location.city|pnvarprepfordisplay|default:""]--></td>
+                        <!--[if $modvar.enablecategorization]-->
+                        <td><!--[assignedcategorieslist item=$location]--></td>
+                        <!--[/if]-->
+                        <td class="z-nowrap">
+                            <a href="<!--[pnmodurl modname="locations" type="user" func="display" locationid=$location.locationid]-->"><!--[pnimg src="demo.gif" modname="core" set="icons/extrasmall" __alt='Details'  __title='Details' ]--></a>
+                            <!--[securityutil_checkpermission_block component="locations::" instance=".*" level="ACCESS_EDIT"]-->
+                            <a href="<!--[pnmodurl modname="locations" type="admin" func="edit" locationid=$location.locationid]-->"><!--[pnimg src="xedit.gif" modname="core" set="icons/extrasmall" __alt='Edit'  __title='Edit']--></a>
+                            <!--[/securityutil_checkpermission_block]-->
+                            <!--[securityutil_checkpermission_block component="locations::" instance=".*" level="ACCESS_DELETE"]-->
+                            <a href="<!--[pnmodurl modname="locations" type="admin" func="delete" locationid=$location.locationid]-->"><!--[pnimg src="14_layer_deletelayer.gif" modname="core" set="icons/extrasmall" __alt='Delete'  __title='Delete']--></a>
+                            <!--[/securityutil_checkpermission_block]-->
+                        </td>
+                    </tr>
+                    <!--[foreachelse]-->
+                    <tr class="z-admintableempty"><td colspan="<!--[if $modvar.enablecategorization]-->6<!--[else]-->5<!--[/if]-->"><!--[gt text="No locations found."]--></td></tr>
+                    <!--[/foreach]-->
+                </tbody>
+            </table>
+            <!--[pager rowcount=$pager.numitems limit=$pager.itemsperpage]-->
+
+            <fieldset>
+                <label for="locations_action"><!--[gt text="With selected locations"]--></label>
+                <select id="locations_action" name="action">
+                    <option value=""><!--[gt text="Choose action"]--></option>
+                    <option value="delete"><!--[gt text="Delete"]--></option>
+                </select>
+                <input type="submit" value="<!--[gt text="Submit"]-->" />
+            </fieldset>
+        </div>
+    </form>
+
 </div>
 
 <!--[include file="locations_admin_footer.htm"]-->
