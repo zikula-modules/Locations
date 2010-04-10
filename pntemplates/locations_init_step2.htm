@@ -1,30 +1,38 @@
 <!--[* $Id$ *]-->
+
 <h2><!--[gt text="Installation of the 'locations' module"]--></h2>
 <p class="z-informationmsg"><!--[gt text='For your own Google Maps API Key sign up <strong><a href="http://code.google.com/apis/maps/signup.html">here</a></strong>. Set default values for city, country and/or state if you mainly enter locations for only one area. For example if you mainly have locations in New York you enter "New York" into the city field.']--></p>
-<form class="z-form" action="<!--[pnmodurl modname="locations" type="init" func="interactiveinitstep2"]-->"
-method="post" enctype="application/x-www-form-urlencoded">
-<div>
-<fieldset><legend><!--[gt text="Basic Settings"]--></legend>
-<input type="hidden" name="authid" value="<!--[$authid]-->" />
-<div class="z-formrow"><label for="locations_GoogleMapsAPIKey"><!--[gt text="Google Maps API Key"]--></label>
-<input id="locations_GoogleMapsAPIKey" type="text"
-	name="GoogleMapsAPIKey" value="" size="40" /></div>
-<div class="z-formrow"><label for="locations_DefaultCity"><!--[gt text="Default City"]--></label>
-<input id="locations_DefaultCity" type="text" name="DefaultCity"
-	value="" size="40" /></div>
-<div class="z-formrow"><label for="locations_DefaultState"><!--[gt text="Default State"]--></label>
-<input id="locations_DefaultState" type="text" name="DefaultState"
-	value="" size="40" /></div>
-<div class="z-formrow"><label for="locations_DefaultCountry"><!--[gt text="Default Country"]--></label>
-<input id="locations_DefaultCountry" type="text" name="DefaultCountry"
-	value="" size="40" /></div>
-</fieldset>
-<fieldset><legend><!--[gt text="Actions"]--></legend>
-<div class="z-formrow"><label for="locations_activate"><!--[gt text="Activate locations database"]--></label>
-<input id="locations_activate" name="activate" type="checkbox" value="1"
-	checked="checked" /></div>
-<div class="z-formbuttons"><input name="submit" type="submit"
-	value="<!--[gt text="Submit"]-->" /></div>
-</fieldset>
-</div>
+<form class="z-form" action="<!--[pnmodurl modname="locations" type="init" func="interactiveinitstep2"]-->" method="post" enctype="application/x-www-form-urlencoded">
+    <div>
+        <fieldset>
+            <legend><!--[gt text="Basic Settings"]--></legend>
+            <input type="hidden" name="authid" value="<!--[$authid]-->" />
+            <div class="z-formrow">
+                <label for="locations_GoogleMapsAPIKey"><!--[gt text="Google Maps API Key"]--></label>
+                <input id="locations_GoogleMapsAPIKey" type="text" name="GoogleMapsAPIKey" value="" size="40" />
+            </div>
+            <div class="z-formrow">
+                <label for="locations_DefaultCity"><!--[gt text="Default City"]--></label>
+                <input id="locations_DefaultCity" type="text" name="DefaultCity" value="" size="40" />
+            </div>
+            <div class="z-formrow">
+                <label for="locations_DefaultState"><!--[gt text="Default State"]--></label>
+                <input id="locations_DefaultState" type="text" name="DefaultState" value="" size="40" />
+            </div>
+            <div class="z-formrow">
+                <label for="locations_DefaultCountry"><!--[gt text="Default Country"]--></label>
+                <input id="locations_DefaultCountry" type="text" name="DefaultCountry" value="" size="40" />
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend><!--[gt text="Actions"]--></legend>
+            <div class="z-formrow">
+                <label for="locations_activate"><!--[gt text="Activate locations database"]--></label>
+                <input id="locations_activate" name="activate" type="checkbox" value="1" checked="checked" />
+            </div>
+            <div class="z-formbuttons">
+                <input name="submit" type="submit" value="<!--[gt text="Submit"]-->" />
+            </div>
+        </fieldset>
+    </div>
 </form>
