@@ -13,6 +13,8 @@
 
 function smarty_function_locationsGoogleMapsOverview($params, &$render)
 {
+    $dom = ZLanguage::getModuleDomain('locations');
+
     $key = $params['key'];
     Loader::loadClass('locationsGMaps','modules/locations/classes/');
     $map = new locationsGMaps();
@@ -27,7 +29,7 @@ function smarty_function_locationsGoogleMapsOverview($params, &$render)
     foreach($params['input'] as $location) {
         $latlng     = explode(',', $location['latlng']);
         if ($latlng[0] && $latlng[1]) {
-            $html       = '<p><strong>'.$location['name'].'</strong></p><p>'.$location['street'].'<br />'.$location['zip'].' '.$location['city'].' <a href=\''. pnModUrl('locations', 'user', 'display', array('locationid' => $location['locationid'])).'\'>'.__('more', $dom).'</a></p>';
+            $html       = '<p><strong>'.$location['name'].'</strong></p><p>'.$location['street'].'<br />'.$location['zip'].' '.$location['city'].' <em><a href=\''. pnModUrl('locations', 'user', 'display', array('locationid' => $location['locationid'])).'\'>('.__('more', $dom).')</a></em></p>';
             $map->addMarkerByCoords($latlng[1], $latlng[0], $location['name'], $html);
         }
     }

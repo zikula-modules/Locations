@@ -204,9 +204,9 @@ class locations_admin_location_editHandler extends pnFormHandler
             }
 
             if ($latlng === true) {
-                LogUtil::registerStatus(__f('Done! Created location. Latitude set to %1$s and longitude set to %2$s.', array($geocode['lat'], $geocode['lon']), $dom));
+                LogUtil::registerStatus(__('Done! Created location.', $dom) . ' ' . __f('Latitude set to %1$s and longitude set to %2$s.', array($geocode['lat'], $geocode['lon']), $dom));
             } else {
-                LogUtil::registerStatus(__('Done! Created location. But could not found latitude and longitude values.', $dom));
+                LogUtil::registerStatus(__('Done! Created location.', $dom) . ' ' . __('But could not found latitude and longitude values.', $dom));
             }
 
             // redirect to the detail page of the newly created location
@@ -254,9 +254,9 @@ class locations_admin_location_editHandler extends pnFormHandler
             }
 
             if ($latlng === true) {
-                LogUtil::registerStatus(__f('Done! Updated location. Latitude set to %1$s and longitude set to %2$s.', array($geocode['lat'], $geocode['lon']), $dom));
+                LogUtil::registerStatus(__('Done! Updated location.', $dom) . ' ' . __f('Latitude set to %1$s and longitude set to %2$s.', array($geocode['lat'], $geocode['lon']), $dom));
             } else {
-                LogUtil::registerStatus(__('Done! Updated location. But could not found latitude and longitude values.', $dom));
+                LogUtil::registerStatus(__('Done! Updated location.', $dom) . ' ' . __('But could not found latitude and longitude values.', $dom));
             }
 
             // redirect to the detail page of the treated location

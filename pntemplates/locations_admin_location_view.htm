@@ -13,8 +13,7 @@
             <fieldset>
                 <div>
                     <label for="locations_category"><!--[gt text="Category"]--></label>
-                    <!--[pnml assign="lblDef" name="All"]-->
-                    <!--[selector_category category=$categories name="locations_category" selectedValue=$selectedCat defaultValue="0" defaultText="$lblDef"]-->
+                    <!--[selector_category category=$categories name="locations_category" selectedValue=$selectedCat defaultValue="0" __defaultText="All"]-->
                     <input type="submit" name="searchcat" value="<!--[gt text='Go']-->" />
                 </div>
             </fieldset>
@@ -69,7 +68,7 @@
                         <td><!--[assignedcategorieslist item=$location]--></td>
                         <!--[/if]-->
                         <td class="z-nowrap">
-                            <a href="<!--[pnmodurl modname="locations" type="user" func="display" locationid=$location.locationid]-->"><!--[pnimg src="demo.gif" modname="core" set="icons/extrasmall" __alt='Details'  __title='Details' ]--></a>
+                            <a href="<!--[pnmodurl modname="locations" type="user" func="display" locationid=$location.locationid]-->"><!--[pnimg src="demo.gif" modname="core" set="icons/extrasmall" __alt='View'  __title='View' ]--></a>
                             <!--[securityutil_checkpermission_block component="locations::" instance=".*" level="ACCESS_EDIT"]-->
                             <a href="<!--[pnmodurl modname="locations" type="admin" func="edit" locationid=$location.locationid]-->"><!--[pnimg src="xedit.gif" modname="core" set="icons/extrasmall" __alt='Edit'  __title='Edit']--></a>
                             <!--[/securityutil_checkpermission_block]-->
@@ -86,7 +85,7 @@
             <!--[pager rowcount=$pager.numitems limit=$pager.itemsperpage]-->
 
             <fieldset>
-                <label for="locations_action"><!--[gt text="With selected locations"]--></label>
+                <label for="locations_action"><!--[gt text="Selected locations"]--></label>
                 <select id="locations_action" name="action">
                     <option value=""><!--[gt text="Choose action"]--></option>
                     <option value="delete"><!--[gt text="Delete"]--></option>

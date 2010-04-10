@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zikula 1.2.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-04-09 19:29+0000\n"
+"POT-Creation-Date: 2010-04-10 00:27+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -52,7 +52,7 @@ msgstr ""
 msgid "locations"
 msgstr ""
 
-#: pntemplates/plugins/function.locationsGoogleMapsOverview.php:30
+#: pntemplates/plugins/function.locationsGoogleMapsOverview.php:32
 #: pntemplates/plugins/function.locationsGoogleMap.php:57
 #: classes/FormHandler/locations_user_getLocationsWithinDistanceOfZIPHandler.php:82
 msgid "more"
@@ -68,6 +68,8 @@ msgid "A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z"
 msgstr ""
 
 #: pntemplates/plugins/function.locationsAlphalist.php:31
+#: pntemplates/locations_user_location_view.htm:11
+#: pntemplates/locations_admin_location_view.htm:16
 msgid "All"
 msgstr ""
 
@@ -135,13 +137,19 @@ msgid "Error! Creation attempt failed."
 msgstr ""
 
 #: classes/FormHandler/locations_admin_location_edithandler.class.php:207
+#: classes/FormHandler/locations_admin_location_edithandler.class.php:209
+msgid "Done! Created location."
+msgstr ""
+
+#: classes/FormHandler/locations_admin_location_edithandler.class.php:207
+#: classes/FormHandler/locations_admin_location_edithandler.class.php:257
 #, php-format
-msgid "Done! Created location. Latitude set to %1$s and longitude set to %2$s."
+msgid "Latitude set to %1$s and longitude set to %2$s."
 msgstr ""
 
 #: classes/FormHandler/locations_admin_location_edithandler.class.php:209
-msgid ""
-"Done! Created location. But could not found latitude and longitude values."
+#: classes/FormHandler/locations_admin_location_edithandler.class.php:259
+msgid "But could not found latitude and longitude values."
 msgstr ""
 
 #: classes/FormHandler/locations_admin_location_edithandler.class.php:253
@@ -149,13 +157,8 @@ msgid "Error! Update attempt failed."
 msgstr ""
 
 #: classes/FormHandler/locations_admin_location_edithandler.class.php:257
-#, php-format
-msgid "Done! Updated location. Latitude set to %1$s and longitude set to %2$s."
-msgstr ""
-
 #: classes/FormHandler/locations_admin_location_edithandler.class.php:259
-msgid ""
-"Done! Updated location. But could not found latitude and longitude values."
+msgid "Done! Updated location."
 msgstr ""
 
 #: classes/FormHandler/locations_admin_location_edithandler.class.php:292
@@ -220,7 +223,7 @@ msgid "Map height"
 msgstr ""
 
 #: pntemplates/locations_admin_modifyconfig.htm:41
-msgid "Default distance value for the zip-code/city search"
+msgid "Default distance value for the zip code/city search"
 msgstr ""
 
 #: pntemplates/locations_admin_modifyconfig.htm:44
@@ -230,15 +233,15 @@ msgid "kilometres"
 msgstr ""
 
 #: pntemplates/locations_admin_modifyconfig.htm:48
-msgid "Zoom level for location detail view"
+msgid "Zoom level for detail view"
 msgstr ""
 
 #: pntemplates/locations_admin_modifyconfig.htm:52
-msgid "Distance value for location detail view"
+msgid "Distance value for detail view"
 msgstr ""
 
 #: pntemplates/locations_admin_modifyconfig.htm:61
-msgid "Default location"
+msgid "Defaults"
 msgstr ""
 
 #: pntemplates/locations_admin_modifyconfig.htm:63
@@ -272,13 +275,13 @@ msgid "Locations database"
 msgstr ""
 
 #: pntemplates/locations_user_header.htm:13
-#: pntemplates/locations_admin_location_view.htm:25
+#: pntemplates/locations_admin_location_view.htm:24
 msgid "Add new location"
 msgstr ""
 
 #: pntemplates/locations_user_header.htm:17
-#: pntemplates/locations_user_location_view.htm:60
-#: pntemplates/locations_admin_location_view.htm:74
+#: pntemplates/locations_user_location_view.htm:59
+#: pntemplates/locations_admin_location_view.htm:73
 msgid "Edit"
 msgstr ""
 
@@ -288,71 +291,72 @@ msgid "Distance search"
 msgstr ""
 
 #: pntemplates/locations_user_location_view.htm:10
-#: pntemplates/locations_user_location_view.htm:40
+#: pntemplates/locations_user_location_view.htm:39
 #: pntemplates/locations_admin_location_view.htm:15
-#: pntemplates/locations_admin_location_view.htm:56
+#: pntemplates/locations_admin_location_view.htm:55
 #: pntemplates/locations_admin_location_edit.htm:40
 msgid "Category"
 msgstr ""
 
-#: pntemplates/locations_user_location_view.htm:13
-#: pntemplates/locations_admin_location_view.htm:18
+#: pntemplates/locations_user_location_view.htm:12
+#: pntemplates/locations_admin_location_view.htm:17
 msgid "Go"
 msgstr ""
 
-#: pntemplates/locations_user_location_view.htm:27
-#: pntemplates/locations_user_location_view.htm:29
-#: pntemplates/locations_admin_location_view.htm:43
-#: pntemplates/locations_admin_location_view.htm:45
+#: pntemplates/locations_user_location_view.htm:26
+#: pntemplates/locations_user_location_view.htm:28
+#: pntemplates/locations_admin_location_view.htm:42
+#: pntemplates/locations_admin_location_view.htm:44
 #: pntemplates/locations_admin_location_edit.htm:47
 msgid "Name"
 msgstr ""
 
-#: pntemplates/locations_user_location_view.htm:34
-#: pntemplates/locations_user_location_view.htm:36
-#: pntemplates/locations_admin_location_view.htm:50
-#: pntemplates/locations_admin_location_view.htm:52
+#: pntemplates/locations_user_location_view.htm:33
+#: pntemplates/locations_user_location_view.htm:35
+#: pntemplates/locations_admin_location_view.htm:49
+#: pntemplates/locations_admin_location_view.htm:51
 #: pntemplates/locations_admin_location_edit.htm:73
 msgid "City"
 msgstr ""
 
-#: pntemplates/locations_user_location_view.htm:42
-#: pntemplates/locations_admin_location_view.htm:58
+#: pntemplates/locations_user_location_view.htm:41
+#: pntemplates/locations_admin_location_view.htm:57
 msgid "Options"
 msgstr ""
 
-#: pntemplates/locations_user_location_view.htm:58
-#: pntemplates/locations_admin_location_view.htm:72
-msgid "Details"
+#: pntemplates/locations_user_location_view.htm:57
+#: pntemplates/locations_admin_location_view.htm:71
+msgid "View"
 msgstr ""
 
-#: pntemplates/locations_user_location_view.htm:63
+#: pntemplates/locations_user_location_view.htm:62
 #: pntemplates/locations_admin_delete.htm:15
-#: pntemplates/locations_admin_location_view.htm:77
-#: pntemplates/locations_admin_location_view.htm:92
+#: pntemplates/locations_admin_location_view.htm:76
+#: pntemplates/locations_admin_location_view.htm:91
 msgid "Delete"
 msgstr ""
 
-#: pntemplates/locations_user_location_view.htm:68
-#: pntemplates/locations_admin_location_view.htm:82
+#: pntemplates/locations_user_location_view.htm:67
+#: pntemplates/locations_admin_location_view.htm:81
 msgid "No locations found."
 msgstr ""
 
-#: pntemplates/locations_user_location_view.htm:74
+#: pntemplates/locations_user_location_view.htm:73
 msgid "Show all locations"
 msgstr ""
 
-#: pntemplates/locations_user_location_view.htm:82
+#: pntemplates/locations_user_location_view.htm:81
 #: pntemplates/locations_user_location_display.htm:27
 #: pntemplates/locations_user_location_short_display.htm:31
 msgid "Map"
 msgstr ""
 
-#: pntemplates/locations_user_location_view.htm:92
-msgid "Search name"
+#: pntemplates/locations_user_location_view.htm:91
+msgid "Search for location name"
 msgstr ""
 
-#: pntemplates/locations_user_location_view.htm:95
+#: pntemplates/locations_user_location_view.htm:94
+#: pntemplates/locations_user_getLocationsWithinDistanceOfZIP.htm:28
 #: pntemplates/locations_user_getLocationsWithinDistanceOfZIP.htm:42
 msgid "Search"
 msgstr ""
@@ -376,7 +380,7 @@ msgid "Activate locations database"
 msgstr ""
 
 #: pntemplates/locations_init_step2.htm:34
-#: pntemplates/locations_admin_location_view.htm:94
+#: pntemplates/locations_admin_location_view.htm:93
 msgid "Submit"
 msgstr ""
 
@@ -500,16 +504,16 @@ msgstr ""
 msgid "Add"
 msgstr ""
 
-#: pntemplates/locations_admin_location_view.htm:36
-#: pntemplates/locations_admin_location_view.htm:38
+#: pntemplates/locations_admin_location_view.htm:35
+#: pntemplates/locations_admin_location_view.htm:37
 msgid "ID"
 msgstr ""
 
-#: pntemplates/locations_admin_location_view.htm:89
-msgid "With selected locations"
+#: pntemplates/locations_admin_location_view.htm:88
+msgid "Selected locations"
 msgstr ""
 
-#: pntemplates/locations_admin_location_view.htm:91
+#: pntemplates/locations_admin_location_view.htm:90
 msgid "Choose action"
 msgstr ""
 
@@ -669,14 +673,10 @@ msgstr ""
 msgid "Sorry, no locations found near this zip code/city"
 msgstr ""
 
-#: pntemplates/locations_user_getLocationsWithinDistanceOfZIP.htm:28
-msgid "Search terms"
-msgstr ""
-
 #: pntemplates/locations_user_getLocationsWithinDistanceOfZIP.htm:30
-msgid "Zip and/or City"
+msgid "Zip code and/or city"
 msgstr ""
 
 #: pntemplates/locations_user_getLocationsWithinDistanceOfZIP.htm:34
-msgid "Distance value for the zip-code/city search"
+msgid "Distance"
 msgstr ""

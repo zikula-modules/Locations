@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: locations\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-04-09 19:29+0000\n"
-"PO-Revision-Date: 2010-04-09 20:59+0100\n"
+"POT-Creation-Date: 2010-04-10 00:27+0000\n"
+"PO-Revision-Date: 2010-04-10 01:59+0100\n"
 "Last-Translator: Carsten Volmer <carsten@zikula.org>\n"
 "Language-Team: Carsten Volmer <carsten@zikula.org>\n"
 "MIME-Version: 1.0\n"
@@ -67,7 +67,7 @@ msgstr "Datenbank für Locations aller Art."
 msgid "locations"
 msgstr "locations"
 
-#: pntemplates/plugins/function.locationsGoogleMapsOverview.php:30
+#: pntemplates/plugins/function.locationsGoogleMapsOverview.php:32
 #: pntemplates/plugins/function.locationsGoogleMap.php:57
 #: classes/FormHandler/locations_user_getLocationsWithinDistanceOfZIPHandler.php:82
 msgid "more"
@@ -83,6 +83,8 @@ msgid "A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z"
 msgstr "A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z"
 
 #: pntemplates/plugins/function.locationsAlphalist.php:31
+#: pntemplates/locations_user_location_view.htm:11
+#: pntemplates/locations_admin_location_view.htm:16
 msgid "All"
 msgstr "Alle"
 
@@ -154,26 +156,29 @@ msgid "Error! Creation attempt failed."
 msgstr "Fehler! Die Erstellung ist fehlgeschlagen."
 
 #: classes/FormHandler/locations_admin_location_edithandler.class.php:207
+#: classes/FormHandler/locations_admin_location_edithandler.class.php:209
+msgid "Done! Created location."
+msgstr "Erledigt! Die Location wurde angelegt."
+
+#: classes/FormHandler/locations_admin_location_edithandler.class.php:207
+#: classes/FormHandler/locations_admin_location_edithandler.class.php:257
 #, php-format
-msgid "Done! Created location. Latitude set to %1$s and longitude set to %2$s."
-msgstr "Erledigt! Die Location wurde erfolgreich angelegt. Ermittelter Breitengrad %1$s und Längengrad %2$s."
+msgid "Latitude set to %1$s and longitude set to %2$s."
+msgstr "Ermittelter Breitengrad %1$s und Längengrad %2$s."
 
 #: classes/FormHandler/locations_admin_location_edithandler.class.php:209
-msgid "Done! Created location. But could not found latitude and longitude values."
-msgstr "Erledigt! Die Location wurde erfolgreich angelegt. Jedoch konnten Breiten- und Längengrad nicht ermittelt werden."
+#: classes/FormHandler/locations_admin_location_edithandler.class.php:259
+msgid "But could not found latitude and longitude values."
+msgstr "Jedoch konnten Breiten- und Längengrad nicht ermittelt werden."
 
 #: classes/FormHandler/locations_admin_location_edithandler.class.php:253
 msgid "Error! Update attempt failed."
 msgstr "Fehler! Die Aktualisierung ist fehlgeschlagen."
 
 #: classes/FormHandler/locations_admin_location_edithandler.class.php:257
-#, php-format
-msgid "Done! Updated location. Latitude set to %1$s and longitude set to %2$s."
-msgstr "Erledigt! Die Location wurde erfolgreich aktualisiert. Ermittelter Breitengrad %1$s und Längengrad %2$s."
-
 #: classes/FormHandler/locations_admin_location_edithandler.class.php:259
-msgid "Done! Updated location. But could not found latitude and longitude values."
-msgstr "Erledigt! Die Location wurde erfolgreich aktualisiert. Jedoch konnten Breiten- und Längengrad nicht ermittelt werden."
+msgid "Done! Updated location."
+msgstr "Erledigt! Die Location wurde aktualisiert."
 
 #: classes/FormHandler/locations_admin_location_edithandler.class.php:292
 msgid "Error! Deletion attempt failed."
@@ -190,7 +195,7 @@ msgstr "Konfiguration modifizieren"
 #: pntemplates/locations_admin_modifyconfig.htm:8
 #: pntemplates/locations_init_step2.htm:4
 msgid "For your own Google Maps API Key sign up <strong><a href=\"http://code.google.com/apis/maps/signup.html\">here</a></strong>. Set default values for city, country and/or state if you mainly enter locations for only one area. For example if you mainly have locations in New York you enter \"New York\" into the city field."
-msgstr "Einen eigenen Google Maps API Key gibt es <strong><a href=\"http://code.google.com/apis/maps/signup.html\">hier</a></strong>.<br />Außerdem kannst Du Standardwerte für Stadt, Bundesland und oder Land vorgeben. Wenn Du also vor allem Locations in Kiel verwaltest kannst Du in das Stadt Feld \"Kiel\" eingeben. Das wird dann immer der Vorgabewert sein."
+msgstr "Einen eigenen Google Maps API Key gibt es <strong><a href=\"http://code.google.com/apis/maps/signup.html\">hier</a></strong>. Außerdem können die Vorgabewerte für Stadt, Bundesland und oder Land vorgeben werden. Wenn also vor allem Locations in Kiel verwaltet werden, dann könnte hier im Feld Stadt \"Kiel\" eingeben werden. Dies wird dann immer der Vorgabewert sein."
 
 #: pntemplates/locations_admin_modifyconfig.htm:13
 msgid "General settings"
@@ -232,7 +237,7 @@ msgid "Map height"
 msgstr "Kartenhöhe"
 
 #: pntemplates/locations_admin_modifyconfig.htm:41
-msgid "Default distance value for the zip-code/city search"
+msgid "Default distance value for the zip code/city search"
 msgstr "Vorgegebene Reichweite für die PLZ/Ort Umkreissuche"
 
 #: pntemplates/locations_admin_modifyconfig.htm:44
@@ -242,31 +247,31 @@ msgid "kilometres"
 msgstr "Kilometer"
 
 #: pntemplates/locations_admin_modifyconfig.htm:48
-msgid "Zoom level for location detail view"
-msgstr "Zoomstufe der Karte für die Location Detailansicht"
+msgid "Zoom level for detail view"
+msgstr "Zoomstufe der Karte für die Detailansicht"
 
 #: pntemplates/locations_admin_modifyconfig.htm:52
-msgid "Distance value for location detail view"
-msgstr "Reichweite der Karte für die Location Detailansicht"
+msgid "Distance value for detail view"
+msgstr "Reichweite der Karte für die Detailansicht"
 
 #: pntemplates/locations_admin_modifyconfig.htm:61
-msgid "Default location"
-msgstr "Standard Location"
+msgid "Defaults"
+msgstr "Vorgaben"
 
 #: pntemplates/locations_admin_modifyconfig.htm:63
 #: pntemplates/locations_init_step2.htm:15
 msgid "Default City"
-msgstr "Standard Stadt"
+msgstr "Vorgabe Stadt"
 
 #: pntemplates/locations_admin_modifyconfig.htm:67
 #: pntemplates/locations_init_step2.htm:19
 msgid "Default State"
-msgstr "Standard Staat"
+msgstr "Vorgabe Bundesland"
 
 #: pntemplates/locations_admin_modifyconfig.htm:71
 #: pntemplates/locations_init_step2.htm:23
 msgid "Default Country"
-msgstr "Standard Land"
+msgstr "Vorgabe Land"
 
 #: pntemplates/locations_admin_modifyconfig.htm:78
 msgid "Update configuration"
@@ -284,13 +289,13 @@ msgid "Locations database"
 msgstr "Locations-Datenbank"
 
 #: pntemplates/locations_user_header.htm:13
-#: pntemplates/locations_admin_location_view.htm:25
+#: pntemplates/locations_admin_location_view.htm:24
 msgid "Add new location"
 msgstr "Location anlegen"
 
 #: pntemplates/locations_user_header.htm:17
-#: pntemplates/locations_user_location_view.htm:60
-#: pntemplates/locations_admin_location_view.htm:74
+#: pntemplates/locations_user_location_view.htm:59
+#: pntemplates/locations_admin_location_view.htm:73
 msgid "Edit"
 msgstr "Bearbeiten"
 
@@ -300,71 +305,72 @@ msgid "Distance search"
 msgstr "Umkreissuche"
 
 #: pntemplates/locations_user_location_view.htm:10
-#: pntemplates/locations_user_location_view.htm:40
+#: pntemplates/locations_user_location_view.htm:39
 #: pntemplates/locations_admin_location_view.htm:15
-#: pntemplates/locations_admin_location_view.htm:56
+#: pntemplates/locations_admin_location_view.htm:55
 #: pntemplates/locations_admin_location_edit.htm:40
 msgid "Category"
 msgstr "Kategorie"
 
-#: pntemplates/locations_user_location_view.htm:13
-#: pntemplates/locations_admin_location_view.htm:18
+#: pntemplates/locations_user_location_view.htm:12
+#: pntemplates/locations_admin_location_view.htm:17
 msgid "Go"
 msgstr "Los"
 
-#: pntemplates/locations_user_location_view.htm:27
-#: pntemplates/locations_user_location_view.htm:29
-#: pntemplates/locations_admin_location_view.htm:43
-#: pntemplates/locations_admin_location_view.htm:45
+#: pntemplates/locations_user_location_view.htm:26
+#: pntemplates/locations_user_location_view.htm:28
+#: pntemplates/locations_admin_location_view.htm:42
+#: pntemplates/locations_admin_location_view.htm:44
 #: pntemplates/locations_admin_location_edit.htm:47
 msgid "Name"
 msgstr "Name"
 
-#: pntemplates/locations_user_location_view.htm:34
-#: pntemplates/locations_user_location_view.htm:36
-#: pntemplates/locations_admin_location_view.htm:50
-#: pntemplates/locations_admin_location_view.htm:52
+#: pntemplates/locations_user_location_view.htm:33
+#: pntemplates/locations_user_location_view.htm:35
+#: pntemplates/locations_admin_location_view.htm:49
+#: pntemplates/locations_admin_location_view.htm:51
 #: pntemplates/locations_admin_location_edit.htm:73
 msgid "City"
 msgstr "Stadt"
 
-#: pntemplates/locations_user_location_view.htm:42
-#: pntemplates/locations_admin_location_view.htm:58
+#: pntemplates/locations_user_location_view.htm:41
+#: pntemplates/locations_admin_location_view.htm:57
 msgid "Options"
 msgstr "Optionen"
 
-#: pntemplates/locations_user_location_view.htm:58
-#: pntemplates/locations_admin_location_view.htm:72
-msgid "Details"
-msgstr "Details"
+#: pntemplates/locations_user_location_view.htm:57
+#: pntemplates/locations_admin_location_view.htm:71
+msgid "View"
+msgstr "Anzeigen"
 
-#: pntemplates/locations_user_location_view.htm:63
+#: pntemplates/locations_user_location_view.htm:62
 #: pntemplates/locations_admin_delete.htm:15
-#: pntemplates/locations_admin_location_view.htm:77
-#: pntemplates/locations_admin_location_view.htm:92
+#: pntemplates/locations_admin_location_view.htm:76
+#: pntemplates/locations_admin_location_view.htm:91
 msgid "Delete"
 msgstr "Löschen"
 
-#: pntemplates/locations_user_location_view.htm:68
-#: pntemplates/locations_admin_location_view.htm:82
+#: pntemplates/locations_user_location_view.htm:67
+#: pntemplates/locations_admin_location_view.htm:81
 msgid "No locations found."
 msgstr "Keine Locations gefunden."
 
-#: pntemplates/locations_user_location_view.htm:74
+#: pntemplates/locations_user_location_view.htm:73
 msgid "Show all locations"
 msgstr "Alle Locations anzeigen"
 
-#: pntemplates/locations_user_location_view.htm:82
+#: pntemplates/locations_user_location_view.htm:81
 #: pntemplates/locations_user_location_display.htm:27
 #: pntemplates/locations_user_location_short_display.htm:31
 msgid "Map"
 msgstr "Karte"
 
-#: pntemplates/locations_user_location_view.htm:92
-msgid "Search name"
-msgstr "Suchbegriff"
+#: pntemplates/locations_user_location_view.htm:91
+msgid "Search for location name"
+msgstr "Nach Location-Namen suchen"
 
-#: pntemplates/locations_user_location_view.htm:95
+#: pntemplates/locations_user_location_view.htm:94
+#: pntemplates/locations_user_getLocationsWithinDistanceOfZIP.htm:28
 #: pntemplates/locations_user_getLocationsWithinDistanceOfZIP.htm:42
 msgid "Search"
 msgstr "Suchen"
@@ -385,10 +391,10 @@ msgstr "Aktionen"
 
 #: pntemplates/locations_init_step2.htm:30
 msgid "Activate locations database"
-msgstr "Locations-Datenbank aktivieren"
+msgstr "Locations-Modul aktivieren"
 
 #: pntemplates/locations_init_step2.htm:34
-#: pntemplates/locations_admin_location_view.htm:94
+#: pntemplates/locations_admin_location_view.htm:93
 msgid "Submit"
 msgstr "Absenden"
 
@@ -398,7 +404,7 @@ msgstr "Letzter Installationsschritt"
 
 #: pntemplates/locations_init_step3.htm:5
 msgid "Thank you for installing locations.<br />Click on the bottom link to finish the installation."
-msgstr "Viele Dank für die Installation von 'locations'.<br />Bitte auf den u.a. Link klicken, um die Installation abzuschließen."
+msgstr "Viele Dank für die Installation von 'locations'.<br />Bitte auf den folgenden Link klicken, um die Installation abzuschließen."
 
 #: pntemplates/locations_init_step3.htm:7
 #: pntemplates/locations_init_interactive.htm:18
@@ -510,16 +516,16 @@ msgstr "Location Datum"
 msgid "Add"
 msgstr "Hinzufügen"
 
-#: pntemplates/locations_admin_location_view.htm:36
-#: pntemplates/locations_admin_location_view.htm:38
+#: pntemplates/locations_admin_location_view.htm:35
+#: pntemplates/locations_admin_location_view.htm:37
 msgid "ID"
 msgstr "ID"
 
-#: pntemplates/locations_admin_location_view.htm:89
-msgid "With selected locations"
-msgstr "Mit den ausgewählten Locations"
+#: pntemplates/locations_admin_location_view.htm:88
+msgid "Selected locations"
+msgstr "Ausgewählte Locations"
 
-#: pntemplates/locations_admin_location_view.htm:91
+#: pntemplates/locations_admin_location_view.htm:90
 msgid "Choose action"
 msgstr "Aktion auswählen"
 
@@ -600,11 +606,11 @@ msgstr "Land der Location eingeben"
 
 #: pntemplates/locations_admin_location_edit.htm:101
 msgid "State"
-msgstr "Staat"
+msgstr "Bundesland"
 
 #: pntemplates/locations_admin_location_edit.htm:102
 msgid "Input the state of the location"
-msgstr "Staat für die Location eingeben"
+msgstr "Bundesland für die Location eingeben"
 
 #: pntemplates/locations_admin_location_edit.htm:105
 msgid "Description"
@@ -679,17 +685,40 @@ msgstr "Suchergebnisse"
 msgid "Sorry, no locations found near this zip code/city"
 msgstr "Leider konnten keine Locations in der Umgebung der PLZ bzw. des Ortes gefunden werden"
 
-#: pntemplates/locations_user_getLocationsWithinDistanceOfZIP.htm:28
-msgid "Search terms"
-msgstr "Suchbegriffe"
-
 #: pntemplates/locations_user_getLocationsWithinDistanceOfZIP.htm:30
-msgid "Zip and/or City"
+msgid "Zip code and/or city"
 msgstr "PLZ und/oder Stadt"
 
 #: pntemplates/locations_user_getLocationsWithinDistanceOfZIP.htm:34
-msgid "Distance value for the zip-code/city search"
-msgstr "Reichweite für die PLZ/Ort Umkreissuche"
+msgid "Distance"
+msgstr "Umkreis"
+
+#~ msgid ""
+#~ "Done! Updated location. Latitude set to %1$s and longitude set to %2$s."
+#~ msgstr ""
+#~ "Erledigt! Die Location wurde erfolgreich aktualisiert. Ermittelter "
+#~ "Breitengrad %1$s und Längengrad %2$s."
+
+#~ msgid ""
+#~ "Done! Updated location. But could not found latitude and longitude values."
+#~ msgstr ""
+#~ "Erledigt! Die Location wurde erfolgreich aktualisiert. Jedoch konnten "
+#~ "Breiten- und Längengrad nicht ermittelt werden."
+
+#~ msgid "Default location"
+#~ msgstr "Vorgaben"
+
+#~ msgid "Details"
+#~ msgstr "Details"
+
+#~ msgid "With selected locations"
+#~ msgstr "Mit den ausgewählten Locations"
+
+#~ msgid "Search terms"
+#~ msgstr "Suchbegriffe"
+
+#~ msgid "Distance value for the zip-code/city search"
+#~ msgstr "Reichweite für die PLZ/Ort Umkreissuche"
 
 #~ msgid "Error! Unable to load class [%s].."
 #~ msgstr "Fehler! Die Klasse [%s] konnte nicht geladen werden."
