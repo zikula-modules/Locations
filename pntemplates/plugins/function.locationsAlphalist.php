@@ -4,7 +4,7 @@
  *
  * @copyright (c) 2008,2010, Locations Development Team
  * @link http://code.zikula.org/locations
- * @author Steffen Voß
+ * @author Carsten Volmer
  * @license GNU/GPL - http://www.gnu.org/copyleft/gpl.html
  * @package locations
  */

@@ -4,8 +4,8 @@
 
 Bei Fragen und anderen Anmerkungen besuchen Sie unsere Homepages:
 
-Steffen Voß (kontakt@kaffeeringe.de)
+Steffen Voß <kontakt@kaffeeringe.de>
 http://kaffeeringe.de
 
-Carsten Volmer (carsten@zikula.org)
+Carsten Volmer <carsten@zikula.org>
 http://carsten-volmer.de

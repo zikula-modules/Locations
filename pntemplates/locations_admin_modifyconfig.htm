@@ -3,54 +3,84 @@
 <!--[gt text="Modify configuration" assign="templatetitle"]-->
 
 <div class="z-admincontainer">
-<div class="z-adminpageicon"><!--[pnimg modname='core' src='configure.gif' set='icons/large' __alt='Settings']--></div>
-<h2><!--[$templatetitle]--></h2>
-<p class="z-informationmsg"><!--[gt text='For your own Google Maps API Key sign up <strong><a href="http://code.google.com/apis/maps/signup.html">here</a></strong>. Set default values for city, country and/or state if you mainly enter locations for only one area. For example if you mainly have locations in New York you enter "New York" into the city field.']--></p>
+    <div class="z-adminpageicon"><!--[pnimg modname='core' src='configure.gif' set='icons/large' __alt='Settings']--></div>
+    <h2><!--[$templatetitle]--></h2>
+    <p class="z-informationmsg"><!--[gt text='For your own Google Maps API Key sign up <strong><a href="http://code.google.com/apis/maps/signup.html">here</a></strong>. Set default values for city, country and/or state if you mainly enter locations for only one area. For example if you mainly have locations in New York you enter "New York" into the city field.']--></p>
 
-<!--[pnform cssClass='z-form']--> <!--[locationsFormFrame]-->
-<fieldset><legend><!--[gt text="General settings"]--></legend>
-<div class="z-formrow"><!--[pnformlabel for="enablecategorization" __text='Enable categorization']-->
-<!--[pnformcheckbox id="enablecategorization" group="config"]--></div>
-<div class="z-formrow"><!--[pnformlabel for="pagesize" __text='Items per page']-->
-<!--[pnformtextinput id="pagesize" group="config" maxLength='255']--></div>
-</fieldset>
+    <!--[pnform cssClass='z-form']-->
+    <!--[locationsFormFrame]-->
+    <fieldset>
+        <legend><!--[gt text="General settings"]--></legend>
+        <div class="z-formrow">
+            <!--[pnformlabel for="enablecategorization" __text='Enable categorization']-->
+            <!--[pnformcheckbox id="enablecategorization" group="config"]-->
+        </div>
+        <div class="z-formrow">
+            <!--[pnformlabel for="pagesize" __text='Items per page']-->
+            <!--[pnformtextinput id="pagesize" group="config" maxLength='255']-->
+        </div>
+    </fieldset>
 
-<fieldset><legend><!--[gt text="Google Maps settings"]--></legend>
-<div class="z-formrow"><!--[pnformlabel for="GoogleMapsAPIKey" __text='Google Maps API Key']-->
-<!--[pnformtextinput id="GoogleMapsAPIKey" group="config" maxLength='255']-->
-</div>
-<div class="z-formrow"><!--[pnformlabel for="mapWidth" __text='Map width']-->
-<!--[pnformtextinput id="mapWidth" group="config" maxLength='255']--> <em
-	class="z-sub z-formnote"><!--[gt text="Please don't forget the unit (% or px)."]-->
-<!--[gt text="Example values: 100% / 500px"]--></em></div>
-<div class="z-formrow"><!--[pnformlabel for="mapHeight" __text='Map height']-->
-<!--[pnformtextinput id="mapHeight" group="config" maxLength='255']--> <em
-	class="z-sub z-formnote"><!--[gt text="Please don't forget the unit (% or px)."]--></em>
-</div>
-<div class="z-formrow"><!--[pnformlabel for="mapDistanceZip" __text='Default distance value for the zip code/city search']-->
-<span> <!--[pnformtextinput id="mapDistanceZip" group="config" maxLength='255']-->
-<!--[gt text='kilometres']--> </span></div>
-<div class="z-formrow"><!--[pnformlabel for="mapZoomDisplay" __text='Zoom level for detail view']-->
-<!--[pnformtextinput id="mapZoomDisplay" group="config" maxLength='255']-->
-</div>
-<div class="z-formrow"><!--[pnformlabel for="mapDistanceDisplay" __text='Distance value for detail view']-->
-<span> <!--[pnformtextinput id="mapDistanceDisplay" group="config" maxLength='255']-->
-<!--[gt text='kilometres']--> </span></div>
-</fieldset>
+    <fieldset>
+        <legend><!--[gt text="Google Maps settings"]--></legend>
+        <div class="z-formrow">
+            <!--[pnformlabel for="GoogleMapsAPIKey" __text='Google Maps API Key']-->
+            <!--[pnformtextinput id="GoogleMapsAPIKey" group="config" maxLength='255']-->
+        </div>
+        <div class="z-formrow">
+            <!--[pnformlabel for="mapWidth" __text='Map width']-->
+            <!--[pnformtextinput id="mapWidth" group="config" maxLength='255']-->
+            <em class="z-sub z-formnote"><!--[gt text="Please don't forget the unit (% or px)."]--> <!--[gt text="Example values: 100% / 500px"]--></em>
+        </div>
+        <div class="z-formrow">
+            <!--[pnformlabel for="mapHeight" __text='Map height']-->
+            <!--[pnformtextinput id="mapHeight" group="config" maxLength='255']-->
+            <em class="z-sub z-formnote"><!--[gt text="Please don't forget the unit (% or px)."]--></em>
+        </div>
+        <div class="z-formrow">
+            <!--[pnformlabel for="mapDistanceZip" __text='Default distance value for the zip code/city search']-->
+            <span>
+                <!--[pnformtextinput id="mapDistanceZip" group="config" maxLength='255']-->
+                <!--[gt text='kilometres']-->
+            </span>
+        </div>
+        <div class="z-formrow">
+            <!--[pnformlabel for="mapZoomDisplay" __text='Zoom level for detail view']-->
+            <!--[pnformtextinput id="mapZoomDisplay" group="config" maxLength='255']-->
+        </div>
+        <div class="z-formrow">
+            <!--[pnformlabel for="mapDistanceDisplay" __text='Distance value for detail view']-->
+            <span>
+                <!--[pnformtextinput id="mapDistanceDisplay" group="config" maxLength='255']-->
+                <!--[gt text='kilometres']-->
+            </span>
+        </div>
+    </fieldset>
 
-<fieldset><legend><!--[gt text="Defaults"]--></legend>
-<div class="z-formrow"><!--[pnformlabel for="DefaultCity" __text='Default City']-->
-<!--[pnformtextinput id="DefaultCity" group="config" maxLength='255']-->
-</div>
-<div class="z-formrow"><!--[pnformlabel for="DefaultState" __text='Default State']-->
-<!--[pnformtextinput id="DefaultState" group="config" maxLength='255']-->
-</div>
-<div class="z-formrow"><!--[pnformlabel for="DefaultCountry" __text='Default Country']-->
-<!--[pnformtextinput id="DefaultCountry" group="config" maxLength='255']-->
-</div>
-<!--[pnmodcallhooks hookobject="module" hookaction="modifyconfig" module="locations"]-->
-</fieldset>
+    <fieldset>
+        <legend><!--[gt text="Defaults"]--></legend>
+        <div class="z-formrow">
+            <!--[pnformlabel for="DefaultCity" __text='Default City']-->
+            <!--[pnformtextinput id="DefaultCity" group="config" maxLength='255']-->
+        </div>
+        <div class="z-formrow">
+            <!--[pnformlabel for="DefaultState" __text='Default State']-->
+            <!--[pnformtextinput id="DefaultState" group="config" maxLength='255']-->
+        </div>
+        <div class="z-formrow">
+            <!--[pnformlabel for="DefaultCountry" __text='Default Country']-->
+            <!--[pnformtextinput id="DefaultCountry" group="config" maxLength='255']-->
+        </div>
+        <!--[pnmodcallhooks hookobject="module" hookaction="modifyconfig" module="locations"]-->
+    </fieldset>
 
-<div class="z-formbuttons"><!--[pnformbutton commandName="save" __text="Update configuration"]-->
-<!--[pnformbutton commandName="cancel" __text="Cancel"]--></div>
-<!--[/locationsFormFrame]--> <!--[/pnform]--></div>
+    <div class="z-formbuttons">
+        <!--[pnformbutton commandName="save" __text="Update configuration"]-->
+        <!--[pnformbutton commandName="cancel" __text="Cancel"]-->
+    </div>
+    <!--[/locationsFormFrame]-->
+    <!--[/pnform]-->
+
+</div>
+
+<!--[include file="locations_admin_footer.htm"]-->

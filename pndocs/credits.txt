@@ -1,7 +1,7 @@
 Credits to:
 =========================
 
-Axel Guckelsberger (info@guite.de)
+Axel Guckelsberger <info@guite.de>
   -- for developing ModuleStudio
   -- for giving me alot of useful hints and answers
 

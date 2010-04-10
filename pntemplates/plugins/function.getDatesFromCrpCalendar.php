@@ -9,6 +9,7 @@
  * @package locations
  */
 
+
 function smarty_function_getDatesFromCrpCalendar($param, &$smarty) {
 
     $result = pnModAPIFunc('crpCalendar', 'user', 'getall', $param);
