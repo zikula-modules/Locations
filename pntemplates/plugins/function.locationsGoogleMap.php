@@ -1,14 +1,12 @@
 <?php
 /**
- * Zikula Application Framework
+ * locations
  *
- * @copyright (c) 2010, Locations Development Team
- * @link http://www.zikula.org
+ * @copyright (c) 2008,2010, Locations Development Team
+ * @link http://code.zikula.org/locations
+ * @author Steffen VoÃŸ
  * @license GNU/GPL - http://www.gnu.org/copyleft/gpl.html
- * @package Zikula_Generated_Modules
- * @subpackage locations
- * @author Steffen Voß
- * @url http://code.zikula.org/locations
+ * @package locations
  */
 
 function smarty_function_locationsGoogleMap($params, &$render)

@@ -1,14 +1,12 @@
 <?php
 /**
- * Zikula Application Framework
+ * locations
  *
- * @copyright (c) 2010, Locations Development Team
- * @link http://www.zikula.org
- * @license GNU/GPL - http://www.gnu.org/copyleft/gpl.html
- * @package Zikula_Generated_Modules
- * @subpackage locations
+ * @copyright (c) 2008,2010, Locations Development Team
+ * @link http://code.zikula.org/locations
  * @author Steffen Voß
- * @url http://code.zikula.org/locations
+ * @license GNU/GPL - http://www.gnu.org/copyleft/gpl.html
+ * @package locations
  */
 
 $dom = ZLanguage::getModuleDomain('locations');
@@ -25,8 +23,8 @@ $modversion['help']           = 'pndocs/readme.txt';
 $modversion['changelog']      = 'pndocs/changelog.txt';
 $modversion['license']        = 'pndocs/license.txt';
 $modversion['official']       = 0;
-$modversion['author']         = 'Steffen Voß';
-$modversion['contact']        = 'http://kaffeeringe.de';
+$modversion['author']         = 'Steffen Voß, Carsten Volmer';
+$modversion['contact']        = 'http://kaffeeringe.de, http://carsten-volmer.de';
 
 // I suspect these are not respected as the should
 $modversion['admin']          = 1;
@@ -41,15 +39,15 @@ $modversion['dependencies'] = array(array('modname'    => 'crpTag',
                                           'minversion' => '0.1.0',
                                           'maxversion' => '',
                                           'status'     => PNMODULE_DEPENDENCY_RECOMMENDED
-                                         ),
-                                    array('modname'    => 'crpCalendar',
+),
+array('modname'    => 'crpCalendar',
                                           'minversion' => '0.4.9',
                                           'maxversion' => '',
                                           'status'     => PNMODULE_DEPENDENCY_RECOMMENDED
-                                         ),
-                                    array('modname'    => 'mediashare',
+),
+array('modname'    => 'mediashare',
                                           'minversion' => '3.2',
                                           'maxversion' => '',
                                           'status'     => PNMODULE_DEPENDENCY_RECOMMENDED
-                                         )
-                                         );
+)
+);

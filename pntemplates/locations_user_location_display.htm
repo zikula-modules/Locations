@@ -7,36 +7,42 @@
 <!--[include file="locations_user_header.htm"]-->
 
 <h4><!--[gt text="Address"]--></h4>
-<p class="vcard">
-    <!--[if $location.logo]--><img src="<!--[$location.logo|pnvarprepfordisplay]-->" class="photo" /><!--[/if]-->
-    <span class="fn n"><strong class="org"><!--[$location.name|pnmodcallhooks|pnvarprephtmldisplay]--></strong></span><br />
-    <span class="adr">
-        <!--[if $location.street]--><span class="street-address"><!--[$location.street|pnvarprepfordisplay|default:""]--></span><br /><!--[/if]-->
-        <!--[if $location.city]--><span class="postal-code"><!--[$location.zip|pnvarprepfordisplay|default:""]--></span> <span class="locality"><!--[$location.city|pnvarprepfordisplay|default:""]--></span><br /><!--[/if]-->
-        <!--[if $location.state]--><span class="region"><!--[$location.state|pnvarprepfordisplay|default:""]--></span><br /><!--[/if]-->
-        <!--[if $location.country]--><span class="country-name"><!--[$location.country|pnvarprepfordisplay|default:""]--></span><br /><!--[/if]-->
-    </span>
-    <!--[if $location.phone]--><!--[gt text="Phone"]-->: <span class="tel"><!--[phonenumber_format input=$location.phone|pnvarprepfordisplay]--></span><br /><!--[/if]-->
-    <!--[if $location.fax]--><!--[gt text="Fax"]-->: <span class="fax"><!--[phonenumber_format input=$location.fax|pnvarprepfordisplay]--></span><br /><!--[/if]-->
-    <!--[if $location.email]--><!--[gt text="Email"]-->: <a class="email" href="mailto:<!--[$location.email|pnvarprepfordisplay|default:""]-->"><!--[$location.email|pnvarprepfordisplay|default:""]--></a><br /><!--[/if]-->
-    <!--[if $location.url]--><!--[gt text="Url"]-->: <a class="url" href="<!--[$location.url|pnvarprepfordisplay|default:""]-->"><!--[$location.url|pnvarprepfordisplay|default:""]--></a><br /><!--[/if]--><br />
-    <!--[gt text="Export"]-->: <a href="http://technorati.com/contacts/<!--[$baseurl]--><!--[pnmodurl modname="locations" type="user" func="display" locationid=$location.locationid]-->">vCard</a> | <a href="<!--[pnmodurl modname="locations" type="user" func="view" tpl="kml" filter=locationid:eq:`$location.locationid`]-->">kml</a><br />
+<p class="vcard"><!--[if $location.logo]--><img src="<!--[$location.logo|pnvarprepfordisplay]-->"
+class="photo" /><!--[/if]--> <span class="fn n"><strong
+	class="org"><!--[$location.name|pnmodcallhooks|pnvarprephtmldisplay]--></strong></span><br />
+<span class="adr"> <!--[if $location.street]--><span
+	class="street-address"><!--[$location.street|pnvarprepfordisplay|default:""]--></span><br />
+<!--[/if]--> <!--[if $location.city]--><span class="postal-code"><!--[$location.zip|pnvarprepfordisplay|default:""]--></span>
+<span class="locality"><!--[$location.city|pnvarprepfordisplay|default:""]--></span><br />
+<!--[/if]--> <!--[if $location.state]--><span class="region"><!--[$location.state|pnvarprepfordisplay|default:""]--></span><br />
+<!--[/if]--> <!--[if $location.country]--><span class="country-name"><!--[$location.country|pnvarprepfordisplay|default:""]--></span><br />
+<!--[/if]--> </span> <!--[if $location.phone]--><!--[gt text="Phone"]-->: <span
+	class="tel"><!--[phonenumber_format input=$location.phone|pnvarprepfordisplay]--></span><br />
+<!--[/if]--> <!--[if $location.fax]--><!--[gt text="Fax"]-->: <span
+	class="fax"><!--[phonenumber_format input=$location.fax|pnvarprepfordisplay]--></span><br />
+<!--[/if]--> <!--[if $location.email]--><!--[gt text="Email"]-->: <a
+	class="email" href="mailto:<!--[$location.email|pnvarprepfordisplay|default:""]-->"><!--[$location.email|pnvarprepfordisplay|default:""]--></a><br />
+<!--[/if]--> <!--[if $location.url]--><!--[gt text="Url"]-->: <a
+	class="url" href="<!--[$location.url|pnvarprepfordisplay|default:""]-->"><!--[$location.url|pnvarprepfordisplay|default:""]--></a><br />
+<!--[/if]--><br />
+<!--[gt text="Export"]-->: <a href="http://technorati.com/contacts/<!--[$baseurl]--><!--[pnmodurl modname="locations" type="user" func="display" locationid=$location.locationid]-->">vCard</a>
+| <a href="<!--[pnmodurl modname="locations" type="user" func="view" tpl="kml" filter=locationid:eq:`$location.locationid`]-->">kml</a><br />
 </p>
 
 <!--[if $location.latlng]-->
 <h4><!--[gt text="Map"]--></h4>
 <!--[assign var="address" value="`$location.street`, `$location.zip` `$location.city`"]-->
-<div class="loc_mapbox z-clearfix" style="<!--[if $modvar.mapWidth eq '100%']-->display:block<!--[else]-->width: <!--[$modvar.mapWidth|pnvarprepfordisplay]--><!--[/if]-->;">
-    <!--[locationsGoogleMap latlng=$location.latlng width=$modvar.mapWidth height=$modvar.mapHeight address=$address title=$location.name html="<p><strong>`$location.name`</strong></p><p>`$location.street`<br />`$location.zip` `$location.city`</p>" key=$GoogleMapsAPIKey distanceUnit="k" distance=$modvar.mapDistanceDisplay zoom=$modvar.mapZoomDisplay]-->
+<div class="loc_mapbox z-clearfix" style=""<!--[if $modvar.mapWidth eq '100%']-->display:block<!--[else]-->width:
+<!--[$modvar.mapWidth|pnvarprepfordisplay]--><!--[/if]-->;"> <!--[locationsGoogleMap latlng=$location.latlng width=$modvar.mapWidth height=$modvar.mapHeight address=$address title=$location.name html="<p><strong>`$location.name`</strong></p><p>`$location.street`<br />`$location.zip` `$location.city`</p>" key=$GoogleMapsAPIKey distanceUnit="k" distance=$modvar.mapDistanceDisplay zoom=$modvar.mapZoomDisplay]-->
 </div>
 <!--[/if]-->
 
 <!--[if $nearby]-->
 <h4><!--[gt text="Nearby"]--></h4>
 <ul>
-    <!--[foreach from=$nearby item='tipp']-->
-    <li><a href="<!--[pnmodurl modname="locations" type="user" func="display" locationid=$tipp.locationid]-->"><!--[$tipp.name|pnvarprepfordisplay]--></a></li>
-    <!--[/foreach]-->
+	<!--[foreach from=$nearby item='tipp']-->
+	<li><a href="<!--[pnmodurl modname="locations" type="user" func="display" locationid=$tipp.locationid]-->"><!--[$tipp.name|pnvarprepfordisplay]--></a></li>
+	<!--[/foreach]-->
 </ul>
 <!--[/if]-->
 
@@ -46,9 +52,10 @@
 <!--[if $dates|@count > 0]-->
 <h4><!--[gt text="Events"]--></h4>
 <ul>
-    <!--[foreach item='date' from=$dates]-->
-    <li><!--[$date.start_date|pndate_format:"datetimebrief"]--> | <a href="<!--[pnmodurl modname="crpCalendar" type="user" func="display" eventid=$date.eventid]-->"><!--[$date.title|pnvarprepfordisplay]--></a></li>
-    <!--[/foreach]-->
+	<!--[foreach item='date' from=$dates]-->
+	<li><!--[$date.start_date|pndate_format:"datetimebrief"]--> | <a
+		href="<!--[pnmodurl modname="crpCalendar" type="user" func="display" eventid=$date.eventid]-->"><!--[$date.title|pnvarprepfordisplay]--></a></li>
+	<!--[/foreach]-->
 </ul>
 <div class="edit"><!--[gt text="Location date"]--> <a href="<!--[pnmodurl modname="crpCalendar" type="user" func="new"]-->"><!--[gt text="Add"]--></a></div>
 <!--[/if]-->

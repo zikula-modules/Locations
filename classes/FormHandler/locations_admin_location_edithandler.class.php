@@ -1,14 +1,12 @@
 <?php
 /**
- * Zikula Application Framework
+ * locations
  *
- * @copyright (c) 2010, Locations Development Team
- * @link http://www.zikula.org
+ * @copyright (c) 2008,2010, Locations Development Team
+ * @link http://code.zikula.org/locations
+ * @author Steffen VoÃŸ
  * @license GNU/GPL - http://www.gnu.org/copyleft/gpl.html
- * @package Zikula_Generated_Modules
- * @subpackage locations
- * @author Steffen Voß
- * @url http://code.zikula.org/locations
+ * @package locations
  */
 
 // preload common used classes
@@ -37,7 +35,7 @@ Loader::requireOnce('modules/locations/common.php');
  *
  * @package pnForm
  * @subpackage Base
- * @author       Steffen Voß
+ * @author       Steffen Voï¿½
  */
 class locations_admin_location_editHandler extends pnFormHandler
 {
@@ -51,7 +49,7 @@ class locations_admin_location_editHandler extends pnFormHandler
      * This method takes care of all necessary initialisation of our data and form states
      *
      * @return bool False in case of initialization errors, otherwise true
-     * @author       Steffen Voß
+     * @author       Steffen Voï¿½
      */
     function initialize(&$render)
     {
@@ -140,7 +138,7 @@ class locations_admin_location_editHandler extends pnFormHandler
      * that initiated the command.
      * @see pnFormButton
      * @see pnFormImageButton
-     * @author       Steffen Voß
+     * @author       Steffen Voï¿½
      */
     function handleCommand(&$render, &$args)
     {

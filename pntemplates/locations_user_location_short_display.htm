@@ -10,36 +10,43 @@
 <h3><!--[$title]--></h3>
 
 <h4><!--[gt text="Address" domain="module_locations"]--></h4>
-<p class="vcard">
-    <!--[if $location.logo]--><img src="<!--[$location.logo|pnvarprepfordisplay]-->" class="photo" /><!--[/if]-->
-    <span class="fn n"><strong class="org"><!--[$location.name|pnmodcallhooks|pnvarprephtmldisplay]--></strong></span><br />
-    <span class="adr">
-        <!--[if $location.street]--><span class="street-address"><!--[$location.street|pnvarprepfordisplay|default:""]--></span><br /><!--[/if]-->
-        <!--[if $location.city]--><span class="postal-code"><!--[$location.zip|pnvarprepfordisplay|default:""]--></span> <span class="locality"><!--[$location.city|pnvarprepfordisplay|default:""]--></span><br /><!--[/if]-->
-        <!--[if $location.state]--><span class="region"><!--[$location.state|pnvarprepfordisplay|default:""]--></span><br /><!--[/if]-->
-        <!--[if $location.country]--><span class="country-name"><!--[$location.country|pnvarprepfordisplay|default:""]--></span><br /><!--[/if]-->
-    </span>
-    <!--[if $location.phone]--><!--[gt text="Phone" domain="module_locations"]-->: <span class="tel"><!--[phonenumber_format input=$location.phone|pnvarprepfordisplay]--></span><br /><!--[/if]-->
-    <!--[if $location.fax]--><!--[gt text="Fax" domain="module_locations"]-->: <span class="fax"><!--[phonenumber_format input=$location.fax|pnvarprepfordisplay]--></span><br /><!--[/if]-->
-    <!--[if $location.email]--><!--[gt text="Email" domain="module_locations"]-->: <a class="email" href="mailto:<!--[$location.email|pnvarprepfordisplay|default:""]-->"><!--[$location.email|pnvarprepfordisplay|default:""]--></a><br /><!--[/if]-->
-    <!--[if $location.url]--><!--[gt text="Url" domain="module_locations"]-->: <a class="url" href="<!--[$location.url|pnvarprepfordisplay|default:""]-->"><!--[$location.url|pnvarprepfordisplay|default:""]--></a><br /><!--[/if]--><br />
-    <!--[gt text="Export" domain="module_locations"]-->: <a href="http://technorati.com/contacts/<!--[$baseurl]--><!--[pnmodurl modname="locations" type="user" func="display" locationid=$location.locationid]-->">vCard</a> | <a href="<!--[pnmodurl modname="locations" type="user" func="view" tpl="kml" filter=locationid:eq:`$location.locationid`]-->">kml</a><br />
+<p class="vcard"><!--[if $location.logo]--><img src="<!--[$location.logo|pnvarprepfordisplay]-->"
+class="photo" /><!--[/if]--> <span class="fn n"><strong
+	class="org"><!--[$location.name|pnmodcallhooks|pnvarprephtmldisplay]--></strong></span><br />
+<span class="adr"> <!--[if $location.street]--><span
+	class="street-address"><!--[$location.street|pnvarprepfordisplay|default:""]--></span><br />
+<!--[/if]--> <!--[if $location.city]--><span class="postal-code"><!--[$location.zip|pnvarprepfordisplay|default:""]--></span>
+<span class="locality"><!--[$location.city|pnvarprepfordisplay|default:""]--></span><br />
+<!--[/if]--> <!--[if $location.state]--><span class="region"><!--[$location.state|pnvarprepfordisplay|default:""]--></span><br />
+<!--[/if]--> <!--[if $location.country]--><span class="country-name"><!--[$location.country|pnvarprepfordisplay|default:""]--></span><br />
+<!--[/if]--> </span> <!--[if $location.phone]--><!--[gt text="Phone" domain="module_locations"]-->:
+<span class="tel"><!--[phonenumber_format input=$location.phone|pnvarprepfordisplay]--></span><br />
+<!--[/if]--> <!--[if $location.fax]--><!--[gt text="Fax" domain="module_locations"]-->:
+<span class="fax"><!--[phonenumber_format input=$location.fax|pnvarprepfordisplay]--></span><br />
+<!--[/if]--> <!--[if $location.email]--><!--[gt text="Email" domain="module_locations"]-->:
+<a class="email" href="mailto:<!--[$location.email|pnvarprepfordisplay|default:""]-->"><!--[$location.email|pnvarprepfordisplay|default:""]--></a><br />
+<!--[/if]--> <!--[if $location.url]--><!--[gt text="Url" domain="module_locations"]-->:
+<a class="url" href="<!--[$location.url|pnvarprepfordisplay|default:""]-->"><!--[$location.url|pnvarprepfordisplay|default:""]--></a><br />
+<!--[/if]--><br />
+<!--[gt text="Export" domain="module_locations"]-->: <a
+	href="http://technorati.com/contacts/<!--[$baseurl]--><!--[pnmodurl modname="locations" type="user" func="display" locationid=$location.locationid]-->">vCard</a>
+| <a href="<!--[pnmodurl modname="locations" type="user" func="view" tpl="kml" filter=locationid:eq:`$location.locationid`]-->">kml</a><br />
 </p>
 
 <!--[* prevent showing the map in content editing mode *]-->
 <!--[if $location.latlng && $type neq 'edit']-->
 <h4><!--[gt text="Map" domain="module_locations"]--></h4>
 <!--[assign var="address" value="`$location.street`, `$location.zip` `$location.city`"]-->
-<div class="loc_mapbox z-clearfix" style="<!--[if $modvar.mapWidth eq '100%']-->display:block<!--[else]-->width: <!--[$modvar.mapWidth|pnvarprepfordisplay]--><!--[/if]-->;">
-    <!--[locationsGoogleMap latlng=$location.latlng width=$modvar.mapWidth height=$modvar.mapHeight address=$address title=$location.name html="<p><strong>`$location.name`</strong></p><p>`$location.street`<br />`$location.zip` `$location.city`</p>" key=$GoogleMapsAPIKey distanceUnit="k" distance=$modvar.mapDistanceDisplay zoom=$modvar.mapZoomDisplay]-->
+<div class="loc_mapbox z-clearfix" style=""<!--[if $modvar.mapWidth eq '100%']-->display:block<!--[else]-->width:
+<!--[$modvar.mapWidth|pnvarprepfordisplay]--><!--[/if]-->;"> <!--[locationsGoogleMap latlng=$location.latlng width=$modvar.mapWidth height=$modvar.mapHeight address=$address title=$location.name html="<p><strong>`$location.name`</strong></p><p>`$location.street`<br />`$location.zip` `$location.city`</p>" key=$GoogleMapsAPIKey distanceUnit="k" distance=$modvar.mapDistanceDisplay zoom=$modvar.mapZoomDisplay]-->
 </div>
 <!--[/if]-->
 
 <!--[if $nearby]-->
 <h4><!--[gt text="Nearby" domain="module_locations"]--></h4>
 <ul>
-    <!--[foreach from=$nearby item='tipp']-->
-    <li><a href="<!--[pnmodurl modname="locations" type="user" func="display" locationid=$tipp.locationid]-->"><!--[$tipp.name|pnvarprepfordisplay]--></a></li>
-    <!--[/foreach]-->
+	<!--[foreach from=$nearby item='tipp']-->
+	<li><a href="<!--[pnmodurl modname="locations" type="user" func="display" locationid=$tipp.locationid]-->"><!--[$tipp.name|pnvarprepfordisplay]--></a></li>
+	<!--[/foreach]-->
 </ul>
 <!--[/if]-->

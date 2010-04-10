@@ -1,1 +1,9 @@
+Credits to:
+=========================
 
+Axel Guckelsberger (info@guite.de)
+  -- for developing ModuleStudio
+  -- for giving me alot of useful hints and answers
+
+Monte Ohrt (New Digital Group, Inc.)
+  -- for creating the PHP library inteface to the Google Map API

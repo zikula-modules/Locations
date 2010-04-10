@@ -1,19 +1,18 @@
 <?php
 /**
- * Zikula Application Framework
+ * locations
  *
- * @copyright (c) 2010, Locations Development Team
- * @link http://www.zikula.org
+ * @copyright (c) 2008,2010, Locations Development Team
+ * @link http://code.zikula.org/locations
+ * @author Steffen Voß
  * @license GNU/GPL - http://www.gnu.org/copyleft/gpl.html
- * @package Zikula_Generated_Modules
- * @subpackage locations
- * @author Steffen Voss
- * @url http://code.zikula.org/locations
+ * @package locations
  *
  * @param        array       $params       All attributes passed to this function from the template
  * @param        object      &$render      Reference to the Smarty object
  * @return       string      The output of the plugin
  */
+
 
 function smarty_function_phonenumber_format($params, &$render)
 {
@@ -210,7 +209,7 @@ class PhoneTester
             $this->Rufnummer["Durchwahl"]        =  eregi_replace("[^0-9]",  null,  $this->PhoneDurchwahl);
             return $this->Rufnummer;
         }
-         
+
         else
         { $this->Rufnummer["Durchwahl"] = ""; return $this->MakePhoneLesbar();}
 
@@ -295,15 +294,15 @@ class PhoneTester
     {
         // Gruselkabinett der verschiedenen Vorwahl-Schreibweisen :
         // Es gibt unzählige Varianten. Wenigstens die Gebräuchlichsten davon sollen erkannt und bereinigt werden
-         
+
         // Ersetze 00 oder (00 oder ( 00 durch ein + ,
         // was der Internationalen Vorwahl entspricht
         $PhoneClean = eregi_replace("^(00|\(00|\( 00)",  "+",          $PhoneClean);
-         
+
         // Hat jemand 2x hintereinander ein + eingegeben,
         // ersetze es durch ein einzelnes +
         $PhoneClean = eregi_replace("\+\+",  "+",                      $PhoneClean);
-         
+
         // Hat da jemand ein oder zwei Leerzeichen nach dem Plus eingegeben,
         // dann entferne auch diese.
         $PhoneClean = eregi_replace("^(\+ |\+  )",  "+",               $PhoneClean);
@@ -425,7 +424,7 @@ class PhoneTester
     Andorra                        ; +376   ; ad    ; Andorra                 ; Andorre                  ; Andorra
     Angola                         ; +244   ; ao    ; Angola                  ; Angola                   ; Angola
     Anguilla                       ; +1264  ; ai    ; Anguilla                ; Anguilla                 ; Anguilla
-    Antarktis Casey                ; +67212 ; aq    
+    Antarktis Casey                ; +67212 ; aq
     Antarktis Davis                ; +67210 ; aq
     Antarktis Macquarrie Island    ; +67213 ; aq
     Antarktis Mawson               ; +67211 ; aq
@@ -673,7 +672,7 @@ class PhoneTester
                 $n+= 1 ;
             }
         }
-         
+
         // Nun habe ich eine mehrdimensionale Array, die im ersten Feld die ID hat
         // Habe ich die, kann ich den Rest Assoziativ auslesen.
         // Besonders spassig; ich kann jederzeit einen neuen Titel einfügen und neue Felder dazugeben :-)

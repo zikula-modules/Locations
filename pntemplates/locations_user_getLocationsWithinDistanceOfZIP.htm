@@ -5,13 +5,11 @@
 <!--[if $mode == 'view']-->
 
 <h4><!--[gt text='Search result']--></h4>
-<div class="loc_mapbox z-clearfix">
-    <!--[$map]-->
-</div>
+<div class="loc_mapbox z-clearfix"><!--[$map]--></div>
 <ul>
-    <!--[foreach from=$results item='tipp']-->
-    <li><a href="<!--[pnmodurl modname="locations" type="user" func="display" locationid=$tipp.locationid]-->"><!--[$tipp.name|pnvarprepfordisplay]--></a></li>
-    <!--[/foreach]-->
+	<!--[foreach from=$results item='tipp']-->
+	<li><a href="<!--[pnmodurl modname="locations" type="user" func="display" locationid=$tipp.locationid]-->"><!--[$tipp.name|pnvarprepfordisplay]--></a></li>
+	<!--[/foreach]-->
 </ul>
 
 <!--[elseif $mode == 'empty']-->
@@ -24,22 +22,14 @@
 <!--[pnform cssClass="z-form"]-->
 <!--[pnformvalidationsummary]-->
 <!--[pnformsetinitialfocus inputId="zip"]-->
-<fieldset>
-    <legend><!--[gt text="Search"]--></legend>
-    <div class="z-formrow">
-        <!--[pnformlabel for='zip' __text="Zip code and/or city"]-->
-        <!--[pnformtextinput id='zip' mandatory='1' maxLength='32']-->
-    </div>
-    <div class="z-formrow">
-        <!--[pnformlabel for="mapDistanceZip" __text='Distance']-->
-        <span>
-            <!--[pnformtextinput id="mapDistanceZip" group="config" maxLength='255']-->
-            <!--[gt text='kilometres']-->
-        </span>
-    </div>
+<fieldset><legend><!--[gt text="Search"]--></legend>
+<div class="z-formrow"><!--[pnformlabel for='zip' __text="Zip code and/or city"]-->
+<!--[pnformtextinput id='zip' mandatory='1' maxLength='32']--></div>
+<div class="z-formrow"><!--[pnformlabel for="mapDistanceZip" __text='Distance']-->
+<span> <!--[pnformtextinput id="mapDistanceZip" group="config" maxLength='255']-->
+<!--[gt text='kilometres']--> </span></div>
 </fieldset>
-<div class="z-formbuttons">
-    <!--[pnformbutton commandName="okay" __text="Search"]-->
+<div class="z-formbuttons"><!--[pnformbutton commandName="okay" __text="Search"]-->
 </div>
 <!--[/pnform]-->
 

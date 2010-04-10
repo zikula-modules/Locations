@@ -1,16 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<kml xmlns="http://earth.google.com/kml/2.2">
-    <!--[foreach from=$objectArray item="location"]-->
-    <Placemark>
-        <name><!--[$location.name|pnvarprepfordisplay]--></name>
-        <description>
-            <![CDATA[
+<kml xmlns="http://earth.google.com/kml/2.2"> <!--[foreach from=$objectArray item="location"]-->
+<Placemark> <name><!--[$location.name|pnvarprepfordisplay]--></name>
+<description> <![CDATA[
             <p><!--[$location.street|pnvarprepfordisplay]--><br/><!--[$location.zip|pnvarprepfordisplay]--> <!--[$location.city|pnvarprepfordisplay]--></p>
-            ]]>
-        </description>
-        <Point>
-            <coordinates><!--[$location.latlng|pnvarprepfordisplay]--></coordinates>
-        </Point>
-    </Placemark>
-    <!--[/foreach]-->
-</kml>
+            ]]> </description> <Point> <coordinates><!--[$location.latlng|pnvarprepfordisplay]--></coordinates>
+</Point> </Placemark> <!--[/foreach]--> </kml>

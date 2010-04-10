@@ -1,18 +1,18 @@
 <?php
 /**
- * Zikula Application Framework
+ * locations
  *
- * @copyright (c) 2010, Locations Development Team
- * @link http://www.zikula.org
- * @license GNU/GPL - http://www.gnu.org/copyleft/gpl.html
- * @package Zikula_Generated_Modules
- * @subpackage locations
+ * @copyright (c) 2008,2010, Locations Development Team
+ * @link http://code.zikula.org/locations
  * @author Steffen Voß
- * @url http://code.zikula.org/locations
+ * @license GNU/GPL - http://www.gnu.org/copyleft/gpl.html
+ * @package locations
  */
+
 
 // preload common used classes
 Loader::requireOnce('modules/locations/common.php');
+
 
 /**
  * This function retrieves locations for a dropdown list
@@ -44,6 +44,7 @@ function locations_userapi_getLocationsForDropdown($args)
 
     return($return);
 }
+
 
 /**
  * This function retrieves locations for a dropdown list
@@ -85,6 +86,8 @@ function locations_userapi_getLocationByID($args)
     }
     return $objectData;
 }
+
+
 /**
  * wrapper for getLocationByID
  *
@@ -101,6 +104,11 @@ function locations_userapi_get($args)
 }
 
 
+/**
+ * swap langitude and longitude
+ *
+ * @return  string
+ */
 function locations_userapi_swapLatLng($args)
 {
     $temp = explode(',',$args['latlng']);
@@ -108,6 +116,7 @@ function locations_userapi_swapLatLng($args)
 
     return($return);
 }
+
 
 /**
  * get meta data for the module
@@ -131,7 +140,7 @@ function locations_userapi_getmodulemeta()
 /**
  * form custom url string
  *
- * @author       Axel Guckelsberger, Carsten Volmer
+ * @author       Carsten Volmer
  * @return       string custom url string
  */
 function locations_userapi_encodeurl($args)
@@ -145,7 +154,7 @@ function locations_userapi_encodeurl($args)
         $args['type'] = 'user';
     }
 
-    $customFuncs = array('main', 'view', 'display');
+    $customFuncs = array('display');
     if (!in_array($args['func'], $customFuncs)) {
         return '';
     }
@@ -153,59 +162,55 @@ function locations_userapi_encodeurl($args)
     // create an empty string ready for population
     $vars = '';
 
-    // for the display function use either the title (if present) or the object's id
-    $objectType = (isset($args['args']['ot'])) ? $args['args']['ot'] : 'location';
-
+    // display function
     if ($args['func'] == 'display') {
+        // for the display function use either the title (if present) or the object's id
+        $objectType = (isset($args['args']['ot'])) ? $args['args']['ot'] : 'location';
+
         $id = 0;
-        if (isset($args['args'][strtolower($objectType) . 'id'])) {
-            $id = $args['args'][strtolower($objectType) . 'id'];
-            unset($args['args'][strtolower($objectType) . 'id']);
+        if (isset($args['args'][$objectType . 'id'])) {
+            $id = $args['args'][$objectType . 'id'];
         }
         if (isset($args['args']['objectid'])) {
             $id = $args['args']['objectid'];
-            unset($args['args']['objectid']);
         }
 
-        // get the item (will be cached by DBUtil)
-        if (isset($id)) {
-            $item = pnModAPIFunc('locations', 'user', 'get', array('locationid' => $id));
-        } else {
-            $item = pnModAPIFunc('locations', 'user', 'get', array('title' => $args['args']['name']));
+        if ($id > 0) {
+            $item = DBUtil::selectObjectByID('locations_' . $objectType, $id, $objectType . 'id');
+        }
+        else {
+            $item = DBUtil::selectObjectByID('locations_' . $objectType, $args['name'], 'urltitle');
         }
 
-        $vars = empty($item['urltitle']) ? 'location' : $item['urltitle'];
-        $vars .= '.' . $item[strtolower($objectType).'id'];
-        $vars .= '.html';
+        $vars = (!empty($item['city'])) ? $item['locationid'] . '/' . $item['city'] . '/' . $item['urltitle'] : $item['locationid'] . '/' . $item['urltitle'];
     }
 
-    //clean up all other arguments
-    unset($args['args']['ot']);
-    $extraargs = '';
-    if (count($args['args']) > 0) {
-        $extraargs = array();
-        foreach ($args['args'] as $k => $v) {
-            $extraargs[] = "$k=$v";
-        }
-        $extraargs = implode('&', $extraargs);
-        if (substr($vars, -1, 1) != '/') {
-            $extraargs = $extraargs;
-        }
+    // don't display the function name if either displaying an page or the normal overview
+    if ($args['func'] == 'main' || $args['func'] == 'view' || $args['func'] == 'display') {
+        $args['func'] = '';
     }
 
-    return $args['modname'] . '/' . $vars . $extraargs;
+    // puzzle return string together
+    $returnString = $args['modname'] . '/';
+
+    if (!empty($args['func'])) {
+        $returnString .= $args['func'] . '/';
+    }
+    if (!empty($vars)) {
+        $returnString .= $vars;
+    }
+
+    return $returnString;
 }
 
 /**
  * decode the custom url string
  *
- * @author       Axel Guckelsberger, Carsten Volmer
+ * @author       Carsten Volmer
  * @return       bool true if successful, false otherwise
  */
 function locations_userapi_decodeurl($args)
 {
-    $dom = ZLanguage::getModuleDomain('locations');
-
     // check we actually have some vars to work with
     if (!isset($args['vars'])) {
         return LogUtil::registerArgsError();
@@ -213,58 +218,33 @@ function locations_userapi_decodeurl($args)
 
     // define the available user functions
     $funcs = array('main', 'view', 'display', 'getLocationsWithinDistanceOfZIP');
-
     // set the correct function name based on our input
-
     if (empty($args['vars'][2])) {
         // no func and no vars = main
         pnQueryStringSetVar('func', 'main');
-        return true;
-    } elseif (in_array($args['vars'][2], $funcs)) {
-        return false;
-    }
-
-    if ($args['vars'][2] == "filter") {
-        $filter = $args['vars'][3];
-    }
-
-    foreach ($_GET as $k => $v) {
-        if (in_array($k, array('module', 'type', 'func', 'ot')) === false) {
-            unset($_GET[$k]);
-        }
-    }
-
-    //get the thing as string
-    $url = implode('/', array_slice($args['vars'], 2));
-
-    if (preg_match('~^[^/.]+\.(\d+).html(?:/(\w+=.*))?$~', $url, $matches)) {
-        $objectid = $matches[1];
-        $extraargs = $matches[2];
+    } elseif (!in_array($args['vars'][2], $funcs)) {
+        // no func, but vars -- this is true for display function
         pnQueryStringSetVar('func', 'display');
-        pnQueryStringSetVar('ot', 'location');
-        pnQueryStringSetVar('locationid', $objectid);
-    } elseif (preg_match('~^([^/]+)(?:/(\w+)(?:/[^/.]+\.(\d+|\w\w))?)?(?:/?|/(\w+=.*))$~', $url, $matches)) {
-        $extraargs = $matches[0];
-        pnQueryStringSetVar('func', 'view');
-        pnQueryStringSetVar('ot', 'location');
+        $nextvar = 2;
     } else {
-        pnQueryStringSetVar('func', 'view');
+        pnQueryStringSetVar('func', $args['vars'][2]);
+        $nextvar = 3;
     }
 
-    //parse extraargs
-    if (isset($extraargs) && !empty($extraargs)) {
-        $vars = explode('&', $extraargs);
-        if (is_array($vars)) {
-            foreach ($vars as $var) {
-                list($k, $v) = explode('=', $var, 2);
-                pnQueryStringSetVar($k, $v);
-            }
-        }
-    }
+    // get rid of unused vars
+    $args['vars'] = array_slice($args['vars'], $nextvar);
+    $nextvar = 0;
+    $currentFunc = FormUtil::getPassedValue('func', '');
 
-    //set filter
-    if (!empty($filter)) {
-        pnQueryStringSetVar('filter', $filter);
+    // identify the correct parameter to identify the object
+    if ($currentFunc == 'display') {
+        $identifierValue = $args['vars'][$nextvar];
+        $objectType = 'location';
+        pnQueryStringSetVar('ot', $objectType);
+        pnQueryStringSetVar($objectType . 'id', $identifierValue);
+    }
+    else {
+        return false;
     }
 
     return true;

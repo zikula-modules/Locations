@@ -3,25 +3,22 @@
 <!--[formutil_getpassedvalue key="func" assign="func"]-->
 <!--[pnpagesetvar name="title" value=$templatetitle]-->
 <div id="locations">
-    <h2><!--[gt text="Locations database"]--></h2>
+<h2><!--[gt text="Locations database"]--></h2>
 
-    <div class="z-menu">
-        <span class="z-menuitem-title">
-            [
-            <a id="loc_view" href="<!--[pnmodurl modname="locations" type="user" func="view"]-->" title="<!--[gt text="View locations"]-->"><!--[gt text="View locations"]--></a> |
-            <!--[securityutil_checkpermission_block component="locations::" instance=".*" level="ACCESS_ADD"]-->
-            <a id="loc_addnewitem" title="<!--[gt text="Add new location"]-->" href="<!--[pnmodurl modname="locations" type="admin" func="edit"]-->"><!--[gt text="Add new location"]--></a> |
-            <!--[/securityutil_checkpermission_block]-->
-            <!--[if $func eq 'display']-->
-            <!--[securityutil_checkpermission component="locations::" instance=".*" level="ACCESS_EDIT" assign="admin"]-->
-            <a id="loc_edit" href="<!--[pnmodurl modname="locations" type="admin" func="edit" locationid=$location.locationid]-->" title="<!--[gt text="Edit"]-->"><!--[gt text="Edit"]--></a> |
-            <!--[/if]-->
-            <a id="loc_distance" href="<!--[pnmodurl modname="locations" type="user" func="getLocationsWithinDistanceOfZIP"]-->" title="<!--[gt text="Distance search"]-->"><!--[gt text="Distance search"]--></a>
-            ]
-        </span>
-    </div>
+<div class="z-menu"><span class="z-menuitem-title"> [ <a
+	id="loc_view" href="<!--[pnmodurl modname="locations" type="user" func="view"]-->"
+title="<!--[gt text="View locations"]-->"><!--[gt text="View locations"]--></a>
+| <!--[securityutil_checkpermission_block component="locations::" instance=".*" level="ACCESS_ADD"]-->
+<a id="loc_addnewitem" title="<!--[gt text="Add new location"]-->"
+href="<!--[pnmodurl modname="locations" type="admin" func="edit"]-->"><!--[gt text="Add new location"]--></a>
+| <!--[/securityutil_checkpermission_block]--> <!--[if $func eq 'display']-->
+<!--[securityutil_checkpermission component="locations::" instance=".*" level="ACCESS_EDIT" assign="admin"]-->
+<a id="loc_edit" href="<!--[pnmodurl modname="locations" type="admin" func="edit" locationid=$location.locationid]-->"
+title="<!--[gt text="Edit"]-->"><!--[gt text="Edit"]--></a> | <!--[/if]--> <a
+	id="loc_distance" href="<!--[pnmodurl modname="locations" type="user" func="getLocationsWithinDistanceOfZIP"]-->"
+title="<!--[gt text="Distance search"]-->"><!--[gt text="Distance search"]--></a>
+] </span></div>
 
-    <!--[insert name="getstatusmsg"]-->
+<!--[insert name="getstatusmsg"]-->
 
-    <h3><!--[$templatetitle|pnmodcallhooks|pnvarprephtmldisplay]--></h3>
-
+<h3><!--[$templatetitle|pnmodcallhooks|pnvarprephtmldisplay]--></h3>
