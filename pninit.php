@@ -84,6 +84,7 @@ function locations_upgrade($oldversion)
         case '1.0':
             return locations_upgrade('1.1.0');
         case '1.1.0':
+        case '1.2.0':
             if (!DBUtil::dropTable('locations_description')) {
                 return false;
             }

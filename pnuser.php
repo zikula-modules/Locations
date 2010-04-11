@@ -77,7 +77,7 @@ function locations_user_view($args)
     // instantiate the object-array
     $objectArray = new $class();
 
-    if (pnModGetVar('locations', 'enablecategorization') && $category > 0) {
+    if (pnModGetVar('locations', 'enablecategorization')) {
         $category = FormUtil :: getPassedValue('locations_category', null);
 
         if (!($categoryclass = Loader::loadClass('CategoryUtil'))) {
@@ -87,20 +87,22 @@ function locations_user_view($args)
             pn_exit (__f('Error! Unable to load class [%s].', 'CategoryRegistryUtil', $dom));
         }
 
-        $categories = CategoryRegistryUtil :: getRegisteredModuleCategory('locations', 'locations', 'Type', '/__SYSTEM__/Modules/locations');
+        $categories = CategoryRegistryUtil::getRegisteredModuleCategory('locations', 'locations_location', 'Type', '/__SYSTEM__/Modules/locations');
 
-        if (!is_array($objectArray->_objCategoryFilter)) {
-            $objectArray->_objCategoryFilter = array();
+        if ($category > 0) {
+            if (!is_array($objectArray->_objCategoryFilter)) {
+                $objectArray->_objCategoryFilter = array();
+            }
+
+            $categoryWithSubIDs = array($category);
+            $subCats = CategoryUtil::getSubCategories($category);
+
+            foreach($subCats as $subCat) {
+                $categoryWithSubIDs[] = $subCat['id'];
+            }
+
+            $objectArray->_objCategoryFilter['Type'] = $categoryWithSubIDs;
         }
-
-        $categoryWithSubIDs = array($category);
-        $subCats = CategoryUtil::getSubCategories($category);
-
-        foreach($subCats as $subCat) {
-            $categoryWithSubIDs[] = $subCat['id'];
-        }
-
-        $objectArray->_objCategoryFilter['Type'] = $categoryWithSubIDs;
     }
 
     // parameter for used sorting field
