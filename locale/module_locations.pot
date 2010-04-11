@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zikula 1.2.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-04-11 00:18+0000\n"
+"POT-Creation-Date: 2010-04-11 12:21+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -40,7 +40,7 @@ msgstr ""
 msgid "Locations dupe"
 msgstr ""
 
-#: pnversion.php:15 pninit.php:344 pntemplates/locations_search_options.htm:4
+#: pnversion.php:15 pninit.php:346 pntemplates/locations_search_options.htm:4
 msgid "Locations"
 msgstr ""
 
@@ -111,15 +111,15 @@ msgstr ""
 msgid "User frontend"
 msgstr ""
 
-#: pninit.php:57
+#: pninit.php:58
 msgid "Error! Could not set up the default module vars."
 msgstr ""
 
-#: pninit.php:62
+#: pninit.php:63
 msgid "Error! Could not create the default categories"
 msgstr ""
 
-#: pninit.php:345
+#: pninit.php:347
 msgid "Database for all kinds of locations"
 msgstr ""
 
@@ -259,11 +259,67 @@ msgstr ""
 msgid "Default Country"
 msgstr ""
 
-#: pntemplates/locations_admin_modifyconfig.htm:77
+#: pntemplates/locations_admin_modifyconfig.htm:79
+msgid "Permalinks"
+msgstr ""
+
+#: pntemplates/locations_admin_modifyconfig.htm:80
+msgid "Here you can define your custom permalink format."
+msgstr ""
+
+#: pntemplates/locations_admin_modifyconfig.htm:82
+msgid "Custom format definition"
+msgstr ""
+
+#: pntemplates/locations_admin_modifyconfig.htm:84
+msgid ""
+"Notice: The permalink always contains the location-id. An empty definition "
+"is allowed."
+msgstr ""
+
+#: pntemplates/locations_admin_modifyconfig.htm:87
+msgid "Acceptable values for use in custom format definition:"
+msgstr ""
+
+#: pntemplates/locations_admin_modifyconfig.htm:88
+#: pntemplates/locations_admin_location_edit.htm:49
+msgid "Permalink URL title"
+msgstr ""
+
+#: pntemplates/locations_admin_modifyconfig.htm:89
+#: pntemplates/locations_admin_location_edit.htm:54
+msgid "Street"
+msgstr ""
+
+#: pntemplates/locations_admin_modifyconfig.htm:90
+#: pntemplates/locations_admin_location_edit.htm:62
+msgid "Zip"
+msgstr ""
+
+#: pntemplates/locations_admin_modifyconfig.htm:91
+#: pntemplates/locations_user_location_view.htm:33
+#: pntemplates/locations_user_location_view.htm:35
+#: pntemplates/locations_admin_location_view.htm:48
+#: pntemplates/locations_admin_location_view.htm:50
+#: pntemplates/locations_admin_location_edit.htm:70
+msgid "City"
+msgstr ""
+
+#: pntemplates/locations_admin_modifyconfig.htm:92
+#: pntemplates/locations_admin_location_edit.htm:94
+msgid "Country"
+msgstr ""
+
+#: pntemplates/locations_admin_modifyconfig.htm:93
+#: pntemplates/locations_admin_location_edit.htm:98
+msgid "State"
+msgstr ""
+
+#: pntemplates/locations_admin_modifyconfig.htm:99
 msgid "Update configuration"
 msgstr ""
 
-#: pntemplates/locations_admin_modifyconfig.htm:78
+#: pntemplates/locations_admin_modifyconfig.htm:100
 #: pntemplates/locations_admin_delete.htm:15
 #: pntemplates/locations_admin_location_edit.htm:146
 msgid "Cancel"
@@ -309,14 +365,6 @@ msgstr ""
 #: pntemplates/locations_admin_location_view.htm:43
 #: pntemplates/locations_admin_location_edit.htm:44
 msgid "Name"
-msgstr ""
-
-#: pntemplates/locations_user_location_view.htm:33
-#: pntemplates/locations_user_location_view.htm:35
-#: pntemplates/locations_admin_location_view.htm:48
-#: pntemplates/locations_admin_location_view.htm:50
-#: pntemplates/locations_admin_location_edit.htm:70
-msgid "City"
 msgstr ""
 
 #: pntemplates/locations_user_location_view.htm:41
@@ -478,7 +526,6 @@ msgstr ""
 
 #: pntemplates/locations_user_location_display.htm:22
 #: pntemplates/locations_user_location_short_display.htm:25
-#: pntemplates/locations_admin_location_edit.htm:86
 msgid "Url"
 msgstr ""
 
@@ -539,24 +586,12 @@ msgstr ""
 msgid "Please enter the name of the location"
 msgstr ""
 
-#: pntemplates/locations_admin_location_edit.htm:49
-msgid "PermaLink URL title"
-msgstr ""
-
 #: pntemplates/locations_admin_location_edit.htm:51
 msgid "(Blank = auto-generate)"
 msgstr ""
 
-#: pntemplates/locations_admin_location_edit.htm:54
-msgid "Street"
-msgstr ""
-
 #: pntemplates/locations_admin_location_edit.htm:55
 msgid "Input the street of the location"
-msgstr ""
-
-#: pntemplates/locations_admin_location_edit.htm:62
-msgid "Zip"
 msgstr ""
 
 #: pntemplates/locations_admin_location_edit.htm:63
@@ -576,6 +611,10 @@ msgstr ""
 msgid "Input the fax of the location"
 msgstr ""
 
+#: pntemplates/locations_admin_location_edit.htm:86
+msgid "URL"
+msgstr ""
+
 #: pntemplates/locations_admin_location_edit.htm:87
 msgid "http://"
 msgstr ""
@@ -584,16 +623,8 @@ msgstr ""
 msgid "Input the email of the location"
 msgstr ""
 
-#: pntemplates/locations_admin_location_edit.htm:94
-msgid "Country"
-msgstr ""
-
 #: pntemplates/locations_admin_location_edit.htm:95
 msgid "Input the country of the location"
-msgstr ""
-
-#: pntemplates/locations_admin_location_edit.htm:98
-msgid "State"
 msgstr ""
 
 #: pntemplates/locations_admin_location_edit.htm:99

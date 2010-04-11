@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: locations\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-04-11 00:18+0000\n"
-"PO-Revision-Date: 2010-04-11 01:51+0100\n"
+"POT-Creation-Date: 2010-04-11 12:21+0000\n"
+"PO-Revision-Date: 2010-04-11 13:54+0100\n"
 "Last-Translator: Carsten Volmer <carsten@zikula.org>\n"
 "Language-Team: Carsten Volmer <carsten@zikula.org>\n"
 "MIME-Version: 1.0\n"
@@ -54,7 +54,7 @@ msgid "Locations dupe"
 msgstr "Location doppelt"
 
 #: pnversion.php:15
-#: pninit.php:344
+#: pninit.php:346
 #: pntemplates/locations_search_options.htm:4
 msgid "Locations"
 msgstr "Locations"
@@ -130,15 +130,15 @@ msgstr "Konfiguration"
 msgid "User frontend"
 msgstr "Benutzer Frontend"
 
-#: pninit.php:57
+#: pninit.php:58
 msgid "Error! Could not set up the default module vars."
 msgstr "Fehler! Die Standard Modulvariablen konnte leider nicht erstellt werden."
 
-#: pninit.php:62
+#: pninit.php:63
 msgid "Error! Could not create the default categories"
 msgstr "Fehler! Die Standardkategorien konnte leider nicht erstellt werden."
 
-#: pninit.php:345
+#: pninit.php:347
 msgid "Database for all kinds of locations"
 msgstr "Datenbank für Locations aller Art"
 
@@ -273,11 +273,65 @@ msgstr "Vorgabe Bundesland"
 msgid "Default Country"
 msgstr "Vorgabe Land"
 
-#: pntemplates/locations_admin_modifyconfig.htm:77
+#: pntemplates/locations_admin_modifyconfig.htm:79
+msgid "Permalinks"
+msgstr "Permalinks"
+
+#: pntemplates/locations_admin_modifyconfig.htm:80
+msgid "Here you can define your custom permalink format."
+msgstr "Hier kann das Format der Permalinks individuell definiert werden."
+
+#: pntemplates/locations_admin_modifyconfig.htm:82
+msgid "Custom format definition"
+msgstr "Individuelles Format"
+
+#: pntemplates/locations_admin_modifyconfig.htm:84
+msgid "Notice: The permalink always contains the location-id. An empty definition is allowed."
+msgstr "Hinweis: Die Permalinks beinhalten immer die Location-ID. Somit ist hier auch eine leere Definition erlaubt."
+
+#: pntemplates/locations_admin_modifyconfig.htm:87
+msgid "Acceptable values for use in custom format definition:"
+msgstr "Mögliche Werte für die individuelle Formatdefinition:"
+
+#: pntemplates/locations_admin_modifyconfig.htm:88
+#: pntemplates/locations_admin_location_edit.htm:49
+msgid "Permalink URL title"
+msgstr "Permalink URL Titel"
+
+#: pntemplates/locations_admin_modifyconfig.htm:89
+#: pntemplates/locations_admin_location_edit.htm:54
+msgid "Street"
+msgstr "Straße"
+
+#: pntemplates/locations_admin_modifyconfig.htm:90
+#: pntemplates/locations_admin_location_edit.htm:62
+msgid "Zip"
+msgstr "PLZ"
+
+#: pntemplates/locations_admin_modifyconfig.htm:91
+#: pntemplates/locations_user_location_view.htm:33
+#: pntemplates/locations_user_location_view.htm:35
+#: pntemplates/locations_admin_location_view.htm:48
+#: pntemplates/locations_admin_location_view.htm:50
+#: pntemplates/locations_admin_location_edit.htm:70
+msgid "City"
+msgstr "Stadt"
+
+#: pntemplates/locations_admin_modifyconfig.htm:92
+#: pntemplates/locations_admin_location_edit.htm:94
+msgid "Country"
+msgstr "Land"
+
+#: pntemplates/locations_admin_modifyconfig.htm:93
+#: pntemplates/locations_admin_location_edit.htm:98
+msgid "State"
+msgstr "Bundesland"
+
+#: pntemplates/locations_admin_modifyconfig.htm:99
 msgid "Update configuration"
 msgstr "Konfiguration aktualisieren"
 
-#: pntemplates/locations_admin_modifyconfig.htm:78
+#: pntemplates/locations_admin_modifyconfig.htm:100
 #: pntemplates/locations_admin_delete.htm:15
 #: pntemplates/locations_admin_location_edit.htm:146
 msgid "Cancel"
@@ -324,14 +378,6 @@ msgstr "Los"
 #: pntemplates/locations_admin_location_edit.htm:44
 msgid "Name"
 msgstr "Name"
-
-#: pntemplates/locations_user_location_view.htm:33
-#: pntemplates/locations_user_location_view.htm:35
-#: pntemplates/locations_admin_location_view.htm:48
-#: pntemplates/locations_admin_location_view.htm:50
-#: pntemplates/locations_admin_location_edit.htm:70
-msgid "City"
-msgstr "Stadt"
 
 #: pntemplates/locations_user_location_view.htm:41
 #: pntemplates/locations_admin_location_view.htm:56
@@ -490,7 +536,6 @@ msgstr "E-Mail"
 
 #: pntemplates/locations_user_location_display.htm:22
 #: pntemplates/locations_user_location_short_display.htm:25
-#: pntemplates/locations_admin_location_edit.htm:86
 msgid "Url"
 msgstr "URL"
 
@@ -551,25 +596,13 @@ msgstr "Name der Location eingeben"
 msgid "Please enter the name of the location"
 msgstr "Bitte den Namen der Location eingeben"
 
-#: pntemplates/locations_admin_location_edit.htm:49
-msgid "PermaLink URL title"
-msgstr "PermaLink URL Titel"
-
 #: pntemplates/locations_admin_location_edit.htm:51
 msgid "(Blank = auto-generate)"
 msgstr "(Leer = Automatische Erstellung)"
 
-#: pntemplates/locations_admin_location_edit.htm:54
-msgid "Street"
-msgstr "Straße"
-
 #: pntemplates/locations_admin_location_edit.htm:55
 msgid "Input the street of the location"
 msgstr "Straße der Location eingeben"
-
-#: pntemplates/locations_admin_location_edit.htm:62
-msgid "Zip"
-msgstr "PLZ"
 
 #: pntemplates/locations_admin_location_edit.htm:63
 msgid "Input the zip of the location"
@@ -588,6 +621,10 @@ msgstr "Telefonnummer der Location eingeben"
 msgid "Input the fax of the location"
 msgstr "Faxnummer der Location eingeben"
 
+#: pntemplates/locations_admin_location_edit.htm:86
+msgid "URL"
+msgstr "URL"
+
 #: pntemplates/locations_admin_location_edit.htm:87
 msgid "http://"
 msgstr "http://"
@@ -596,17 +633,9 @@ msgstr "http://"
 msgid "Input the email of the location"
 msgstr "E-Mail der Location eingeben"
 
-#: pntemplates/locations_admin_location_edit.htm:94
-msgid "Country"
-msgstr "Land"
-
 #: pntemplates/locations_admin_location_edit.htm:95
 msgid "Input the country of the location"
 msgstr "Land der Location eingeben"
-
-#: pntemplates/locations_admin_location_edit.htm:98
-msgid "State"
-msgstr "Bundesland"
 
 #: pntemplates/locations_admin_location_edit.htm:99
 msgid "Input the state of the location"
