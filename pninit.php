@@ -51,6 +51,7 @@ function locations_init()
     pnModSetVar('locations', 'mapZoomDisplay', 16);
     pnModSetVar('locations', 'mapDistanceDisplay', 0.5);
     pnModSetVar('locations', 'enablecategorization', true);
+    pnModSetVar('locations', 'permalinkformat', '%city%/%urltitle%');
 
     // create the default data for locations
     if (!locations_defaultdata()) {
@@ -100,6 +101,7 @@ function locations_upgrade($oldversion)
             pnModSetVar('locations', 'mapZoomDisplay', 16);
             pnModSetVar('locations', 'mapDistanceDisplay', 0.5);
             pnModSetVar('locations', 'enablecategorization', true);
+            pnModSetVar('locations', 'permalinkformat', '%city%/%urltitle%');
 
             // create main category
             _locations_createDefaultCategory();

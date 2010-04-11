@@ -182,7 +182,10 @@ function locations_userapi_encodeurl($args)
             $item = DBUtil::selectObjectByID('locations_' . $objectType, $args['name'], 'urltitle');
         }
 
-        $vars = (!empty($item['city'])) ? $item['locationid'] . '/' . $item['city'] . '/' . $item['urltitle'] : $item['locationid'] . '/' . $item['urltitle'];
+        $permalinkformat = pnModGetVar('locations', 'permalinkformat');
+        $in = array('%urltitle%', '%street%', '%zip%', '%city%', '%country%', '%state%');
+        $out = array($item['urltitle'], $item['street'], $item['zip'], $item['city'], $item['country'], $item['state']);
+        $vars = $item['locationid'] . '/' . str_replace($in, $out, $permalinkformat);
     }
 
     // don't display the function name if either displaying an page or the normal overview

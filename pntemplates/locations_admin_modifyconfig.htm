@@ -73,6 +73,28 @@
     <!--[pnmodcallhooks hookobject="module" hookaction="modifyconfig" module="locations"]-->
 </fieldset>
 
+<!--[pnconfiggetvar name='shorturls' assign='shorturls']-->
+<!--[if $shorturls eq true]-->
+<fieldset>
+    <legend><!--[gt text='Permalinks']--></legend>
+    <p class="z-formnote z-informationmsg"><!--[gt text='Here you can define your custom permalink format.']--></p>
+    <div class="z-formrow">
+        <!--[pnformlabel for="permalinkformat" __text='Custom format definition']-->
+        <!--[pnformtextinput id="permalinkformat" group="config" maxLength='255']-->
+        <em class="z-sub z-formnote"><!--[gt text='Notice: The permalink always contains the location-id. An empty definition is allowed.']--></em>
+    </div>
+    <dl class="z-formnote">
+        <dt><strong><!--[gt text='Acceptable values for use in custom format definition:']--></strong></dt>
+        <dd>%urltitle% - <!--[gt text='Permalink URL title']--></dd>
+        <dd>%street% - <!--[gt text='Street']--></dd>
+        <dd>%zip% - <!--[gt text='Zip']--></dd>
+        <dd>%city% - <!--[gt text='City']--></dd>
+        <dd>%country% - <!--[gt text='Country']--></dd>
+        <dd>%state% - <!--[gt text='State']--></dd>
+    </dl>
+</fieldset>
+<!--[/if]-->
+
 <div class="z-formbuttons">
     <!--[pnformbutton commandName="save" __text="Update configuration"]-->
     <!--[pnformbutton commandName="cancel" __text="Cancel"]-->

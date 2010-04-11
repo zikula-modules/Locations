@@ -8,6 +8,7 @@ http://carsten-volmer.de
 
 + added Gettext support and updated templates #34
 + added better directory-based shorturls with permalinks #33
++ added customizable permalink format #39
 + added category support #15
 + added pagination #13
 + added description field #22,#23, #30
