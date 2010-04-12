@@ -45,12 +45,12 @@
 <!--[getDatesFromCrpCalendar bylocation=$location.locationid typeList="upcoming" assign="dates"]-->
 <!--[if $dates|@count > 0]-->
 <h4><!--[gt text="Events"]--></h4>
-<ul>
+<p class="z-sub"><a href="<!--[pnmodurl modname="crpCalendar" type="user" func="new"]-->"><!--[gt text="Create new event"]--></a></p>
+<ul class="loc_events">
     <!--[foreach item='date' from=$dates]-->
     <li><!--[$date.start_date|pndate_format:"datetimebrief"]--> | <a href="<!--[pnmodurl modname="crpCalendar" type="user" func="display" eventid=$date.eventid]-->"><!--[$date.title|pnvarprepfordisplay]--></a></li>
     <!--[/foreach]-->
 </ul>
-<div class="edit"><!--[gt text="Location date"]--> <a href="<!--[pnmodurl modname="crpCalendar" type="user" func="new"]-->"><!--[gt text="Add"]--></a></div>
 <!--[/if]-->
 <!--[/if]-->
 

@@ -5,6 +5,7 @@
 <div id="locations">
     <h2><!--[gt text="Locations database"]--></h2>
 
+    <!--[nocache]-->
     <div class="z-menu">
         <span class="z-menuitem-title">
             [
@@ -13,13 +14,15 @@
             <a id="loc_addnewitem" title="<!--[gt text="Add new location"]-->" href="<!--[pnmodurl modname="locations" type="admin" func="edit"]-->"><!--[gt text="Add new location"]--></a> |
             <!--[/securityutil_checkpermission_block]-->
             <!--[if $func eq 'display']-->
-            <!--[securityutil_checkpermission component="locations::" instance=".*" level="ACCESS_EDIT" assign="admin"]-->
+            <!--[securityutil_checkpermission_block component="locations::" instance=".*" level="ACCESS_EDIT"]-->
             <a id="loc_edit" href="<!--[pnmodurl modname="locations" type="admin" func="edit" locationid=$location.locationid]-->" title="<!--[gt text="Edit"]-->"><!--[gt text="Edit"]--></a> |
+            <!--[/securityutil_checkpermission_block]-->
             <!--[/if]-->
             <a id="loc_distance" href="<!--[pnmodurl modname="locations" type="user" func="getLocationsWithinDistanceOfZIP"]-->" title="<!--[gt text="Distance search"]-->"><!--[gt text="Distance search"]--></a>
             ]
         </span>
     </div>
+    <!--[/nocache]-->
 
     <!--[insert name="getstatusmsg"]-->
 
