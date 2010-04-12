@@ -22,9 +22,18 @@
     <!--[if $location.phone]--><!--[gt text="Phone" domain="module_locations"]-->: <span class="tel"><!--[phonenumber_format input=$location.phone|pnvarprepfordisplay]--></span><br /><!--[/if]-->
     <!--[if $location.fax]--><!--[gt text="Fax" domain="module_locations"]-->: <span class="fax"><!--[phonenumber_format input=$location.fax|pnvarprepfordisplay]--></span><br /><!--[/if]-->
     <!--[if $location.email]--><!--[gt text="Email" domain="module_locations"]-->: <a class="email" href="mailto:<!--[$location.email|pnvarprepfordisplay|default:""]-->"><!--[$location.email|pnvarprepfordisplay|default:""]--></a><br /><!--[/if]-->
-    <!--[if $location.url]--><!--[gt text="Url" domain="module_locations"]-->: <a class="url" href="<!--[$location.url|pnvarprepfordisplay|default:""]-->"><!--[$location.url|pnvarprepfordisplay|default:""]--></a><br /><!--[/if]--><br />
-    <!--[gt text="Export" domain="module_locations"]-->: <a href="http://technorati.com/contacts/<!--[$baseurl]--><!--[pnmodurl modname="locations" type="user" func="display" locationid=$location.locationid]-->">vCard</a> | <a href="<!--[pnmodurl modname="locations" type="user" func="view" tpl="kml" filter=locationid:eq:`$location.locationid`]-->">kml</a><br />
+    <!--[if $location.url]--><!--[gt text="Url" domain="module_locations"]-->: <a class="url" href="<!--[$location.url|pnvarprepfordisplay|default:""]-->"><!--[$location.url|pnvarprepfordisplay|default:""]--></a><br /><!--[/if]-->
 </p>
+<p class="z-sub">
+    <!--[gt text="Export"]-->: <a href="http://technorati.com/contacts/<!--[$baseurl]--><!--[pnmodurl modname="locations" type="user" func="display" locationid=$location.locationid]-->">vCard</a> | <a href="<!--[pnmodurl modname="locations" type="user" func="view" tpl="kml" filter=locationid:eq:`$location.locationid`]-->">kml</a>
+</p>
+
+<!--[if $location.description]-->
+<h4><!--[gt text="Description"]--></h4>
+<div class="loc_description">
+    <!--[$location.description|paragraph|pnmodcallhooks|pnvarprephtmldisplay]-->
+</div>
+<!--[/if]-->
 
 <!--[* prevent showing the map in content editing mode *]-->
 <!--[if $location.latlng && $type neq 'edit']-->

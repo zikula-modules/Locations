@@ -56,7 +56,7 @@ ul#loc_alphapager li:first-child {
 .loc_mapbox {
     background: #FAFAFA;
     border: 1px solid #ddd;
-    margin: 0.5em 0;
+    margin: 0.5em 0 1em;
     overflow: hidden;
     padding: 0.5em;
 }
