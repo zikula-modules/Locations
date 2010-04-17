@@ -1,6 +1,17 @@
 location - changelog
 ==========================================================================
 
+v2.0.1  -  April 2010
+Carsten Volmer <carsten@zikula.org>
+http://carsten-volmer.de
+--------------------------------------------------------------------------
+
++ added show map type buttons (map, satellite, hybrid) #44
++ make category clickable like location #43
+- fixed Description field in display function missing #41
+- fixed Edit link shown for guests in display function #42
+
+
 v2.0.0  -  April 2010
 Carsten Volmer <carsten@zikula.org>
 http://carsten-volmer.de
