@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zikula 1.2.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-04-11 12:21+0000\n"
+"POT-Creation-Date: 2010-04-17 12:38+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,9 +16,9 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: pnadmin.php:75 pnadmin.php:85 pnadmin.php:88 pnajax.php:21
+#: pnadmin.php:74 pnadmin.php:84 pnadmin.php:87 pnajax.php:21
 #: pntemplates/plugins/function.locationsGoogleMap.php:39 pnuserapi.php:30
-#: pnuserapi.php:67 pnuser.php:74 pnuser.php:84 pnuser.php:87 pnuser.php:209
+#: pnuserapi.php:67 pnuser.php:74 pnuser.php:84 pnuser.php:87 pnuser.php:211
 #: classes/FormHandler/locations_user_getLocationsWithinDistanceOfZIPHandler.php:71
 #: classes/FormHandler/locations_admin_location_edithandler.class.php:66
 #: classes/FormHandler/locations_admin_location_edithandler.class.php:120
@@ -27,12 +27,12 @@ msgstr ""
 msgid "Error! Unable to load class [%s]."
 msgstr ""
 
-#: pnadmin.php:244 pnadmin.php:296
+#: pnadmin.php:246 pnadmin.php:298
 #: classes/FormHandler/locations_admin_location_edithandler.class.php:293
 msgid "Done! Location deleted."
 msgstr ""
 
-#: pnadmin.php:246 pnadmin.php:298
+#: pnadmin.php:248 pnadmin.php:300
 msgid "Error! Could not delete location."
 msgstr ""
 
@@ -40,7 +40,7 @@ msgstr ""
 msgid "Locations dupe"
 msgstr ""
 
-#: pnversion.php:15 pninit.php:346 pntemplates/locations_search_options.htm:4
+#: pnversion.php:15 pninit.php:347 pntemplates/locations_search_options.htm:4
 msgid "Locations"
 msgstr ""
 
@@ -56,6 +56,15 @@ msgstr ""
 #: pntemplates/plugins/function.locationsGoogleMap.php:55
 #: classes/FormHandler/locations_user_getLocationsWithinDistanceOfZIPHandler.php:80
 msgid "more"
+msgstr ""
+
+#: pntemplates/plugins/function.locationsCategory.php:15
+#, php-format
+msgid "Error! in %1$s: the %2$s parameter must be specified."
+msgstr ""
+
+#: pntemplates/plugins/function.locationsCategory.php:37
+msgid "Not assigned"
 msgstr ""
 
 #: pntemplates/plugins/function.locationsAlphalist.php:17
@@ -81,7 +90,7 @@ msgstr ""
 msgid "Error! Invalid Id received."
 msgstr ""
 
-#: pnuserapi.php:85 pnuser.php:226
+#: pnuserapi.php:85 pnuser.php:228
 msgid "Error! No such location found."
 msgstr ""
 
@@ -119,7 +128,7 @@ msgstr ""
 msgid "Error! Could not create the default categories"
 msgstr ""
 
-#: pninit.php:347
+#: pninit.php:348
 msgid "Database for all kinds of locations"
 msgstr ""
 
@@ -341,7 +350,7 @@ msgstr ""
 msgid "Edit"
 msgstr ""
 
-#: pntemplates/locations_user_header.htm:19
+#: pntemplates/locations_user_header.htm:20
 #: pntemplates/locations_user_getLocationsWithinDistanceOfZIP.htm:2
 msgid "Distance search"
 msgstr ""
@@ -394,8 +403,8 @@ msgid "Show all locations"
 msgstr ""
 
 #: pntemplates/locations_user_location_view.htm:81
-#: pntemplates/locations_user_location_display.htm:27
-#: pntemplates/locations_user_location_short_display.htm:31
+#: pntemplates/locations_user_location_display.htm:36
+#: pntemplates/locations_user_location_short_display.htm:40
 msgid "Map"
 msgstr ""
 
@@ -529,26 +538,28 @@ msgstr ""
 msgid "Url"
 msgstr ""
 
-#: pntemplates/locations_user_location_display.htm:23
-#: pntemplates/locations_user_location_short_display.htm:26
+#: pntemplates/locations_user_location_display.htm:25
+#: pntemplates/locations_user_location_short_display.htm:28
 msgid "Export"
 msgstr ""
 
-#: pntemplates/locations_user_location_display.htm:35
-#: pntemplates/locations_user_location_short_display.htm:39
+#: pntemplates/locations_user_location_display.htm:29
+#: pntemplates/locations_user_location_short_display.htm:32
+#: pntemplates/locations_admin_location_edit.htm:102
+msgid "Description"
+msgstr ""
+
+#: pntemplates/locations_user_location_display.htm:44
+#: pntemplates/locations_user_location_short_display.htm:48
 msgid "Nearby"
 msgstr ""
 
-#: pntemplates/locations_user_location_display.htm:47
+#: pntemplates/locations_user_location_display.htm:56
 msgid "Events"
 msgstr ""
 
-#: pntemplates/locations_user_location_display.htm:53
-msgid "Location date"
-msgstr ""
-
-#: pntemplates/locations_user_location_display.htm:53
-msgid "Add"
+#: pntemplates/locations_user_location_display.htm:57
+msgid "Create new event"
 msgstr ""
 
 #: pntemplates/locations_admin_location_view.htm:34
@@ -629,10 +640,6 @@ msgstr ""
 
 #: pntemplates/locations_admin_location_edit.htm:99
 msgid "Input the state of the location"
-msgstr ""
-
-#: pntemplates/locations_admin_location_edit.htm:102
-msgid "Description"
 msgstr ""
 
 #: pntemplates/locations_admin_location_edit.htm:106

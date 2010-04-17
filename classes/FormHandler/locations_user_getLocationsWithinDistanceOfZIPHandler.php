@@ -43,7 +43,6 @@ class locations_user_getLocationsWithinDistanceOfZIPHandler extends pnFormHandle
                 $map = new locationsGMaps();
                 $map->setAPIKey($key);
                 $map->disableDirections();
-                $map->disableTypeControls();
                 $map->disableSidebar();
                 $map->enableOnLoad();
                 $map->setWidth($this->width);

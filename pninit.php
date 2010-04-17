@@ -42,12 +42,12 @@ function locations_init()
     pnModSetVar('locations', 'DefaultState', (($sessionValue <> false) ? $sessionValue : 'Schleswig-Holstein'));
     SessionUtil::delVar('locations_DefaultState');
     $sessionValue = SessionUtil::getVar('locations_DefaultCountry');
-    pnModSetVar('locations', 'DefaultCountry', (($sessionValue <> false) ? $sessionValue : 'Germany'));
+    pnModSetVar('locations', 'DefaultCountry', (($sessionValue <> false) ? $sessionValue : 'Deutschland'));
     SessionUtil::delVar('locations_DefaultCountry');
     pnModSetVar('locations', 'pagesize', 25);
     pnModSetVar('locations', 'mapWidth', '100%');
     pnModSetVar('locations', 'mapHeight', '500px');
-    pnModSetVar('locations', 'mapDistanceZip', 7);
+    pnModSetVar('locations', 'mapDistanceZip', 10);
     pnModSetVar('locations', 'mapZoomDisplay', 16);
     pnModSetVar('locations', 'mapDistanceDisplay', 0.5);
     pnModSetVar('locations', 'enablecategorization', true);
@@ -98,7 +98,7 @@ function locations_upgrade($oldversion)
             pnModSetVar('locations', 'pagesize', 25);
             pnModSetVar('locations', 'mapWidth', '100%');
             pnModSetVar('locations', 'mapHeight', '500px');
-            pnModSetVar('locations', 'mapDistanceZip', 7);
+            pnModSetVar('locations', 'mapDistanceZip', 10);
             pnModSetVar('locations', 'mapZoomDisplay', 16);
             pnModSetVar('locations', 'mapDistanceDisplay', 0.5);
             pnModSetVar('locations', 'enablecategorization', true);
@@ -108,6 +108,7 @@ function locations_upgrade($oldversion)
             _locations_createDefaultCategory();
             // populate permalinks for existing content
             _locations_createPermalinks();
+        case '2.0.0':
     }
 
 
@@ -168,7 +169,7 @@ function locations_defaultdata()
             'fax' => '',
             'url' => 'http://www.kieler-schaubude.de',
             'email' => '',
-            'country' => 'Germany',
+            'country' => 'Deutschland',
             'state' => 'Schleswig-Holstein',
             'latlng' => '54.327828,10.129710',
             'description' => '',
@@ -184,7 +185,7 @@ function locations_defaultdata()
             'fax' => '',
             'url' => 'http://www.weltruf-kiel.de',
             'email' => '',
-            'country' => 'Germany',
+            'country' => 'Deutschland',
             'state' => 'Schleswig-Holstein',
             'latlng' => '54.319375,10.132035',
             'description' => '',
@@ -198,12 +199,12 @@ function locations_defaultdata()
             'city' => 'Kiel',
             'phone' => '',
             'fax' => '',
-            'url' => 'http://www.metro-kino-kiel.de',
+            'url' => 'http://www.metrokino-kiel.de',
             'email' => '',
-            'country' => 'Germany',
+            'country' => 'Deutschland',
             'state' => 'Schleswig-Holstein',
             'latlng' => '54.339814,10.133697',
-            'description' => '',
+            'description' => 'metro-Kino im Schloßhof Kiel',
             'logo' => ''),
     array(
             'locationid' => '4',
@@ -216,7 +217,7 @@ function locations_defaultdata()
             'fax' => '',
             'url' => '',
             'email' => '',
-            'country' => 'Germany',
+            'country' => 'Deutschland',
             'state' => 'Schleswig-Holstein',
             'latlng' => '54.318646,10.132500',
             'description' => '',
@@ -232,10 +233,106 @@ function locations_defaultdata()
             'fax' => '',
             'url' => 'http://www.prinzwilly.de',
             'email' => '',
-            'country' => 'Germany',
+            'country' => 'Deutschland',
             'state' => 'Schleswig-Holstein',
             'latlng' => '54.315341,10.117084',
-            'description' => '',
+            'description' => 'Live Musik Club Kiel',
+            'logo' => ''),
+    array(
+            'locationid' => '6',
+            'name' => 'Volksbank Gronau-Ahaus eG',
+            'urltitle' => 'Volksbank-Gronau-Ahaus',
+            'street' => 'Neustraße 42-46',
+            'zip' => '48599',
+            'city' => 'Gronau',
+            'phone' => '',
+            'fax' => '',
+            'url' => 'http://www.vbga.de',
+            'email' => '',
+            'country' => 'Deutschland',
+            'state' => 'Nordrhein-Westfalen',
+            'latlng' => '52.210751,7.026376',
+            'description' => '<p>Die Volksbank Gronau-Ahaus eG ist eine Genossenschaftsbank mit Sitz in Gronau. Ihr Geschäftsgebiet umfasst den Großteil des Kreises Borken. <em>(Quelle: http://de.wikipedia.org/wiki/Volksbank_Gronau-Ahaus)</em></p>',
+            'logo' => ''),
+    array(
+            'locationid' => '7',
+            'name' => 'rock-n-popmuseum',
+            'urltitle' => 'rock-n-popmuseum',
+            'street' => 'Udo-Lindenberg-Platz 1',
+            'zip' => '48599',
+            'city' => 'Gronau',
+            'phone' => '',
+            'fax' => '',
+            'url' => 'http://www.rock-popmuseum.de',
+            'email' => '',
+            'country' => 'Deutschland',
+            'state' => 'Nordrhein-Westfalen',
+            'latlng' => '52.21504,7.02474',
+            'description' => '<p> Das Museum erzählt die Kulturgeschichte der Popularmusik im 20. Jahrhundert, unterstützt durch modernste Medientechnologie.</p>',
+            'logo' => ''),
+    array(
+            'locationid' => '8',
+            'name' => 'Jugend- & Kulturcafé LOGO',
+            'urltitle' => 'Logo-Ahaus',
+            'street' => 'Parallelstraße 1',
+            'zip' => '48683',
+            'city' => 'Ahaus',
+            'phone' => '',
+            'fax' => '',
+            'url' => 'http://www.logo-ahaus.de',
+            'email' => '',
+            'country' => 'Deutschland',
+            'state' => 'Nordrhein-Westfalen',
+            'latlng' => '52.082069,7.015918',
+            'description' => '<p>Das Logo in Ahaus hat sich in den vergangenen 15 Jahren als feste Größe im Veranstaltungsbereich im Münsterland etabliert. Seit seiner Eröffnung im Jahre 1994 fanden mehrere hundert Veranstaltungen vor mehreren 10.000 Zuschauern statt.</p>',
+            'logo' => ''),
+    array(
+            'locationid' => '9',
+            'name' => 'Schloss Ahaus',
+            'urltitle' => 'Schloss-Ahaus',
+            'street' => 'Sümmermannplatz',
+            'zip' => '48683',
+            'city' => 'Ahaus',
+            'phone' => '',
+            'fax' => '',
+            'url' => 'http://www.ahaus.de/schloss_ahaus.0.html',
+            'email' => '',
+            'country' => 'Deutschland',
+            'state' => 'Nordrhein-Westfalen',
+            'latlng' => '52.075139,7.009319',
+            'description' => '<p>Schloss Ahaus ist ein ehemaliges Residenzschloss der Fürstbischöfe von Münster in Ahaus.</p>',
+            'logo' => ''),
+    array(
+            'locationid' => '10',
+            'name' => 'Stadt- und Tierpark',
+            'urltitle' => 'Stadt-und-Tierpark',
+            'street' => 'Brändströmstraße 25',
+            'zip' => '48599',
+            'city' => 'Gronau',
+            'phone' => '',
+            'fax' => '',
+            'url' => 'http://www.gronau.de/index.phtml?NavID=1486.204&La=1',
+            'email' => '',
+            'country' => 'Deutschland',
+            'state' => 'Nordrhein-Westfalen',
+            'latlng' => '52.207070,7.02274',
+            'description' => '<p>Idyllisch gelegen und mitten im Herzen der Stadt befindet sich der weitläufige Stadt- und Tierpark. Er ist die grüne Lunge von Gronau und im Sommer Treffpunkt von Jung und Alt.</p>',
+            'logo' => ''),
+    array(
+            'locationid' => '11',
+            'name' => 'Dreiländersee',
+            'urltitle' => 'Dreilaendersee',
+            'street' => 'Brechter Weg 15',
+            'zip' => '48599',
+            'city' => 'Gronau',
+            'phone' => '',
+            'fax' => '',
+            'url' => 'http://www.driland-see.de/',
+            'email' => '',
+            'country' => 'Deutschland',
+            'state' => 'Nordrhein-Westfalen',
+            'latlng' => '52.24004,7.07689',
+            'description' => '<p>Der Dreiländersee ist ein Mekka für Wassersportler. Hier sind – vom Nichtstun und Sonne tanken über Schwimmen bis zum Surfen und Segeln – eigentlich alle Aktivitäten möglich.</p>',
             'logo' => '')
     );
     // insert it into the location table

@@ -78,7 +78,7 @@ function locations_admin_view($args)
     $objectArray = new $class();
 
     if (pnModGetVar('locations', 'enablecategorization')) {
-        $category = FormUtil :: getPassedValue('locations_category', null);
+        $category = FormUtil :: getPassedValue('cat', null);
 
         if (!($categoryclass = Loader::loadClass('CategoryUtil'))) {
             pn_exit (__f('Error! Unable to load class [%s].', 'CategoryUtil', $dom));

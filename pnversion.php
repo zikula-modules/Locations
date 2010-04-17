@@ -15,7 +15,7 @@ $modversion['name']           = 'locations';
 $modversion['displayname']    = __('Locations', $dom);
 $modversion['description']    = __('Database for all kinds of locations.', $dom);
 $modversion['url']            = __('locations', $dom);
-$modversion['version']        = '2.0.0';
+$modversion['version']        = '2.0.1';
 
 // Information for the credits module
 $modversion['credits']        = 'pndocs/credits.txt';

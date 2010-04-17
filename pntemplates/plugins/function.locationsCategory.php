@@ -19,21 +19,22 @@ function smarty_function_locationsCategory($params, &$smarty)
     $viewtype = isset($params['viewtype']) ? $params['viewtype'] : 'user';
 
     $lang = ZLanguage::getLanguageCode();
+    $dom = ZLanguage::getModuleDomain('locations');
 
     if (!empty($params['item']['__CATEGORIES__'])) {
         foreach ($params['item']['__CATEGORIES__'] as $category) {
             $result .= "<span>\n";
             if (isset($category['display_name'][$lang])) {
                 //$result .= $category['display_name'][$lang];
-                $result .= '<a href="' . DataUtil::formatForDisplay(pnModUrl('locations', $viewtype, 'view', array('locations_category' => $category['id']))) . '">' . DataUtil::formatForDisplay($category['display_name'][$lang]) . '</a>';
+                $result .= '<a href="' . DataUtil::formatForDisplay(pnModUrl('locations', $viewtype, 'view', array('cat' => $category['id']))) . '">' . DataUtil::formatForDisplay($category['display_name'][$lang]) . '</a>';
             } else {
                 //$result .= $category['name'];
-                $result .= '<a href="' . DataUtil::formatForDisplay(pnModUrl('locations', $viewtype, 'view', array('locations_category' => $category['id']))) . '">' . DataUtil::formatForDisplay($category['name']) . '</a>';
+                $result .= '<a href="' . DataUtil::formatForDisplay(pnModUrl('locations', $viewtype, 'view', array('cat' => $category['id']))) . '">' . DataUtil::formatForDisplay($category['name']) . '</a>';
             }
             $result .= "</span>\n";
         }
     } else {
-        $result .= '<span>' . DataUtil::formatForDisplay(__('not assigned')) . '</span>';
+        $result .= '<span>' . DataUtil::formatForDisplay(__('Not assigned', $dom)) . '</span>';
     }
 
     return $result;

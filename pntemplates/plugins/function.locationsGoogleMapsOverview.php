@@ -18,7 +18,6 @@ function smarty_function_locationsGoogleMapsOverview($params, &$render)
     $map = new locationsGMaps();
     $map->setAPIKey($key);
     $map->disableDirections();
-    $map->disableTypeControls();
     $map->disableSidebar();
     $map->enableOnLoad();
     $map->setWidth(($params['width']) ? $params['width'] : '500px');

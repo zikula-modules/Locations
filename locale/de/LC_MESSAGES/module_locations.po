@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: locations\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-04-11 12:21+0000\n"
-"PO-Revision-Date: 2010-04-11 13:54+0100\n"
+"POT-Creation-Date: 2010-04-17 12:38+0000\n"
+"PO-Revision-Date: 2010-04-17 14:10+0100\n"
 "Last-Translator: Carsten Volmer <carsten@zikula.org>\n"
 "Language-Team: Carsten Volmer <carsten@zikula.org>\n"
 "MIME-Version: 1.0\n"
@@ -19,9 +19,9 @@ msgstr ""
 "X-Poedit-Country: Germany\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
-#: pnadmin.php:75
-#: pnadmin.php:85
-#: pnadmin.php:88
+#: pnadmin.php:74
+#: pnadmin.php:84
+#: pnadmin.php:87
 #: pnajax.php:21
 #: pntemplates/plugins/function.locationsGoogleMap.php:39
 #: pnuserapi.php:30
@@ -29,7 +29,7 @@ msgstr ""
 #: pnuser.php:74
 #: pnuser.php:84
 #: pnuser.php:87
-#: pnuser.php:209
+#: pnuser.php:211
 #: classes/FormHandler/locations_user_getLocationsWithinDistanceOfZIPHandler.php:71
 #: classes/FormHandler/locations_admin_location_edithandler.class.php:66
 #: classes/FormHandler/locations_admin_location_edithandler.class.php:120
@@ -38,14 +38,14 @@ msgstr ""
 msgid "Error! Unable to load class [%s]."
 msgstr "Fehler! Die Klasse [%s] konnte nicht geladen werden."
 
-#: pnadmin.php:244
-#: pnadmin.php:296
+#: pnadmin.php:246
+#: pnadmin.php:298
 #: classes/FormHandler/locations_admin_location_edithandler.class.php:293
 msgid "Done! Location deleted."
 msgstr "Erledigt! Die Location wurde erfolgreich gelöscht."
 
-#: pnadmin.php:246
-#: pnadmin.php:298
+#: pnadmin.php:248
+#: pnadmin.php:300
 msgid "Error! Could not delete location."
 msgstr "Fehler! Die Location konnte leider nicht gelöscht werden."
 
@@ -54,7 +54,7 @@ msgid "Locations dupe"
 msgstr "Location doppelt"
 
 #: pnversion.php:15
-#: pninit.php:346
+#: pninit.php:347
 #: pntemplates/locations_search_options.htm:4
 msgid "Locations"
 msgstr "Locations"
@@ -72,6 +72,15 @@ msgstr "locations"
 #: classes/FormHandler/locations_user_getLocationsWithinDistanceOfZIPHandler.php:80
 msgid "more"
 msgstr "Mehr"
+
+#: pntemplates/plugins/function.locationsCategory.php:15
+#, php-format
+msgid "Error! in %1$s: the %2$s parameter must be specified."
+msgstr "Fehler! In %1$s ist der Parameter %2$s nicht angegeben."
+
+#: pntemplates/plugins/function.locationsCategory.php:37
+msgid "Not assigned"
+msgstr "Nicht zugeordnet"
 
 #: pntemplates/plugins/function.locationsAlphalist.php:17
 #, php-format
@@ -98,7 +107,7 @@ msgid "Error! Invalid Id received."
 msgstr "Fehler! Ungültige ID empfangen."
 
 #: pnuserapi.php:85
-#: pnuser.php:226
+#: pnuser.php:228
 msgid "Error! No such location found."
 msgstr "Fehler! Keine entsprechenden Locations gefunden."
 
@@ -138,7 +147,7 @@ msgstr "Fehler! Die Standard Modulvariablen konnte leider nicht erstellt werden.
 msgid "Error! Could not create the default categories"
 msgstr "Fehler! Die Standardkategorien konnte leider nicht erstellt werden."
 
-#: pninit.php:347
+#: pninit.php:348
 msgid "Database for all kinds of locations"
 msgstr "Datenbank für Locations aller Art"
 
@@ -353,7 +362,7 @@ msgstr "Location anlegen"
 msgid "Edit"
 msgstr "Bearbeiten"
 
-#: pntemplates/locations_user_header.htm:19
+#: pntemplates/locations_user_header.htm:20
 #: pntemplates/locations_user_getLocationsWithinDistanceOfZIP.htm:2
 msgid "Distance search"
 msgstr "Umkreissuche"
@@ -406,8 +415,8 @@ msgid "Show all locations"
 msgstr "Alle Locations anzeigen"
 
 #: pntemplates/locations_user_location_view.htm:81
-#: pntemplates/locations_user_location_display.htm:27
-#: pntemplates/locations_user_location_short_display.htm:31
+#: pntemplates/locations_user_location_display.htm:36
+#: pntemplates/locations_user_location_short_display.htm:40
 msgid "Map"
 msgstr "Karte"
 
@@ -539,27 +548,29 @@ msgstr "E-Mail"
 msgid "Url"
 msgstr "URL"
 
-#: pntemplates/locations_user_location_display.htm:23
-#: pntemplates/locations_user_location_short_display.htm:26
+#: pntemplates/locations_user_location_display.htm:25
+#: pntemplates/locations_user_location_short_display.htm:28
 msgid "Export"
 msgstr "Export"
 
-#: pntemplates/locations_user_location_display.htm:35
-#: pntemplates/locations_user_location_short_display.htm:39
+#: pntemplates/locations_user_location_display.htm:29
+#: pntemplates/locations_user_location_short_display.htm:32
+#: pntemplates/locations_admin_location_edit.htm:102
+msgid "Description"
+msgstr "Beschreibung"
+
+#: pntemplates/locations_user_location_display.htm:44
+#: pntemplates/locations_user_location_short_display.htm:48
 msgid "Nearby"
 msgstr "In der Umgebung"
 
-#: pntemplates/locations_user_location_display.htm:47
+#: pntemplates/locations_user_location_display.htm:56
 msgid "Events"
 msgstr "Termine"
 
-#: pntemplates/locations_user_location_display.htm:53
-msgid "Location date"
-msgstr "Location Datum"
-
-#: pntemplates/locations_user_location_display.htm:53
-msgid "Add"
-msgstr "Hinzufügen"
+#: pntemplates/locations_user_location_display.htm:57
+msgid "Create new event"
+msgstr "Termin anlegen"
 
 #: pntemplates/locations_admin_location_view.htm:34
 #: pntemplates/locations_admin_location_view.htm:36
@@ -641,10 +652,6 @@ msgstr "Land der Location eingeben"
 msgid "Input the state of the location"
 msgstr "Bundesland für die Location eingeben"
 
-#: pntemplates/locations_admin_location_edit.htm:102
-msgid "Description"
-msgstr "Beschreibung"
-
 #: pntemplates/locations_admin_location_edit.htm:106
 msgid "Latitude, Longitude"
 msgstr "Breitengrad, Längengrad"
@@ -721,6 +728,12 @@ msgstr "PLZ und/oder Stadt"
 #: pntemplates/locations_user_getLocationsWithinDistanceOfZIP.htm:34
 msgid "Distance"
 msgstr "Umkreis"
+
+#~ msgid "Location date"
+#~ msgstr "Location Datum"
+
+#~ msgid "Add"
+#~ msgstr "Hinzufügen"
 
 #~ msgid ""
 #~ "Done! Updated location. Latitude set to %1$s and longitude set to %2$s."

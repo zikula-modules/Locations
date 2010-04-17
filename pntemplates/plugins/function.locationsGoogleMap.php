@@ -18,7 +18,6 @@ function smarty_function_locationsGoogleMap($params, &$render)
     $map = new locationsGMaps();
     $map->setAPIKey($key);
     $map->disableDirections();
-    $map->disableTypeControls();
     $map->disableSidebar();
     $map->enableOnLoad();
     $map->disableZoomEncompass();
