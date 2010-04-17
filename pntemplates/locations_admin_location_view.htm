@@ -64,7 +64,7 @@
                     <td><!--[$location.name|pnmodcallhooks|pnvarprephtmldisplay|default:""]--></td>
                     <td><!--[$location.city|pnvarprepfordisplay|default:""]--></td>
                     <!--[if $modvar.enablecategorization]-->
-                    <td><!--[assignedcategorieslist item=$location]--></td>
+                    <td><!--[locationsCategory item=$location viewtype="admin"]--></td>
                     <!--[/if]-->
                     <td class="z-nowrap">
                         <a href="<!--[pnmodurl modname="locations" type="user" func="display" locationid=$location.locationid]-->"><!--[pnimg src="demo.gif" modname="core" set="icons/extrasmall" __alt='View'  __title='View' ]--></a>
