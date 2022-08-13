@@ -1,5 +1,8 @@
-Locations
-=========
+# Deprecated
+
+This module has been deprecated as part of [Zikula 4 slimming diet](https://github.com/zikula/core/blob/main/ZIKULA-4.0.md).
+
+# Locations
 
 Locations is a simple modules for Zikula that helps you organize and display addresses. It aims at being the central storage point for addresses so that other modules can store their address-data into it via API.
 
